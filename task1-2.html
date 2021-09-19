@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Task 1-2</title>
+    <link rel="stylesheet" href="task1_style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+          rel="stylesheet">
 </head>
 <body>
 
 <div id="content">
-    <h1>To-Do List</h1>
+    <h1 class="accent">To-Do List</h1>
     <div id="tasks">
-        <ul>
-            <li><input class="item" type="text" name="task-name"></li>
-        </ul>
+        <div id="task-1" class="task-item">
+            <input type="checkbox" class="check-complete" disabled>
+            <input id="create-item" class="item" type="text" name="task-name">
+        </div>
 
-        <button type=""button">+</button>
+        <button id="add" type="button">+</button>
     </div>
     <div id="tools">
-        <button type="button">Filter</button>
-        <button type="button">Delete</button>
+        <button class="accent" id="filter" type="button"><i class="material-icons-outlined md-38">filter_alt</i></button>
+        <button class="accent" id="delete" type="button"><i class="material-icons-outlined md-38">delete_outline</i></button>
     </div>
 </div>
 <div id="next">

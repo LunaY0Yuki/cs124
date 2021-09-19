@@ -2,39 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Task 2-2</title>
+    <title>Task 4-2</title>
+    <link rel="stylesheet" href="task1_style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+          rel="stylesheet">
 </head>
 <body>
 
 <div id="content">
-    <h1>To-Do List</h1>
+    <h1 class="accent">To-Do List</h1>
     <div id="tasks">
-        <div class="task-item">
-            <input type="checkbox" id="task1" name="task1" value="checked">
-            <label for="task1">Buy new John Grisham book</label><br>
+        <div id="task-1" class="task-item">
+            <input type="checkbox" class="check-complete">
+            <label for="task-1">Buy new John Grisham book</label>
         </div>
-        <div class="task-item">
-            <input type="checkbox" id="task2" name="task2" value="checked">
-            <label for="task2">Eat Lunch</label><br>
+        <div id="task-2" class="task-item">
+            <input type="checkbox" class="check-complete" checked>
+            <label for="task-2">Eat Lunch</label>
         </div>
-        <div class="task-item">
-            <input type="checkbox" id="task3" name="task3" value="checked" checked>
-            <label for="task3">Call Mom</label><br>
-        </div>
-        <div class="task-item">
-            <input type="checkbox" id="task4" name="task4" value="checked" disabled>
-            <input class="item" type="text" name="task4" value="Text John"><br>
+        <div id="task-3" class="task-item">
+            <input type="checkbox" class="check-complete" disabled>
+            <label for="task-3" id="call-mom-complete">Call Mom</label><br>
         </div>
 
-        <button type=""button">+</button>
+        <div id="task-4" class="task-item">
+            <input type="checkbox" class="check-complete">
+            <input id="create-item" class="item" type="text" name="task-name" value="Text John">
+        </div>
+
+        <!--        <div id="task-4" class="task-item">-->
+        <!--            <input type="checkbox" id="task4" name="task4" value="checked" disabled>-->
+        <!--            <input class="item" type="text" name="task4" value="Text John"><br>-->
+        <!--        </div>-->
+
+        <button id="add" type="button">+</button>
     </div>
     <div id="tools">
-        <button type="button">Filter</button>
-        <button type="button">Delete</button>
+        <button class="accent" id="filter" type="button"><i class="material-icons-outlined md-38">filter_alt</i></button>
+        <button class="accent" id="delete" type="button"><i class="material-icons-outlined md-38">delete_outline</i></button>
     </div>
 </div>
+</div>
 <div id="next">
-    <a href="task3-3.html">Home</a>
+    <a href="task4-3.html">Next -></a>
 </div>
 
 </body>
