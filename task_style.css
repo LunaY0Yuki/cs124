@@ -11,7 +11,9 @@ body{
     background-color: beige;
     grid-template-columns: 1fr;
     grid-template-rows: 100px 1fr 80px;
+    /*margin: 0;*/
 }
+
 
 #tasks {
     grid-row: 2 / span 1;
@@ -107,6 +109,43 @@ h1{
     border-radius: 5px;
 }
 
+.dropup {
+    position: relative;
+    display: inline-block;
+    flex-grow: 1.1;
+    flex-basis: 0;
+}
+
+.dropup-content {
+    width: 100%;
+    display: block;
+    position: absolute;
+    background-color: beige;
+    min-width: 160px;
+    bottom: 80px;
+    z-index: 1;
+    border: #664C43;
+}
+
+.dropup-content a {
+    border-top: 2px solid #664C43;
+    border-left: 2px solid #664C43;
+    border-right: 2px solid #664C43;
+    color: black;
+    padding: 5px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+#uncompleted-hovered {
+    background-color: #664C43;
+    color:beige;
+}
+
+#completed-hovered {
+    background-color: #664C43;
+    color:beige;
+}
 
 #filter{
     height: 80px;
@@ -114,6 +153,18 @@ h1{
     text-align: center;
     flex-grow: 1;
     flex-basis: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: #664C43;
+    border-style: solid;
+}
+
+#filter-dropup{
+    height: 80px;
+    width: 100%;
+    line-height: 80px;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,6 +183,64 @@ h1{
     align-items: center;
     border-color: #664C43;
     border-style: solid;
+}
+
+#delete-dropup{
+    height: 80px;
+    width: 100%;
+    line-height: 80px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: #664C43;
+    border-style: solid;
+}
+
+/* The Modal (background) */
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 250px; /* Location of the box */
+    left: 0;
+    top: 0;
+    margin: 8px;
+    width: 360px; /* Full width */
+    height: 390px; /* Full height */
+    overflow: scroll; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 5px 25px 20px 25px;
+    border: 1px solid #888;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+}
+
+#modal-response{
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 10px;
+}
+
+#modal-response button{
+    background-color: #C5AA8C;
+    color: #664C43;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
 }
 
 .material-icons-outlined.md-38 {
