@@ -1,6 +1,7 @@
 # Design for Each Task
 Our primary principle for our app design is "simplicity". Because writing down items to-do might already be stressful, 
-we want to reduce the amount of steps and elements required to complete each step. 
+we want to reduce the amount of steps and elements required to complete each step. Following this idea, we also picked 
+neutral, non-intrusive color scheme for the app so that the color does not add additional noise and stress.
 
 ## Task 1: Add New Item to Empty List
 ### Design Ideas / Decisions
@@ -45,14 +46,14 @@ needs the attention of the user, so that they can focus on the uncompleted items
 ## Task 4: Rename Item
 ### Design Ideas / Decisions
 Our principle of simplicity applies in renaming the task. The inspiration of our design for renaming items comes from 
-iPhone's default Notes app. For the Notes app, the user is able to tap on the area that they want to edit and edit the files. 
-Similarly, we want the user to tap on a particular item and be able to start editing the item name.
+iPhone's default Notes app. For the Notes app, the user is able to tap on the area that they want to edit then start editing. 
+Similarly, we want the user to tap on a particular item and be able to start editing the item name immediately.
 
 ![Task 4 - Apple Notes App Inspiration!](/design_files/task4-apple_notes.png "Apple Notes App Inspiration")
 
-We also considered some alternative designs before deciding on the final one. For example, we considered conventional 
+We also considered some alternative designs before deciding on the final one. For example, we considered the conventional 
 to-do list apps that provide additional options such as having the ability to change due dates or add additional notes to
-the item (see image below). However, that will require us to create a pop-up modal for editing the item, which provides 
+the item (see image below). However, that will require us to create a pop-up modal for editing the item, which adds 
 too many additional features that are not essential to our list of tasks.
 
 ![Task 4 - Alternative Design Inspiration - Edit Options!](/design_files/task4-editor_opts.png "Alternative Design Inspiration - Edit Options")
@@ -74,7 +75,7 @@ With all the aforementioned considerations in mind, our final design is shown in
 
 ![Task 4 - Final Design Flow Chart!](/design_files/task4-final.png "Final Design Flow Chart for Task 4")
 
-To edit the task, the user needs to tap on any text area of an item, which is to the left of the corresponding checkbox.
+To edit the task, the user needs to tap on any text area of an item, which is anywhere to the right of the corresponding checkbox.
 
 In our example, after the user taps on "Text John" in image 1, the user will be able to see a line shown below the item 
 that the user is editing. In addition, despite not being shown in image 2, there will be a cursor blinking at the end of
@@ -86,20 +87,20 @@ text input area to save the change. The final result is shown in image 3.
 
 ## Task 5: Filter and Display Only Uncompleted Items
 ### Design Ideas / Decisions
-In order to display specific types of tasks, we quickly decided that the filter option should be a button located somewhere 
+In order to display specific types of tasks, we quickly decided that a filter option should be a button located somewhere 
 on the screen. However, we have considered various ways and locations to place the button. For example, a to-do list app 
-puts the filter icon on the top right corner below the header. However, we discarded this idea because if we want to put 
+puts the filter icon at the top right corner below the header. However, we discarded this idea because if we want to put 
 the delete button next to the filter button (since they both need additional options), both buttons will be too crammed 
 together.
 
-![Task 5 - Alternative Design Inspiration - Filter Button Location!](/design_files/task5-filter_locatino.png "Alternative Design Inspiration - Filter Button Location")
+![Task 5 - Alternative Design Inspiration - Filter Button Location!](/design_files/task5-filter_location.png "Alternative Design Inspiration - Filter Button Location")
 
 We eventually chose the bottom of the screen over the top or the corners. In other typical mobile apps, the bottom often 
-contains different buttons that switch the screen of app (for example, from "home" page to "notification" page on twitter. 
+contains different buttons that switch between different screens of app (for example, from "home" page to "notification" page on Twitter). 
 Since our app does not contain multiple screens/pages, we decided to utilize the space below for both the filter button 
 and the delete button.
 
-![Task 5 - Twitter Buttons at the Bottom of the Screen!](/design_files/task4-editor_opts.png "Twitter Buttons at the Bottom of the Screen")
+![Task 5 - Twitter Buttons at the Bottom of the Screen!](/design_files/task5-twitter.png "Twitter Buttons at the Bottom of the Screen")
 
 In addition, initially, we decided to have both the text and the icon on the buttons. However, having both of them might 
 provide redundant information, so we just used the icons in the end.
@@ -108,10 +109,10 @@ provide redundant information, so we just used the icons in the end.
 
 After the user taps on the "Filter" button, we want to provide different options for users in terms of selecting what to 
 display. We decided to categorize the items based on whether they are completed or not, so we came up with 3 options: 
-all, completed, and uncompleted. The options will be represented as a drop-up menu. To cancel filtering, the user just 
-needs to tap anywhere besides the menu.
+all, completed, and uncompleted. The options will be represented as a drop-up menu. To cancel filtering, the users just 
+need to tap anywhere besides the menu.
 
-To provide visual cues that the user has pressed and selected certain option, when the user taps on an option, that 
+To provide visual cues that the users have pressed and selected certain option, when the users tap on an option, that 
 option will become darken and its text color will turn from black to lighter color.
 
 ### Final Design
@@ -122,12 +123,12 @@ Our final design is broken down into the following 3 steps.
 1. The users can press the filter button at any time (except when they are editing an item).
 2. Once they press down the filter button, a drop-up menu will appear above the filter button (as seen in image 2).
 3. Then, after the users press down on a specific option, which is "Uncompleted" in this case, the drop-up menu will 
-4. automatically disappear, and the app will only display the "Uncompleted" items (shown in image 3).
+automatically disappear, and the app will only display the "Uncompleted" items (shown in image 3).
 
 
 ## Task 6: Delete Completed Items
 ### Design Ideas / Decisions
-We aimed to make the delete button and its options menu have the same design as the filter's.
+We aimed to make the delete button and its option menu have the same design as the filter's.
 
 Before finalizing the available options, we consider a possible delete mode that will allow the user hand-pick which item
 they want to delete. Thus, initially, we have four options for delete: all, completed, uncompleted, and custom. The option
@@ -135,16 +136,16 @@ is also called "Select" instead of "Delete" (as seen from the sketch below).
 Once the users choose the "custom" mode, they can tap on individual items to select the ones that they want to delete. The items 
 that get tap will have a darken background or some kind of outline to indicate that they are selected. However, there are 
 additional overheads such as how should the users cancel the selecting mode? how should the users delete the selected items? 
-Eventually, we decided to abandon this feature because its functionality is not required, and adding it provides 
+Eventually, we decided to abandon this feature because its functionality is not required, and adding it creates 
 unnecessary complications. 
 ![Task 6 - Sketch of the Design Decision (when we are using select)!](/design_files/task6a.png "Sketch of the Design Decision (when we are using select)")
 
 Our final available options for the delete button are the same as the filter button: all, completed, and uncompleted. 
-In addition, because for our app, deletion is an unrecoverable action, we want to ask the users to confirm their deletion 
-to delete certain items. We achieve this using a pop-up modal. We decided to darken the rest of the background when 
-the modal appears so that the users can focus their attention on the warning modal itself. The users will then be able 
+In addition, because deletion is an unrecoverable action for our app, we want to ask the users to confirm their deletion 
+before actually deleting certain items. We achieve this using a pop-up modal. We decided to darken the rest of the background when 
+the modal appears so that the users can focus their attention on the warning modal. The users will then be able 
 to confirm their delete decision by pressing "Delete", which has a red background for the button to emphasize the 
-significance of this action. The users can also tap the darken area or press the "Cancel" button to cancel the action.
+significance of this action. The users can also tap the darken area outside of the modal or press the "Cancel" button to cancel the action.
 
 ![Task 5 - Sketch of the Design Decision!](/design_files/task6b.png "Sketch of the Design Decision for Task 6")
 
@@ -155,14 +156,21 @@ Our final design is broken down into the following 4 steps:
 
 1. The users can press the delete button at any time (except when they are editing an item).
 2. Once they press down the delete button, a drop-up menu will appear above the delete button (as seen in image 2).
-3. Then, after the users press down on a specific option, which is "Completed" in this case, the pop-up modal will appear, asking the user to confirm their actions (as shown in image 3)
-4. After the user presses on "Delete", the completed task "Call Mom" will get deleted, thereby no longer appearing on the screen.
+3. Then, after the users press down on a specific option, which is "Completed" in this case, the pop-up modal will appear, asking the user to confirm their actions (as shown in image 3).
+4. After the user presses on "Delete", the completed task "Call Mom" will get deleted, thereby no longer appearing on the screen (as shown in image 4).
 
 
 # User Testing
-- For each task, describe the task to them. Then ask (1) What will you be looking for to achieve this task? 
-- As they are walking through the task (and the screens for the task), ask them what they will do at each substep? 
-- For example, at task1-2, we can say that "this is what the app looks like after you press the + sign. What will you do next?"
+Because our HTML pages are static, we are not able to approach user testing in the conventional way. 
+
+For each task, we first describe the task to them and ask them what they will be looking for to achieve the task. Then, 
+we will begin by showing the starting HTML screen of the task. At each HTML screen, we will ask them what they will do 
+next to make progress on completing the task. For example, for the HTML screen titled "Task 1-2", we can say that "this 
+is what the app looks like after you press the + sign. What will you do next?"
+
+One of users pointed out that the add button was confusing when the app is prompting the users to enter/edit the item name. 
+The instinct is to press the add button after entering the item name, but our app does not support that. To reduce that confusion, we should hide the add button when the app prompt the user to enter/edit the item name. The user also suggested that we should give a sorting option for the task. After an item is completed, it would be better to move that item to the bottom so that the uncompleted objects and completed objects are grouped separately. 
+
 
 # Challenges We Faced
 One challenge that we faced is about two buttons in a flex box spanning the same amount in the same row. The issue was 
@@ -174,9 +182,9 @@ like the same width. Although it was not a fix from the root of the problem, it 
 of the app and fixes the ultimate issue of creating equal width buttons.
 
 Another challenge we faced was importing and adjusting the icons from Google fonts. Unlike the Google font, which can be 
-imported simply by adding an "@import" statement in the css file, adding the icons requires link an additional style sheet 
+imported simply by adding an "@import" statement in the css file, adding the icons requires linking an additional style sheet 
 in each individual HTML file's header. Then, we had a lot of trouble readjusting the icon size because font-size surprisingly 
-could not change the icon size, which is the typical approach from various tutorials. We eventually find a work-around where, 
+could not change the icon size, which is the typical approach in various tutorials. We eventually find a work-around where, 
 instead of picking any size we want, we indicate a specific size in the class name of the icons. For example, 
 "material-icons-outlined md-38" indicates that we want the 38px version of the icon stored on Google's server.
 
