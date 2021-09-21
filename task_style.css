@@ -243,6 +243,10 @@ h1{
     font-size: 20px;
 }
 
+#delete-confirm-button {
+    background-color: #E57171 !important;
+}
+
 .material-icons-outlined.md-38 {
     font-size: 3em;
 }
