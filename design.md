@@ -12,11 +12,13 @@ would be typing. They could then click outside of the box to go back to the main
 ![Task 1 - Alternative Design Inspiration - First task using add button!](/design_files/task1a.png)
 
 ### Final Design
+![Task 1 - Sketch of Final Design Decision!](/design_files/task1b.png)
+![Task 1 - Final Design Flow Chart!](/design_files/task1-final.png "Final Design Flow Chart for Task 1")
 We decided to ditch the pop-up idea for creating a new item from an empty list (as well as the new items following)
 because it seemed unnecessary and not suitable for the action. Instead, we begin with no new items and a line of text that 
 indicates no new items have been added. A new item would be added by clicking the add button, as planned before, and
 then the user could type directly next to a checkbox on the to-do list.
-![Task 1 - Sketch of Final Design Decision!](/design_files/task1b.png)
+
 
 
 ## Task 2: Add New Item to Not-empty List
@@ -27,9 +29,11 @@ checkbox to indicate that the user can begin typing the new item, along with a k
 Tapping out of the item text area would take the cursor and keyboard away.
 
 ### Final Design
+![Task 2 - Sketch of Final Design Decision!](/design_files/task2a.png)
+![Task 2 - Final Design Flow Chart!](/design_files/task2-final.png "Final Design Flow Chart for Task 2")
 The final design for this task ended up being what we discussed in the Design Ideas / Decisions of this task, which is 
 similar to that of Task 1. 
-![Task 2 - Sketch of Final Design Decision!](/design_files/task2a.png)
+
 
 ## Task 3: Mark an Item as Completed
 ### Design Ideas / Decisions
@@ -38,10 +42,12 @@ in the box, to indicate that an item has been completed. Most scheduling apps or
 for marking an item as complete, so we decided to incorporate it as well because it is intuitive to us to do so.
 
 ### Final Design
+![Task 3 - Sketch of Final Design Decision!](/design_files/task3a.png)
+![Task 3 - Final Design Flow Chart!](/design_files/task3-final.png "Final Design Flow Chart for Task 3")
 Our final design for this task is essentially the same for as we had planned, to reveal a check in the checkbox when indicating 
 an item has been complete. However, we added a strike through to further emphasize that the item is complete and no longer 
 needs the attention of the user, so that they can focus on the uncompleted items.
-![Task 3 - Sketch of Final Design Decision!](/design_files/task3a.png)
+
 
 ## Task 4: Rename Item
 ### Design Ideas / Decisions
@@ -125,7 +131,6 @@ Our final design is broken down into the following 3 steps.
 3. Then, after the users press down on a specific option, which is "Uncompleted" in this case, the drop-up menu will 
 automatically disappear, and the app will only display the "Uncompleted" items (shown in image 3).
 
-
 ## Task 6: Delete Completed Items
 ### Design Ideas / Decisions
 We aimed to make the delete button and its option menu have the same design as the filter's.
@@ -171,6 +176,11 @@ is what the app looks like after you press the + sign. What will you do next?"
 One of users pointed out that the add button was confusing when the app is prompting the users to enter/edit the item name. 
 The instinct is to press the add button after entering the item name, but our app does not support that. To reduce that confusion, we should hide the add button when the app prompt the user to enter/edit the item name. The user also suggested that we should give a sorting option for the task. After an item is completed, it would be better to move that item to the bottom so that the uncompleted objects and completed objects are grouped separately. 
 
+In contrast to the previous user, another user saw the main screen and had the intuition to click the add button in order 
+to add a new item. One part of confusion for this second user is that the filter icon/button was unclear as to its functionality.
+The user guessed that clicking the button would directly show only the uncompleted tasks. Currently, a dropup is supposed 
+to appear on the app from clicking the filter button, which then allows for choosing how to filter the list. We could either 
+replace the icon for a more intuitive one, or put the word "filter" to the right of the icon to clarify what it is.
 
 # Challenges We Faced
 One challenge that we faced is about two buttons in a flex box spanning the same amount in the same row. The issue was 
