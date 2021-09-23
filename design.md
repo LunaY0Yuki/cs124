@@ -1,7 +1,9 @@
 # Design for Each Task
-Our primary principle for our app design is "simplicity". Because writing down items to-do might already be stressful, 
-we want to reduce the amount of steps and elements required to complete each step. Following this idea, we also picked 
-neutral, non-intrusive color scheme for the app so that the color does not add additional noise and stress.
+In this lab, we are creating a mobile web app that manages a list of items to complete. Listed below are the specific tasks 
+that our app can execute. Our primary principle for our app design is "simplicity". Because writing down items to-do might 
+already be stressful, we want to reduce the amount of steps and elements required to complete each step. Following this idea, 
+we also picked a neutral, non-intrusive, non-distracting color scheme for the app so that the colors do not add additional 
+noise and stress.
 
 ## Task 1: Add New Item to Empty List
 ### Design Ideas / Decisions
@@ -13,7 +15,7 @@ would be typing. They could then click outside of the box to go back to the main
 
 ### Final Design
 ![Task 1 - Sketch of Final Design Decision!](/design_files/task1b.png)
-![Task 1 - Final Design Flow Chart!](/design_files/task1-final.png "Final Design Flow Chart for Task 1")
+![Task 1 - Final Design Flow Chart!](/design_files/task1-final.jpg "Final Design Flow Chart for Task 1")
 We decided to ditch the pop-up idea for creating a new item from an empty list (as well as the new items following)
 because it seemed unnecessary and not suitable for the action. Instead, we begin with no new items and a line of text that 
 indicates no new items have been added. A new item would be added by clicking the add button, as planned before, and
@@ -30,7 +32,7 @@ Tapping out of the item text area would take the cursor and keyboard away.
 
 ### Final Design
 ![Task 2 - Sketch of Final Design Decision!](/design_files/task2a.png)
-![Task 2 - Final Design Flow Chart!](/design_files/task2-final.png "Final Design Flow Chart for Task 2")
+![Task 2 - Final Design Flow Chart!](/design_files/task2-final.jpg "Final Design Flow Chart for Task 2")
 The final design for this task ended up being what we discussed in the Design Ideas / Decisions of this task, which is 
 similar to that of Task 1. 
 
@@ -43,7 +45,7 @@ for marking an item as complete, so we decided to incorporate it as well because
 
 ### Final Design
 ![Task 3 - Sketch of Final Design Decision!](/design_files/task3a.png)
-![Task 3 - Final Design Flow Chart!](/design_files/task3-final.png "Final Design Flow Chart for Task 3")
+![Task 3 - Final Design Flow Chart!](/design_files/task3-final.jpg "Final Design Flow Chart for Task 3")
 Our final design for this task is essentially the same for as we had planned, to reveal a check in the checkbox when indicating 
 an item has been complete. However, we added a strike through to further emphasize that the item is complete and no longer 
 needs the attention of the user, so that they can focus on the uncompleted items.
