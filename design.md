@@ -23,18 +23,18 @@ then the user could type directly next to a checkbox on the to-do list.
 
 
 
-## Task 2: Add New Item to Not-empty List
+## Task 2: Add New Item to Non-empty List
 ### Design Ideas / Decisions
-The idea for this task is very similar to what we came up with in Task 1. The user could begin adding an item by clicking 
-the add button which appears under all the existing items, in this case. Then, a blinking cursor would appear by the new 
-checkbox to indicate that the user can begin typing the new item, along with a keyboard rising from the bottom of the screen. 
-Tapping out of the item text area would take the cursor and keyboard away.
+The idea for this task is very similar to what we came up with in adding new items to an empty list. The user could begin 
+adding an item by clicking the add button which appears under all the existing items, in this case. Then, a blinking cursor 
+would appear by the new checkbox to indicate that the user can begin typing the new item, along with a keyboard rising from 
+the bottom of the screen. Tapping out of the item text area would take the cursor and keyboard away.
 
 ### Final Design
 ![Task 2 - Sketch of Final Design Decision!](/design_files/task2a.png)
 ![Task 2 - Final Design Flow Chart!](/design_files/task2-final.jpg "Final Design Flow Chart for Task 2")
 The final design for this task ended up being what we discussed in the Design Ideas / Decisions of this task, which is 
-similar to that of Task 1. 
+similar to the design of adding a new item to an empty list. 
 
 
 ## Task 3: Mark an Item as Completed
@@ -73,8 +73,8 @@ after the edit button is clicked, we need to find a way to let the user pick the
 ![Task 4 - Alternative Design Inspiration - Google Doc Edit Button!](/design_files/task4-google_doc_edit.png "Alternative Design Inspiration - Google Doc Edit Button")
 
 To perfect our design that is inspired by Apple's Notes app, we added a solid line below the edited text to signal the 
-user which task is being edited. In addition, we darken and disable the checkbox to provide additional visual cues on 
-the task of interest.
+user which item is being edited. In addition, we darken and disable the checkbox to provide additional visual cues on 
+the item of interest.
 
 ![Task 4 - Sketch of Final Design Decision!](/design_files/task4a.png "Design Decision for Task 4")
 
@@ -95,7 +95,7 @@ text input area to save the change. The final result is shown in image 3.
 
 ## Task 5: Filter and Display Only Uncompleted Items
 ### Design Ideas / Decisions
-In order to display specific types of tasks, we quickly decided that a filter option should be a button located somewhere 
+In order to display specific types of items, we quickly decided that a filter option should be a button located somewhere 
 on the screen. However, we have considered various ways and locations to place the button. For example, a to-do list app 
 puts the filter icon at the top right corner below the header. However, we discarded this idea because if we want to put 
 the delete button next to the filter button (since they both need additional options), both buttons will be too crammed 
@@ -164,7 +164,7 @@ Our final design is broken down into the following 4 steps:
 1. The users can press the delete button at any time (except when they are editing an item).
 2. Once they press down the delete button, a drop-up menu will appear above the delete button (as seen in image 2).
 3. Then, after the users press down on a specific option, which is "Completed" in this case, the pop-up modal will appear, asking the user to confirm their actions (as shown in image 3).
-4. After the user presses on "Delete", the completed task "Call Mom" will get deleted, thereby no longer appearing on the screen (as shown in image 4).
+4. After the user presses on "Delete", the completed item "Call Mom" will get deleted, thereby no longer appearing on the screen (as shown in image 4).
 
 
 # User Testing
