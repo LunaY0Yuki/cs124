@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5-2</title>
+    <link rel="stylesheet" href="task_style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+          rel="stylesheet">
+</head>
+<body>
+
+<div id="content">
+    <h1 class="accent">To-Do List</h1>
+    <div id="tasks">
+        <div id="task-1" class="task-item">
+            <input type="checkbox" class="check-complete">
+            <label for="task-1">Buy new John Grisham book</label><br>
+        </div>
+        <div id="task-2" class="task-item">
+            <input type="checkbox" class="check-complete">
+            <label for="task-2">Eat Lunch</label>
+        </div>
+        <div id="task-3" class="task-item">
+            <input type="checkbox" class="check-complete" checked>
+            <label for="task-3" id="call-mom-complete">Call Mom</label><br>
+        </div>
+        <div id="task-4" class="task-item">
+            <input type="checkbox" class="check-complete">
+            <label for="task-4">Text John about bank statements</label><br>
+        </div>
+
+        <button id="add" type="button">+</button>
+    </div>
+    <div id="tools">
+        <div class="dropup">
+            <button class="accent" id="filter-dropup" type="button"><i class="material-icons-outlined md-38">filter_alt</i></button>
+            <div class="dropup-content">
+
+                <a href="#">All</a>
+                <a href="#">Completed</a>
+                <a href="#" id="uncompleted-hovered">Uncompleted</a>
+            </div>
+        </div>
+        <button class="accent" id="delete" type="button"><i class="material-icons-outlined md-38">delete_outline</i></button>
+    </div>
+</div>
+<div id="next">
+    <a href="task5-3.html">Next -></a>
+</div>
+
+</body>
+</html>
