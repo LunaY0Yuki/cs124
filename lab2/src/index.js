@@ -22,10 +22,12 @@ let initialData = [
     },
     {
         id: 4,
-        item_name: "Text John about bank statements",
+        item_name: "Text John about bank statements hello ehleo heloo ehloe heoehleooo ",
         completed: false
     }
 ];
+
+// let initialData = [];
 
 ReactDOM.render(
   <React.StrictMode>
