@@ -1,12 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import InMemoryApp from './App.js';
+import reportWebVitals from './reportWebVitals.js';
+
+let initialData = [
+    {
+        id: 1,
+        item_name: "Buy new John Grisham book",
+        completed: true
+    },
+    {
+        id: 2,
+        item_name: "Eat Lunch",
+        completed: false
+    },
+    {
+        id: 3,
+        item_name: "Call Mom",
+        completed: true
+    },
+    {
+        id: 4,
+        item_name: "Text John about bank statements",
+        completed: false
+    }
+];
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <InMemoryApp initialData={initialData} />
   </React.StrictMode>,
   document.getElementById('root')
 );
