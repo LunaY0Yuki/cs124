@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 #add{
-    margin: 0 60px 0 60px;
+    margin: 10px 30px 10px 30px;
     height: 40px;
+    width: 300px;
     line-height: 40px;
     background-color: #664C43;
     color: beige;

@@ -3,9 +3,6 @@ import ItemList from "./ItemList.js";
 import FilterButton from "./FilterButton.js";
 import DeleteButton from "./DeleteButton.js";
 
-function InMemoryApp(props) {
-    return (<App data={props.initialData}/>);
-}
 
 function App(props) {
   return (
@@ -20,4 +17,4 @@ function App(props) {
   );
 }
 
-export default InMemoryApp;
+export default App;

@@ -27,9 +27,11 @@ function ItemList(props){
         );
     }
     return (
+        <div>
         <div id="item_list">
             {renderedList}
-            <AddButton />
+        </div>
+        <AddButton />
         </div>
     );
 }
