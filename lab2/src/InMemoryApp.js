@@ -28,7 +28,7 @@ function InMemoryApp(props) {
         setData(data.concat(newItem));
     }
 
-    return (<App data={props.initialData} onItemChanged={handleItemChanged} onItemDeleted={handleItemDeleted} onItemAdded={handleItemAdded}/>);
+    return (<App data={data} onItemChanged={handleItemChanged} onItemDeleted={handleItemDeleted} onItemAdded={handleItemAdded}/>);
 }
 
 export default InMemoryApp;

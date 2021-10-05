@@ -60,24 +60,30 @@
 
 .dropup-content {
     width: 100%;
-    /*display: block;*/
-    display: none;
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    background-color: beige;
+    background-color: #ebe3ca;
     min-width: 160px;
     bottom: 80px;
     z-index: 1;
     border: #664C43;
 }
 
-.dropup-content a {
+.dropup-content button {
     border-top: 2px solid #664C43;
     border-left: 2px solid #664C43;
     border-right: 2px solid #664C43;
-    color: black;
+    border-bottom: 0px;
+    /*border-color: #664C43;*/
+    border-style: solid;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    /*color: black;*/
     padding: 5px 16px;
     text-decoration: none;
     display: block;
+    background-color: #ebe3ca;
 }
 
 .accent {

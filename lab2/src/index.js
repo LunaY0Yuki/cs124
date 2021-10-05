@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import InMemoryApp from './App.js';
+import InMemoryApp from './InMemoryApp.js';
 import reportWebVitals from './reportWebVitals.js';
 
 let initialData = [

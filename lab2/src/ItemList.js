@@ -1,5 +1,4 @@
 import './ItemList.css';
-
 import Row from'./Row.js';
 import AddButton from "./AddButton.js";
 
@@ -7,31 +6,27 @@ import AddButton from "./AddButton.js";
 function ItemList(props){
     let renderedList = <p id="no-items">No items to do.</p>;
 
-    if (props.listData.length > 0) {
-        renderedList = props.listData.map( (e, index) => <Row key={e.id} id={e.id} item_name={e.item_name}
+    if (props.data.length > 0) {
+        let renderedData = props.data;  // when props.filterState === "all", so we show all
+
+        if (props.filterState == "Completed") {
+            renderedData = props.data.filter((e) => e.completed == true);
+        } else if (props.filterState == "Uncompleted") {
+            renderedData = props.data.filter((e) => e.completed == false);
+        }
+
+        renderedList = renderedData.map( e => <Row key={e.id} id={e.id} item_name={e.item_name}
                                                completed={e.completed}
-                                               toggleCheck = {
-                                                   () => {
-                                                       console.log("my id is: ");
-                                                       console.log(index);
-                                                       // data[index]["item_name"] = "hello";
-                                                       // console.log("before value change: ");
-                                                       // console.log(typeof(data[index]["completed"]));
-                                                       // console.log(data[index]["completed"]);
-                                                       // data[index]["completed"] = !data[index]["completed"];
-                                                       // console.log("after value change: ");
-                                                       // console.log(data[index]["completed"]);
-                                                       // console.log(data);
-                                                   }
-                                               }/>
+                                               onItemChanged={props.onItemChanged}/>
         );
     }
+
     return (
         <div>
-        <div id="item_list">
-            {renderedList}
-        </div>
-        <AddButton />
+            <div id="item_list">
+                {renderedList}
+            </div>
+            <AddButton />
         </div>
     );
 }
