@@ -22,13 +22,28 @@ function InMemoryApp(props) {
         setData(data.filter((item) => item.id !== itemID));
     }
 
-    function handleItemAdded(newItemData){
-        let newItem = JSON.parse(JSON.stringify(newItemData));
-        newItem["id"] = generateUniqueID();
-        setData(data.concat(newItem));
+    function handleItemCategoryDeleted(category) {
+        if (category === "Completed"){
+            setData(data.filter((item) => item.completed === false));
+        } else if (category === "Uncompleted") {
+            setData(data.filter((item) => item.completed === true));
+        } else if (category === "All") {
+            setData([]);
+        }
     }
 
-    return (<App data={data} onItemChanged={handleItemChanged} onItemDeleted={handleItemDeleted} onItemAdded={handleItemAdded}/>);
+    function handleItemAdded(){
+        let newId = generateUniqueID();
+        let newItem = [{id: newId, name: "", completed: false}];
+        setData(data.concat(newItem));
+
+        return newId;
+    }
+
+    return (<App data={data} onItemChanged={handleItemChanged}
+                 onItemDeleted={handleItemDeleted}
+                 onDeleteByCategory={handleItemCategoryDeleted}
+                 onItemAdded={handleItemAdded}/>);
 }
 
 export default InMemoryApp;

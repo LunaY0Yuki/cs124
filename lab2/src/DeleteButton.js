@@ -8,7 +8,9 @@ function DeleteButton(props){
             <button className="accent" id="delete-dropup" type="button" onClick={props.onToolClicked}>
                 <i className="material-icons-outlined md-38">delete_outline</i>
             </button>
-            {props.showDropUp && <DeleteDropUp />}
+            {props.showDropUp && <DeleteDropUp displayModal={props.displayModal}
+                                               deleteState={props.deleteState}
+                                               onDeleteOpClicked={props.onDeleteOpClicked}/>}
         </div>
     );
 }

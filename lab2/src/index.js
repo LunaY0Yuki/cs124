@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import InMemoryApp from './InMemoryApp.js';
 import reportWebVitals from './reportWebVitals.js';
+// import * as React from "react";
+// import { ChakraProvider } from "@chakra-ui/react"
+
 
 let initialData = [
     {
@@ -76,7 +79,9 @@ let initialData = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <InMemoryApp initialData={initialData} />
+    {/*<ChakraProvider>*/}
+        <InMemoryApp initialData={initialData} />
+    {/*</ChakraProvider>*/}
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,8 +1,8 @@
 import './AddButton.css';
 
-function AddButton(){
+function AddButton(props){
     return (
-        <button id="add" type="button">+</button>
+        <button id="add" type="button" onClick={props.addNewItem}>+</button>
     );
 }
 
