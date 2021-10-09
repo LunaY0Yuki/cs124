@@ -23,6 +23,7 @@ function InMemoryApp(props) {
     }
 
     function handleItemCategoryDeleted(category) {
+        // delete the item based on the category they are in
         if (category === "Completed"){
             setData(data.filter((item) => item.completed === false));
         } else if (category === "Uncompleted") {

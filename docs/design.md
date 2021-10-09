@@ -11,11 +11,11 @@ For this task, we considered creating a pop-up for each time that a new item wer
 the add button, which is a plus sign on the button for simplicity, in the upper half of the screen, and then a pop-up would 
 appear like a modal. There would be a text area to type in and a blinking cursor to allow the user to visualize where they 
 would be typing. They could then click outside of the box to go back to the main screen and view the newly added item.
-![Task 1 - Alternative Design Inspiration - First task using add button!](/design_files/task1a.png)
+![Task 1 - Alternative Design Inspiration - First task using add button!](./task1a.png)
 
 ### Final Design
-![Task 1 - Sketch of Final Design Decision!](/design_files/task1b.png)
-![Task 1 - Final Design Flow Chart!](/design_files/task1-final.jpg "Final Design Flow Chart for Task 1")
+![Task 1 - Sketch of Final Design Decision!](./task1b.png)
+![Task 1 - Final Design Flow Chart!](./task1-final.jpg "Final Design Flow Chart for Task 1")
 We decided to ditch the pop-up idea for creating a new item from an empty list (as well as the new items following)
 because it seemed unnecessary and not suitable for the action. Instead, we begin with no new items and a line of text that 
 indicates no new items have been added. A new item would be added by clicking the add button, as planned before, and
@@ -31,8 +31,8 @@ would appear by the new checkbox to indicate that the user can begin typing the 
 the bottom of the screen. Tapping out of the item text area would take the cursor and keyboard away.
 
 ### Final Design
-![Task 2 - Sketch of Final Design Decision!](/design_files/task2a.png)
-![Task 2 - Final Design Flow Chart!](/design_files/task2-final.jpg "Final Design Flow Chart for Task 2")
+![Task 2 - Sketch of Final Design Decision!](./task2a.png)
+![Task 2 - Final Design Flow Chart!](./task2-final.jpg "Final Design Flow Chart for Task 2")
 The final design for this task ended up being what we discussed in the Design Ideas / Decisions of this task, which is 
 similar to the design of adding a new item to an empty list. 
 
@@ -44,8 +44,8 @@ in the box, to indicate that an item has been completed. Most scheduling apps or
 for marking an item as complete, so we decided to incorporate it as well because it is intuitive to us to do so.
 
 ### Final Design
-![Task 3 - Sketch of Final Design Decision!](/design_files/task3a.png)
-![Task 3 - Final Design Flow Chart!](/design_files/task3-final.jpg "Final Design Flow Chart for Task 3")
+![Task 3 - Sketch of Final Design Decision!](./task3a.png)
+![Task 3 - Final Design Flow Chart!](./task3-final.jpg "Final Design Flow Chart for Task 3")
 Our final design for this task is essentially the same for as we had planned, to reveal a check in the checkbox when indicating 
 an item has been complete. However, we added a strike through to further emphasize that the item is complete and no longer 
 needs the attention of the user, so that they can focus on the uncompleted items.
@@ -57,31 +57,31 @@ Our principle of simplicity applies in renaming the task. The inspiration of our
 iPhone's default Notes app. For the Notes app, the user is able to tap on the area that they want to edit then start editing. 
 Similarly, we want the user to tap on a particular item and be able to start editing the item name immediately.
 
-![Task 4 - Apple Notes App Inspiration!](/design_files/task4-apple_notes.png "Apple Notes App Inspiration")
+![Task 4 - Apple Notes App Inspiration!](./task4-apple_notes.png "Apple Notes App Inspiration")
 
 We also considered some alternative designs before deciding on the final one. For example, we considered the conventional 
 to-do list apps that provide additional options such as having the ability to change due dates or add additional notes to
 the item (see image below). However, that will require us to create a pop-up modal for editing the item, which adds 
 too many additional features that are not essential to our list of tasks.
 
-![Task 4 - Alternative Design Inspiration - Edit Options!](/design_files/task4-editor_opts.png "Alternative Design Inspiration - Edit Options")
+![Task 4 - Alternative Design Inspiration - Edit Options!](./task4-editor_opts.png "Alternative Design Inspiration - Edit Options")
 
 In addition, we considered alternative ways to enable the edit mode. We considered possibly having an edit button at the 
 corner of the screen, which is typical in apps like Google Doc. However, this idea also complicated the process because 
 after the edit button is clicked, we need to find a way to let the user pick the specific item that they want to edit.
 
-![Task 4 - Alternative Design Inspiration - Google Doc Edit Button!](/design_files/task4-google_doc_edit.png "Alternative Design Inspiration - Google Doc Edit Button")
+![Task 4 - Alternative Design Inspiration - Google Doc Edit Button!](./task4-google_doc_edit.png "Alternative Design Inspiration - Google Doc Edit Button")
 
 To perfect our design that is inspired by Apple's Notes app, we added a solid line below the edited text to signal the 
 user which item is being edited. In addition, we darken and disable the checkbox to provide additional visual cues on 
 the item of interest.
 
-![Task 4 - Sketch of Final Design Decision!](/design_files/task4a.png "Design Decision for Task 4")
+![Task 4 - Sketch of Final Design Decision!](./task4a.png "Design Decision for Task 4")
 
 ### Final Design
 With all the aforementioned considerations in mind, our final design is shown in the following image:
 
-![Task 4 - Final Design Flow Chart!](/design_files/task4-final.png "Final Design Flow Chart for Task 4")
+![Task 4 - Final Design Flow Chart!](./task4-final.png "Final Design Flow Chart for Task 4")
 
 To edit the task, the user needs to tap on any text area of an item, which is anywhere to the right of the corresponding checkbox.
 
@@ -101,19 +101,19 @@ puts the filter icon at the top right corner below the header. However, we disca
 the delete button next to the filter button (since they both need additional options), both buttons will be too crammed 
 together.
 
-![Task 5 - Alternative Design Inspiration - Filter Button Location!](/design_files/task5-filter_location.png "Alternative Design Inspiration - Filter Button Location")
+![Task 5 - Alternative Design Inspiration - Filter Button Location!](./task5-filter_location.png "Alternative Design Inspiration - Filter Button Location")
 
 We eventually chose the bottom of the screen over the top or the corners. In other typical mobile apps, the bottom often 
 contains different buttons that switch between different screens of app (for example, from "home" page to "notification" page on Twitter). 
 Since our app does not contain multiple screens/pages, we decided to utilize the space below for both the filter button 
 and the delete button.
 
-![Task 5 - Twitter Buttons at the Bottom of the Screen!](/design_files/task5-twitter.png "Twitter Buttons at the Bottom of the Screen")
+![Task 5 - Twitter Buttons at the Bottom of the Screen!](./task5-twitter.png "Twitter Buttons at the Bottom of the Screen")
 
 In addition, initially, we decided to have both the text and the icon on the buttons. However, having both of them might 
 provide redundant information, so we just used the icons in the end.
 
-![Task 5 - Sketch of the Design Decision!](/design_files/task5b.png "Sketch of the Design Decision for task 6")
+![Task 5 - Sketch of the Design Decision!](./task5b.png "Sketch of the Design Decision for task 6")
 
 After the user taps on the "Filter" button, we want to provide different options for users in terms of selecting what to 
 display. We decided to categorize the items based on whether they are completed or not, so we came up with 3 options: 
@@ -126,7 +126,7 @@ option will become darken and its text color will turn from black to lighter col
 ### Final Design
 Our final design is broken down into the following 3 steps.
 
-![Task 5 - Final Design Flow Chart!](/design_files/task5-final.png "Final Design Flow Chart for Task 5")
+![Task 5 - Final Design Flow Chart!](./task5-final.png "Final Design Flow Chart for Task 5")
 
 1. The users can press the filter button at any time (except when they are editing an item).
 2. Once they press down the filter button, a drop-up menu will appear above the filter button (as seen in image 2).
@@ -145,7 +145,7 @@ that get tap will have a darken background or some kind of outline to indicate t
 additional overheads such as how should the users cancel the selecting mode? how should the users delete the selected items? 
 Eventually, we decided to abandon this feature because its functionality is not required, and adding it creates 
 unnecessary complications. 
-![Task 6 - Sketch of the Design Decision (when we are using select)!](/design_files/task6a.png "Sketch of the Design Decision (when we are using select)")
+![Task 6 - Sketch of the Design Decision (when we are using select)!](./task6a.png "Sketch of the Design Decision (when we are using select)")
 
 Our final available options for the delete button are the same as the filter button: all, completed, and uncompleted. 
 In addition, because deletion is an unrecoverable action for our app, we want to ask the users to confirm their deletion 
@@ -154,12 +154,12 @@ the modal appears so that the users can focus their attention on the warning mod
 to confirm their delete decision by pressing "Delete", which has a red background for the button to emphasize the 
 significance of this action. The users can also tap the darken area outside of the modal or press the "Cancel" button to cancel the action.
 
-![Task 5 - Sketch of the Design Decision!](/design_files/task6b.png "Sketch of the Design Decision for Task 6")
+![Task 5 - Sketch of the Design Decision!](./task6b.png "Sketch of the Design Decision for Task 6")
 
 ### Final Design
 Our final design is broken down into the following 4 steps:
 
-![Task 6 - Final Design Flow Chart!](/design_files/task6-final.png "Final Design Flow Chart for Task 6")
+![Task 6 - Final Design Flow Chart!](./task6-final.png "Final Design Flow Chart for Task 6")
 
 1. The users can press the delete button at any time (except when they are editing an item).
 2. Once they press down the delete button, a drop-up menu will appear above the delete button (as seen in image 2).

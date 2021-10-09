@@ -1,6 +1,5 @@
 import './ToolsButton.css';
 import FilterDropUp from "./FilterDropUp.js";
-import {useState} from "react";
 
 function FilterButton(props){
     return (

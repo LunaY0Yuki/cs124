@@ -21,6 +21,7 @@ function Row(props){
                               onChange={(e) => props.onItemChanged(props.id, "item_name", e.target.value)}
                               disabled={props.completed}
                               onBlur={(e) => {
+                                  // delete an item if its name is empty and the user clicks out of it
                                   if (e.currentTarget.value === "") {
                                       props.onItemDeleted(props.id);
                                   }

@@ -2,6 +2,8 @@ import './Modal.css';
 
 function Modal(props){
     let deleteType = ""
+
+    // for displaying the right text in the modal
     if (props.deleteState === "Completed"){
         deleteType = "completed ";
     } else if (props.deleteState === "Uncompleted"){
@@ -22,7 +24,7 @@ function Modal(props){
                     <button id="delete-confirm-button" type="button" onClick={() => {
                         props.onDeleteByCategory(props.deleteState);
                         props.hideModal();
-                        props.resetDeleteDropup();
+                        props.resetDeleteDropup();  // reset the delete option and hide the reset dropup
                     }}>
                     Delete</button>
                 </div>

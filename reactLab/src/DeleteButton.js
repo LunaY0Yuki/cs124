@@ -1,6 +1,5 @@
 import './ToolsButton.css';
 import DeleteDropUp from './DeleteDropUp.js';
-import {useState} from "react";
 
 function DeleteButton(props){
     return (
