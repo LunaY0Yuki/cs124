@@ -13,6 +13,12 @@ appear like a modal. There would be a text area to type in and a blinking cursor
 would be typing. They could then click outside of the box to go back to the main screen and view the newly added item.
 ![Task 1 - Alternative Design Inspiration - First task using add button!](./task1a.png)
 
+### React
+With ReactJS, we wanted to make it convenient for users to begin creating their item after clicking the add button. In an 
+empty list, creating a new item would automatically focus the cursor on the text area of the new item so that the user does 
+not need to click the text area before typing. It prevents users from accidentally trying to type before the text area is 
+selected and in the typing mode.
+
 ### Final Design
 ![Task 1 - Sketch of Final Design Decision!](./task1b.png)
 ![Task 1 - Final Design Flow Chart!](./task1-final.jpg "Final Design Flow Chart for Task 1")
@@ -29,6 +35,11 @@ The idea for this task is very similar to what we came up with in adding new ite
 adding an item by clicking the add button which appears under all the existing items, in this case. Then, a blinking cursor 
 would appear by the new checkbox to indicate that the user can begin typing the new item, along with a keyboard rising from 
 the bottom of the screen. Tapping out of the item text area would take the cursor and keyboard away.
+
+### React
+Adding a new item to a non-empty list is similar to adding a new item to an empty list, except that in the case where the 
+item list surpasses the screen size constraints, we made it so that the list would automatically scroll down to the bottom 
+of the list. This allows the user to avoid having to scroll and struggle in order to find where they can type their new item.
 
 ### Final Design
 ![Task 2 - Sketch of Final Design Decision!](./task2a.png)
@@ -78,6 +89,17 @@ the item of interest.
 
 ![Task 4 - Sketch of Final Design Decision!](./task4a.png "Design Decision for Task 4")
 
+### React
+With React, we implemented an additional feature for renaming. If the user deletes all the text from the item name while editing
+(thereby changing the item name to an empty string) then clicks out of the text field, our app will automatically delete
+that item. 
+
+This additional feature provides a way for the user to delete individual task. More importantly, this feature allows our
+app to smoothly handle when a user decides to cancel creating a new task. When the add button is pressed in our app, the
+app first creates an empty item name then lets the user edit and create the item. However, if the user decides to cancel
+creating a new item, they just need to click outside of the text field, thereby causing the item, whose initial item name
+is an empty string, to get deleted. 
+ 
 ### Final Design
 With all the aforementioned considerations in mind, our final design is shown in the following image:
 
@@ -123,6 +145,16 @@ need to tap anywhere besides the menu.
 To provide visual cues that the users have pressed and selected certain option, when the users tap on an option, that 
 option will become darken and its text color will turn from black to lighter color.
 
+### React
+In using ReactJS for the filter button, we wanted to implement a straightforward and simple way to toggle between the filter
+states using only "Completed" and "Uncompleted" as options.
+
+We decided to remove the "All" option in filter because the options could be simplified even further. If a user wanted to 
+see just the completed or uncompleted items, they select it and a checkmark shows up next to that option to indicate that it
+has been selected, and will proceed to show the result of the filtering. If the user wanted to see all items again, they could 
+click back on the filter button and click again the option they previously clicked to uncheck it, which would deselect it 
+and bring back all of the items.
+
 ### Final Design
 Our final design is broken down into the following 3 steps.
 
@@ -154,7 +186,20 @@ the modal appears so that the users can focus their attention on the warning mod
 to confirm their delete decision by pressing "Delete", which has a red background for the button to emphasize the 
 significance of this action. The users can also tap the darken area outside of the modal or press the "Cancel" button to cancel the action.
 
-![Task 5 - Sketch of the Design Decision!](./task6b.png "Sketch of the Design Decision for Task 6")
+![Task 6 - Sketch of the Design Decision!](./task6b.png "Sketch of the Design Decision for Task 6")
+
+### React
+With React, we fine-tuned how our app handles deletion. Specifically, when the user clicks on the button at the bottom 
+with the delete icon, a drop up will appear. Then, if the user clicks on one of the delete options, a pop-up modal will 
+appear. The background darkens to put the emphasis on the modal. To indicate the user's selection, we put a checkmark
+next to the option that they selected in the delete dropup. We also bold the option name in our modal's confirmation 
+message.
+![Task 6 - Sketch of the Design Decision for the Delete Modal!](./task6c.png "Sketch of the Design Decision for Task 6")
+At the pop-up modal, the user can either choose to click on the "Cancel" button or the "Delete" button. If the "Cancel" 
+button is pressed, the modal will disappear, but the user can still see the drop-up with all the options. Note that the 
+checkmark on the option that the user has previously selected disappear because the user has cancelled that option. If
+the "Delete" button is pressed, the modal and the drop up will both disappear. If the user clicks on the drop up again, 
+there should not be any checkmark at any option because the previous delete action has been completed. 
 
 ### Final Design
 Our final design is broken down into the following 4 steps:

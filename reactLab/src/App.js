@@ -6,12 +6,13 @@ import {useState} from "react";
 import Modal from "./Modal.js";
 
 function App(props) {
-    const [toolSelected, setToolSelected] = useState(null);
+    const [toolSelected, setToolSelected] = useState(null);  // for the drop-up for filter and delete
     const [filterState, setFilterState] = useState("All");
     const [deleteState, setDeleteState] = useState(null);
     const [modalOn, setModalOn] = useState(null);
 
     function handleToolSelected(tool_name){
+        // if you click on the same tool twice, it will deselect it
         if (toolSelected === tool_name){
             setToolSelected(null);
         } else {
