@@ -6,16 +6,10 @@ function InMemoryApp(props) {
     const [data, setData] = useState(props.initialData);
 
     function handleItemChanged(itemID, field, newValue){
-        function edit_helper(item) {
-            if (item.id === itemID){
-                item[field] = newValue;
-                return item;
-            }
-            else {
-                return item;
-            }
-        }
-        setData(data.map(edit_helper));
+            setData(data.map(
+                item => item.id !==itemID
+                    ? item
+                    : {...item, [field]: newValue}));
     }
 
     function handleItemDeleted(itemID) {
@@ -35,9 +29,7 @@ function InMemoryApp(props) {
 
     function handleItemAdded(){
         let newId = generateUniqueID();
-        let newItem = [{id: newId, name: "", completed: false}];
-        setData(data.concat(newItem));
-
+        setData(data.concat([{id: newId, name: "", completed: false}]));
         return newId;
     }
 

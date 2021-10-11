@@ -48,14 +48,20 @@ function App(props) {
             />
         </div>
           {modalOn && <Modal deleteState = {deleteState}
-                             resetDeleteOp = {() => setDeleteState(null)}
-                             hideModal={() => setModalOn(false)}
-                             onDeleteByCategory = {props.onDeleteByCategory}
-                             resetDeleteDropup={() => {
-                                 setToolSelected(null);  // reset the toolSelected state, so that the dropUp goes away
-                                 setDeleteState(null);  // reset the deleteState
+                             confirm_button_name = "Delete"
+                             cancelOnClick = {() => {
+                                 setDeleteState(null);
+                                 setModalOn(false);  // hide the modal
                              }}
-          />}
+                             confirmOnClick = {() => {
+                                 props.onDeleteByCategory(deleteState);
+                                 setModalOn(false);  // hide the modal
+                                 setToolSelected(null);   //  reset the toolSelected state, so that the dropUp goes away
+                                 setDeleteState(null);  // reset the deleteState
+                             }
+                             }>
+              <p>Are you sure that you want to delete <b>all {deleteState !== "All" ? deleteState.toLowerCase() + " ": ""}</b>tasks?</p>
+          </Modal>}
       </div>
   );
 }

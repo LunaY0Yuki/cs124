@@ -1,14 +1,24 @@
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import './Row.css';
 import TextareaAutosize from 'react-textarea-autosize';
 
 function Row(props){
-    let textarea_ref = null;
+    const textarea_ref = useRef(null);
+
+    function handleKeypress(e) {
+        //it triggers by pressing the enter key
+        if (e.key === "Enter") {
+            e.preventDefault();
+            let newId = props.onItemAdded();
+            props.changeNewItemId(newId);
+        }
+    };
 
     useEffect(() => {
         // we only want to focus on the text area if it's a new item
         if (props.isNewItem) {
-            textarea_ref.focus();
+            textarea_ref.current.focus();
+            props.changeNewItemId(null);
         }
     });
 
@@ -26,7 +36,8 @@ function Row(props){
                                       props.onItemDeleted(props.id);
                                   }
                               }}
-                              ref={(tag) => (textarea_ref = tag)}
+                              onKeyPress={handleKeypress}
+                              ref={textarea_ref}
             />
         </div>
     );
