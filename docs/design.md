@@ -13,7 +13,7 @@ appear like a modal. There would be a text area to type in and a blinking cursor
 would be typing. They could then click outside of the box to go back to the main screen and view the newly added item.
 ![Task 1 - Alternative Design Inspiration - First task using add button!](./task1a.png)
 
-### React
+### Design Update Since Lab 2
 With ReactJS, we wanted to make it convenient for users to begin creating their item after clicking the add button. In an 
 empty list, creating a new item would automatically focus the cursor on the text area of the new item so that the user does 
 not need to click the text area before typing. It prevents users from accidentally trying to type before the text area is 
@@ -36,7 +36,7 @@ adding an item by clicking the add button which appears under all the existing i
 would appear by the new checkbox to indicate that the user can begin typing the new item, along with a keyboard rising from 
 the bottom of the screen. Tapping out of the item text area would take the cursor and keyboard away.
 
-### React
+### Design Update Since Lab 2
 Adding a new item to a non-empty list is similar to adding a new item to an empty list, except that in the case where the 
 item list surpasses the screen size constraints, we made it so that the list would automatically scroll down to the bottom 
 of the list. This allows the user to avoid having to scroll and struggle in order to find where they can type their new item.
@@ -89,7 +89,7 @@ the item of interest.
 
 ![Task 4 - Sketch of Final Design Decision!](./task4a.png "Design Decision for Task 4")
 
-### React
+### Design Update Since Lab 2
 With React, we implemented an additional feature for renaming. If the user deletes all the text from the item name while editing
 (thereby changing the item name to an empty string) then clicks out of the text field, our app will automatically delete
 that item. 
@@ -145,7 +145,7 @@ need to tap anywhere besides the menu.
 To provide visual cues that the users have pressed and selected certain option, when the users tap on an option, that 
 option will become darken and its text color will turn from black to lighter color.
 
-### React
+### Design Update Since Lab 2
 In using ReactJS for the filter button, we wanted to implement a straightforward and simple way to toggle between the filter
 states using only "Completed" and "Uncompleted" as options.
 
@@ -188,7 +188,7 @@ significance of this action. The users can also tap the darken area outside of t
 
 ![Task 6 - Sketch of the Design Decision!](./task6b.png "Sketch of the Design Decision for Task 6")
 
-### React
+### Design Update Since Lab 2
 With React, we fine-tuned how our app handles deletion. Specifically, when the user clicks on the button at the bottom 
 with the delete icon, a drop up will appear. Then, if the user clicks on one of the delete options, a pop-up modal will 
 appear. The background darkens to put the emphasis on the modal. To indicate the user's selection, we put a checkmark
@@ -213,6 +213,8 @@ Our final design is broken down into the following 4 steps:
 
 
 # User Testing
+
+## Lab 1
 Because our HTML pages are static, we are not able to approach user testing in the conventional way. 
 
 For each task, we first describe the task to them and ask them what they will be looking for to achieve the task. Then, 
@@ -228,6 +230,14 @@ to add a new item. One part of confusion for this second user is that the filter
 The user guessed that clicking the button would directly show only the uncompleted tasks. Currently, a dropup is supposed 
 to appear on the app from clicking the filter button, which then allows for choosing how to filter the list. We could either 
 replace the icon for a more intuitive one, or put the word "filter" to the right of the icon to clarify what it is.
+
+## Lab 2
+We did user testing again with our previous participant. The autofocus on the newly added item helps reduce the confusion that the participant previously had with lab 1. However, when the user tried to create a new item, she tried hitting the enter key after typing the item name. She was surprised to find that the enter key creates a new line within the item name instead of actually creating a new item. Noticing that the enter key did not work, she tried clicking outside of the app and it worked. Later, when the user is trying to use the filter and delete button, she noticed that after she clicks the button, somehow the last created item name is in editing mode, which was unexpected behavior.
+
+Using the result from user testing, we modified and improved our app to eliminate the issues/bugs that were noticed by the users:
+- If the user hits the Enter key after they finished typing the item name, that item will be saved, and a new item is ready to be edited.
+- If the user uses the filter button and the delete button, the app will no longer have the bug of focusing on the last added item. 
+
 
 # Challenges We Faced
 One challenge that we faced is about two buttons in a flex box spanning the same amount in the same row. The issue was 
@@ -245,6 +255,8 @@ could not change the icon size, which is the typical approach in various tutoria
 instead of picking any size we want, we indicate a specific size in the class name of the icons. For example, 
 "material-icons-outlined md-38" indicates that we want the 38px version of the icon stored on Google's server.
 
+In Lab 2, we first have trouble deciding what is the best way to implement creating a new item. We want our app to handle when a user wants to cancel creating a new item (by clicking outside of the input field) nicely. We thought about 2 ways: (1) create a "fake input" field that does not add the new item to the data until the user has clicked out of the input and confirmed the add. (2) create an empty new item in the data after the add button is pressed. Then, we need to support implicitly deleting an item if its item name is an empty string. After discussing our approaches with Prof. Rhodes, we decided to use approach 2 because that integrates more nicely with how the rest of the components are rendered.
+
 # Parts of the Design We're Most Proud Of
 We are most proud of the drop-up menu selector and the pop-up modal for the filter and the delete button. We think that 
 the drop-up menu selector is a non-intrusive way to present all the available options that the users have for either 
@@ -252,4 +264,6 @@ filtering or deleting. In addition, the pop-up modal provides a nice constraint 
 By asking them to confirm their decision to delete, the users would be less likely to accidentally delete their items.
 Finally, the red background of the "Delete" button in the modal is a nice touch. This is the only time that this red color 
 has appeared in the app, thereby immediately grabbing the users' attention to pay attention before pressing the buttons. 
+
+After implementing our app by using React, we are also proud of our app's implicit ability to delete an item if its item name is empty. We also like the fact that the app will focus on the newly added item after the user clicks the add button. For example, if there is a long list of items, the app will automatically scroll to the button and enter the editing mode for the new item.
 
