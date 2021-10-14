@@ -1,0 +1,55 @@
+.item-name {
+    flex-grow: 5;
+    flex-basis: 93%;
+    resize: none;
+    width: 85%;
+    min-height: 25px;
+    height: auto;
+    border: none;
+    background-color: beige;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+.item-name:focus {
+    outline: none !important;
+    width: 85%;
+    height: 25px;
+    border: none;
+    background-color: beige;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    border-bottom: 2px solid #664C43;
+}
+
+
+.task-item-uncompleted{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 5px 10px;
+    column-gap: 8px;
+}
+
+.task-item-completed{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 5px 10px;
+    column-gap: 8px;
+    text-decoration: line-through;
+}
+
+.check-complete {
+    flex-grow: 1;
+    flex-basis: 7%;
+    width: 1.3em;
+    height: 1.3em;
+}
+
+
+/*TODO: unsure if this is the right place*/
+.task-name{
+    text-align: center;
+}

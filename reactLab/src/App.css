@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+/*Div Container For The Entire App*/
+#content{
+  width: 360px;
+  height: 640px;
+  display: grid;
+  background-color: beige;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 1fr 80px;
+}
+
+/*Div Container For The Buttons at the Bottom of the Screen (Filter and Delete Buttons)*/
+#tools {
+  width:360px;
+  margin:0;
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 1;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+}
+
+h1{
+  width:360px;
+  height: 100px;
+  line-height: 100px;
+  grid-row: 1 /span 1;
+  grid-column: 1/span 1;
+  text-align: center;
+  margin-top: 0;
+  font-size: 40px;
+}
+
+.accent {
+  background-color: #C5AA8C;
+}
+
+.material-icons-outlined.md-38 {
+  font-size: 3em;
+}
