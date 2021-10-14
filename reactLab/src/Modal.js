@@ -6,10 +6,13 @@ function Modal(props){
             <div className="modal-content">
                 {props.children}
                 <div id="modal-response">
-                    <button type="button" onClick={props.cancelOnClick}>
+                    <button type="button" onClick={props.onClose}>
                      Cancel
                     </button>
-                    <button id="confirm-button" type="button" onClick={props.confirmOnClick}>
+                    <button id="confirm-button" type="button" onClick={() =>  {
+                        props.onOk();
+                        props.onClose();
+                    }}>
                         {props.confirm_button_name}</button>
                 </div>
             </div>

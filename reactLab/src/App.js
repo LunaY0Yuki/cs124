@@ -49,15 +49,13 @@ function App(props) {
         </div>
           {modalOn && <Modal deleteState = {deleteState}
                              confirm_button_name = "Delete"
-                             cancelOnClick = {() => {
+                             onClose = {() => {
                                  setDeleteState(null);
                                  setModalOn(false);  // hide the modal
                              }}
-                             confirmOnClick = {() => {
+                             onOk = {() => {
                                  props.onDeleteByCategory(deleteState);
-                                 setModalOn(false);  // hide the modal
                                  setToolSelected(null);   //  reset the toolSelected state, so that the dropUp goes away
-                                 setDeleteState(null);  // reset the deleteState
                              }
                              }>
               <p>Are you sure that you want to delete <b>all {deleteState !== "All" ? deleteState.toLowerCase() + " ": ""}</b>tasks?</p>
