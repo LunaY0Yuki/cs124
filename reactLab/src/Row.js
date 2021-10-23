@@ -1,6 +1,7 @@
 import {useEffect, useRef} from "react";
 import './Row.css';
 import TextareaAutosize from 'react-textarea-autosize';
+import Priority from "./Priority";
 
 function Row(props){
     const textarea_ref = useRef(null);
@@ -38,6 +39,11 @@ function Row(props){
                               }}
                               onKeyPress={handleKeypress}
                               ref={textarea_ref}
+            />
+            <Priority selectedPriority={props.priority}
+                      showDropDown={props.showDropDown}
+                      onPriorityClicked={props.onPriorityClicked}
+                      changePriority={(new_priority) => props.onItemChanged(props.id, "priority", new_priority)}
             />
         </div>
     );

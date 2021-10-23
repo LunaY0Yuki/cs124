@@ -6,6 +6,16 @@ import {useState} from "react";
 // Define the List component that contain all the items
 function ItemList(props){
     const [newItemId, setNewItemId] = useState(null);
+    const [prioritySelected, setPrioritySelected] = useState(null);
+
+    function handlePriorityDropDown(item_id){
+        // if you click on the same button twice, it will deselect it. will also toggle priority button and their dropdowns
+        if (prioritySelected === item_id){
+            setPrioritySelected(null);
+        } else {
+            setPrioritySelected(item_id);
+        }
+    }
 
     let renderedList = <p id="no-items">No items to do.</p>;
 
@@ -20,6 +30,9 @@ function ItemList(props){
 
         renderedList = renderedData.map( e => <Row key={e.id} id={e.id} item_name={e.item_name}
                                                completed={e.completed}
+                                               priority={e.priority}
+                                               showDropDown={e.id==prioritySelected}
+                                               onPriorityClicked={() => handlePriorityDropDown(e.id)}
                                                onItemChanged={props.onItemChanged}
                                                onItemDeleted={props.onItemDeleted}
                                                onItemAdded={props.onItemAdded}

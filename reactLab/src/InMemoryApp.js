@@ -94,6 +94,7 @@ function InMemoryApp(props) {
             id: newId,
             item_name: "",
             completed: false,
+            priority: 0,
         })
         return newId;
     }
