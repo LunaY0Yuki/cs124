@@ -2,14 +2,17 @@ import './App.css';
 import ItemList from "./ItemList.js";
 import FilterButton from "./FilterButton.js";
 import DeleteButton from "./DeleteButton.js";
-import {useState} from "react";
+import SortButton from "./SortButton.js";
 import Modal from "./Modal.js";
+import {useState, useEffect, useRef} from "react";
 
 function App(props) {
     const [toolSelected, setToolSelected] = useState(null);  // for the drop-up for filter and delete
     const [filterState, setFilterState] = useState("All");
     const [deleteState, setDeleteState] = useState(null);
     const [modalOn, setModalOn] = useState(null);
+    const [showSortDropDown, setShowSortDropDown] = useState(false);
+
 
     function handleToolSelected(tool_name){
         // if you click on the same tool twice, it will deselect it
@@ -24,16 +27,38 @@ function App(props) {
         if (filterState === toolOp){
             setFilterState("All");
         } else {
-            setFilterState(toolOp);
+            setFilterState(toolOp)
         }
     }
 
+    const ref = useRef();
+            useEffect(() => {
+                const checkIfClickedOutside = e => {
+                    // If the menu is open and the clicked target is not within the menu,
+                    // then close the menu
+                    if (toolSelected && ref.current && !ref.current.contains(e.target)) {
+                        setToolSelected(null);
+                    }
+                }
+
+                document.addEventListener("mousedown", checkIfClickedOutside)
+
+                return () => {
+                    // Cleanup the event listener
+                    document.removeEventListener("mousedown", checkIfClickedOutside)
+                }
+            }, [toolSelected]);
 
     return (
       <div id="content">
         <h1 className="accent">To-Do List</h1>
+        {props.data.length > 0 && <SortButton
+                                    showDropDown = {showSortDropDown}
+                                    toggleDropDown = {() => setShowSortDropDown(!showSortDropDown)}
+                                    />}
+        {props.data.length > 0 && <div id="column-labels"><span>Item Name</span> <span>Priority</span></div>}
         <ItemList {...props} filterState = {filterState}/>
-        <div id="tools">
+        <div id="tools" ref={ref}>
             <FilterButton onToolClicked={() => {handleToolSelected("filter")}}
                           showDropUp = {"filter" === toolSelected}
                           onFilterOpClicked={handleFilterSelected}

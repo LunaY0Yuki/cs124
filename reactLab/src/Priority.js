@@ -1,4 +1,5 @@
 import './Priority.css';
+import {useEffect, useRef} from "react";
 
 function Priority(props){
     let displayed_priority = "–";
@@ -10,18 +11,28 @@ function Priority(props){
         displayed_priority = "H";
     }
 
+    const ref = useRef();
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+            // If the menu is open and the clicked target is not within the menu,
+            // then close the menu
+            if (props.showDropDown && ref.current && !ref.current.contains(e.target)) {
+                props.onPriorityClicked();
+            }
+        }
+
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+            // Cleanup the event listener
+            document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [props.showDropDown]);
+
+
     return (
-        // <div className="dropup">
-        //     <button className="accent" id="filter-dropup" type="button" onClick={props.onToolClicked}>
-        //         <i className="material-icons-outlined md-38">filter_alt</i>
-        //     </button>
-        //     {props.showDropUp && <FilterDropUp onFilterOpClicked={props.onFilterOpClicked}
-        //                                        filterState = {props.filterState}
-        //                                        closeDropUp = {props.closeDropUp}/>}
-        // </div>
-        <div className="dropdown">
-            {/*<button className={"dropbtn"+props.selectedPriority.toString()} onClick={props.onPriorityClicked}>{displayed_priority}</button>*/}
-            {props.showDropDown && <div id="priority-dropdown" className="dropdown-content">
+        <div className="dropdown" ref={ref}>
+            {props.showDropDown && <div className="dropdown-content">
                 <button onClick = {() => props.changePriority(0)}
                         className={props.selectedPriority === 0 ? "none-selected" : "priority-option"}>None {props.selectedPriority === 0 ? <span>&#10003;</span> : null}</button>
                 <button onClick = {() => props.changePriority(1)}

@@ -36,6 +36,7 @@ function Row(props){
                                   if (e.currentTarget.value === "") {
                                       props.onItemDeleted(props.id);
                                   }
+                                  // props.onItemChanged(props.id, "item_name", e.target.value);
                               }}
                               onKeyPress={handleKeypress}
                               ref={textarea_ref}
@@ -43,7 +44,11 @@ function Row(props){
             <Priority selectedPriority={props.priority}
                       showDropDown={props.showDropDown}
                       onPriorityClicked={props.onPriorityClicked}
-                      changePriority={(new_priority) => props.onItemChanged(props.id, "priority", new_priority)}
+                      changePriority={(new_priority) => {
+                          props.onItemChanged(props.id, "priority", new_priority);
+                          props.onPriorityClicked();
+                      }
+                      }
             />
         </div>
     );

@@ -1,31 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 
-#filter{
-    height: 80px;
-    line-height: 80px;
-    text-align: center;
-    flex-grow: 1;
-    flex-basis: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-color: #664C43;
-    border-style: solid;
-}
-
-#delete{
-    height: 80px;
-    line-height: 80px;
-    text-align: center;
-    flex-grow: 1;
-    flex-basis: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-color: #664C43;
-    border-style: solid;
-}
-
 #delete-dropup{
     height: 80px;
     width: 100%;

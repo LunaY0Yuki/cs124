@@ -55,12 +55,12 @@
 .dropdown-content {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     background-color: #f1f1f1;
     min-width: 88px;
     overflow: auto;
     margin-right: 5px;
-    right: 30px;
+    left: 227px;
     z-index: 1;
 }
 

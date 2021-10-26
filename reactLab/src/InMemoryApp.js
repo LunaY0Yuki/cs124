@@ -28,6 +28,8 @@ function InMemoryApp(props) {
 
     let data = [];
     if (value) {
+        // const ordered_value = value.orderBy("item_name");
+        // console.log(value);
         data = value.docs.map((doc) => {
             return {...doc.data()}});
     }
@@ -95,6 +97,7 @@ function InMemoryApp(props) {
             item_name: "",
             completed: false,
             priority: 0,
+            created: firebase.firestore.Timestamp.fromDate(new Date()),
         })
         return newId;
     }
