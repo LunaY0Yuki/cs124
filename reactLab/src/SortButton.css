@@ -38,7 +38,7 @@
     flex-direction: column;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 88px;
+    min-width: 95px;
     overflow: auto;
     /*margin-right: 5px;*/
     right: 12px;

@@ -55,6 +55,8 @@ function App(props) {
         {props.data.length > 0 && <SortButton
                                     showDropDown = {showSortDropDown}
                                     toggleDropDown = {() => setShowSortDropDown(!showSortDropDown)}
+                                    onSortSelected = {props.onSortSelected}
+                                    selectedSortOption = {props.selectedSortOption}
                                     />}
         {props.data.length > 0 && <div id="column-labels"><span>Item Name</span> <span>Priority</span></div>}
         <ItemList {...props} filterState = {filterState}/>

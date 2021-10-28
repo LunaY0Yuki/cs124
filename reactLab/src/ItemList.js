@@ -17,29 +17,44 @@ function ItemList(props){
         }
     }
 
+    function createRowComponent(e){
+        return <Row key={e.id} id={e.id} item_name={e.item_name}
+             completed={e.completed}
+             priority={e.priority}
+             showDropDown={e.id === prioritySelected}
+             onPriorityClicked={() => handlePriorityDropDown(e.id)}
+             onItemChanged={props.onItemChanged}
+             onItemDeleted={props.onItemDeleted}
+             onItemAdded={props.onItemAdded}
+             isNewItem={e.id === newItemId}
+             changeNewItemId={setNewItemId}
+        />
+    }
+
     let renderedList = <p id="no-items">No items to do.</p>;
 
     if (props.data.length > 0) {
-        let renderedData = props.data;  // when props.filterState === "all", so we show all
+        let renderedData = props.data.filter((e) => e.id !== newItemId);  // when props.filterState === "all", so we show all
 
         if (props.filterState === "Completed") {
-            renderedData = props.data.filter((e) => e.completed === true);
+            renderedData = props.data.filter((e) => e.completed);
         } else if (props.filterState === "Uncompleted") {
-            renderedData = props.data.filter((e) => e.completed === false);
+            renderedData = props.data.filter((e) => !e.completed);
         }
 
-        renderedList = renderedData.map( e => <Row key={e.id} id={e.id} item_name={e.item_name}
-                                               completed={e.completed}
-                                               priority={e.priority}
-                                               showDropDown={e.id==prioritySelected}
-                                               onPriorityClicked={() => handlePriorityDropDown(e.id)}
-                                               onItemChanged={props.onItemChanged}
-                                               onItemDeleted={props.onItemDeleted}
-                                               onItemAdded={props.onItemAdded}
-                                               isNewItem={e.id===newItemId}
-                                               changeNewItemId={(newId) => setNewItemId(newId)}
-            />
-        );
+        // create the rows for items whose id does not match newItemId
+        renderedList = renderedData.map((e) => createRowComponent(e));
+
+        if (newItemId){
+            // filter out the new item based on newItemId
+            // filter returns an array (it should be an array with length 1), so we only want the first one
+            let newItemData = props.data.filter((e) => e.id === newItemId);
+            if (newItemData.length === 1){
+                // append new item to the rendered list so it appears at the end
+                renderedList.push(createRowComponent(newItemData[0]));
+            }
+
+        }
     }
 
     return (

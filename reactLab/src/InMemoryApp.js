@@ -23,13 +23,21 @@ const db = firebase.firestore();
 const collectionName = "todo-list-2";
 
 function InMemoryApp(props) {
-    const query = db.collection(collectionName);
+    const [sortOption, setSortOption] = useState(null);
+    let query = db.collection(collectionName);
+    if (sortOption){
+        if (sortOption === "priority"){
+            // because our priority has 4 as the highest priority, need to sort in descending order
+            query = query.orderBy(sortOption, "desc");
+        } else {
+            query = query.orderBy(sortOption);
+        }
+    }
     const [value, loading, error] = useCollection(query);
+
 
     let data = [];
     if (value) {
-        // const ordered_value = value.orderBy("item_name");
-        // console.log(value);
         data = value.docs.map((doc) => {
             return {...doc.data()}});
     }
@@ -102,10 +110,22 @@ function InMemoryApp(props) {
         return newId;
     }
 
+    function handleSortSelected(option){
+        // if you click on the same option twice, it will undo the sort
+        if (sortOption === option){
+            setSortOption(null);
+        } else {
+            setSortOption(option);
+        }
+    }
+
     return (<App data={data} onItemChanged={handleItemChanged}
                  onItemDeleted={handleItemDeleted}
                  onDeleteByCategory={handleItemCategoryDeleted}
-                 onItemAdded={handleItemAdded}/>);
+                 onItemAdded={handleItemAdded}
+                 onSortSelected={handleSortSelected}
+                 selectedSortOption={sortOption}/>
+    );
 }
 
 export default InMemoryApp;

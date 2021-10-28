@@ -20,14 +20,18 @@ function SortButton(props){
         }
     }, [props.showDropDown]);
 
+    function handleSortOptionClicked(option){
+        props.onSortSelected(option);
+        props.toggleDropDown();
+    }
 
     return (
         <div className="sort-dropdown" ref={ref}>
             <button id={props.showDropDown ? "sort-icon-outlined": "sort-icon"} onClick={props.toggleDropDown}><i className="material-icons-outlined em2">sort</i></button>
             {props.showDropDown && <div className="sort-dropdown-content">
-                <button>By Name</button>
-                <button>By Date</button>
-                <button id="last-option">By Priority</button>
+                <button onClick={() => handleSortOptionClicked("item_name")}>By Name {props.selectedSortOption === "item_name" ? <span>&#10003;</span> : null} </button>
+                <button onClick={() => handleSortOptionClicked("created")}>By Date {props.selectedSortOption === "created" ? <span>&#10003;</span> : null} </button>
+                <button onClick={() => handleSortOptionClicked("priority")} id="last-option">By Priority {props.selectedSortOption === "priority" ? <span>&#10003;</span> : null} </button>
             </div>}
         </div>
     );
