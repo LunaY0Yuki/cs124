@@ -212,6 +212,46 @@ Our final design is broken down into the following 4 steps:
 4. After the user presses on "Delete", the completed item "Call Mom" will get deleted, thereby no longer appearing on the screen (as shown in image 4).
 
 
+## Task 7: Add priority levels to tasks
+### Design Ideas / Decisions
+For adding priority levels to tasks, we went through a few design iterations before reaching a final decision. One idea 
+was to have a number associated with the priority level from 1 to 3, with 1 being the highest and 3 being the lowest priority. 
+We wanted these options to show as a dropdown that can be selected when clicking in the priority column of each item. However, 
+we quickly realized that the numbers may not be the best idea to represent priority since it is not clear whether the priority 
+number ordering is ascending or descending. This can cause confusion for the user. Thus, we decided to use the terms "High", 
+"Medium", and "Low" as the terms for each item's priority options and to color code them accordingly to make the visual differences 
+more apparent. To make it clear which item's priority is being edited, we put a border around the priority button clicked 
+with the dropdown shown. Also, we placed the dropdown to the left of the priority button so that it does not overlap with the item 
+content beneath or under that current item.
+![Task 7 - Sketch of the Design Decision!](./task7.png "Sketch of the Design Decision for Task 7")
+
+### Final Design
+Our final design for the item priority levels are shown in the screenshots below based on the design decisions above.
+![Task 7 - Final Design Flow Chart!](./task7a-final.png "Final Design Flow Chart for Task 7")
+
+
+## Task 8: Sorting of tasks by priority, name, or by creation date
+### Design Ideas / Decisions
+
+To match this new feature with the rest of the UI designs, we decided to just place a sorting icon at the top right corner of the screen below the header. Because there are a defined number of options (by priority, by name, or by creation date), we decided to use drop-down menu, which is also stylistically consistent with our other UIs (e.g. filter button, delete button, priority selector).
+
+![Task 8 - Sketch of the Design Decision for the Sort Button!](./task8a.png "Sketch of the Design Decision for Task 6")
+
+After the user clicks on sort, the drop-down menu will appear. If the list is currently already sorted according to a sort option, there will be a checkmark next to the sort button to indicate the selection. If the user clicks on the same option again, that option will get deselected.
+
+### Final Design
+
+Our final design is broken down into the following steps:
+
+![Task 8 - Final Design Flow Chart!](./task8-final.png "Final Design Flow Chart for Task 6")
+
+1. The user can press the sort button at any time.
+2. After the user has pressed down the sort button, the drop-down with all the sort options will appear. If currently there is already an option selected, a checkmark would appear next to the sort option name. If the items are currently not sorted, no checkmark would appear.
+3. After the user clicks on any of the options, the drop-down will automatically close and the list will be sorted according to the sort option or unsorted if the user deselects the sort option.
+
+After we began implementing the sort button, we decided to add an outline around the sort button after the drop-down menu appears. In this way, the user can more easily associate the appeared drop-down menu with the sort button and understand what the drop-down is used for.
+
+
 # User Testing
 
 ## Lab 1
@@ -240,6 +280,7 @@ Using the result from user testing, we modified and improved our app to eliminat
 
 
 # Challenges We Faced
+## Lab 1
 One challenge that we faced is about two buttons in a flex box spanning the same amount in the same row. The issue was 
 occurring when we had added a dropup menu to one of the buttons (the issue did not arise when we did not have the dropups 
 yet). For some unknown reason, this caused one button to be slightly wider than the other one beside it. We had set the 
@@ -255,9 +296,20 @@ could not change the icon size, which is the typical approach in various tutoria
 instead of picking any size we want, we indicate a specific size in the class name of the icons. For example, 
 "material-icons-outlined md-38" indicates that we want the 38px version of the icon stored on Google's server.
 
-In Lab 2, we first have trouble deciding what is the best way to implement creating a new item. We want our app to handle when a user wants to cancel creating a new item (by clicking outside of the input field) nicely. We thought about 2 ways: (1) create a "fake input" field that does not add the new item to the data until the user has clicked out of the input and confirmed the add. (2) create an empty new item in the data after the add button is pressed. Then, we need to support implicitly deleting an item if its item name is an empty string. After discussing our approaches with Prof. Rhodes, we decided to use approach 2 because that integrates more nicely with how the rest of the components are rendered.
+## Lab 2
+In Lab 2, we first have trouble deciding what is the best way to implement creating a new item. We want our app to handle 
+when a user wants to cancel creating a new item (by clicking outside of the input field) nicely. We thought about 2 ways: 
+(1) create a "fake input" field that does not add the new item to the data until the user has clicked out of the input and 
+confirmed the add. (2) create an empty new item in the data after the add button is pressed. Then, we need to support implicitly 
+deleting an item if its item name is an empty string. After discussing our approaches with Prof. Rhodes, we decided to use 
+approach 2 because that integrates more nicely with how the rest of the components are rendered.
+
+## Lab 3
+row bouncing up and down
+priority drop down gets covered
 
 # Parts of the Design We're Most Proud Of
+## Lab 1
 We are most proud of the drop-up menu selector and the pop-up modal for the filter and the delete button. We think that 
 the drop-up menu selector is a non-intrusive way to present all the available options that the users have for either 
 filtering or deleting. In addition, the pop-up modal provides a nice constraint on the users when they are deleting. 
@@ -265,5 +317,12 @@ By asking them to confirm their decision to delete, the users would be less like
 Finally, the red background of the "Delete" button in the modal is a nice touch. This is the only time that this red color 
 has appeared in the app, thereby immediately grabbing the users' attention to pay attention before pressing the buttons. 
 
-After implementing our app by using React, we are also proud of our app's implicit ability to delete an item if its item name is empty. We also like the fact that the app will focus on the newly added item after the user clicks the add button. For example, if there is a long list of items, the app will automatically scroll to the button and enter the editing mode for the new item.
+## Lab 2
+After implementing our app by using React, we are also proud of our app's implicit ability to delete an item if its item 
+name is empty. We also like the fact that the app will focus on the newly added item after the user clicks the add button. 
+For example, if there is a long list of items, the app will automatically scroll to the button and enter the editing mode 
+for the new item.
 
+## Lab 3
+click out
+solving the challenge of scroll

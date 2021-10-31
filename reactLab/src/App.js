@@ -49,6 +49,13 @@ function App(props) {
                 }
             }, [toolSelected]);
 
+    let numOfItemsToDelete = props.data.length;   // if we are deleting all items
+    if (deleteState === "Completed") {
+        numOfItemsToDelete = props.data.filter((e) => e.completed).length;
+    } else if (deleteState === "Uncompleted") {
+        numOfItemsToDelete = props.data.filter((e) => !e.completed).length;
+    }
+
     return (
       <div id="content">
         <h1 className="accent">To-Do List</h1>
@@ -74,7 +81,7 @@ function App(props) {
                           displayModal={() => {setModalOn(true)}}
             />
         </div>
-          {modalOn && <Modal deleteState = {deleteState}
+          {modalOn && <Modal
                              confirm_button_name = "Delete"
                              onClose = {() => {
                                  setDeleteState(null);
@@ -85,7 +92,7 @@ function App(props) {
                                  setToolSelected(null);   //  reset the toolSelected state, so that the dropUp goes away
                              }
                              }>
-              <p>Are you sure that you want to delete <b>all {deleteState !== "All" ? deleteState.toLowerCase() + " ": ""}</b>tasks?</p>
+              <p>Are you sure that you want to delete <b>all {numOfItemsToDelete.toString()} {deleteState !== "All" ? deleteState.toLowerCase() + " ": ""} </b>tasks?</p>
           </Modal>}
       </div>
   );
