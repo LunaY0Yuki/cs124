@@ -324,5 +324,9 @@ For example, if there is a long list of items, the app will automatically scroll
 for the new item.
 
 ## Lab 3
-click out
-solving the challenge of scroll
+One feature that we are proud of is the ability to click out of an element. We did so by closing a menu or dropdown when 
+a clicked target is not within the menu. We create this const in a useEffect and creating a state for when a menu is open. 
+This makes it a lot easier for users to click out and keep the screen clear, rather than having to go back to the button 
+that revealed the dropdown to close it. We made this possible for every dropdown button and for each newly added item that 
+is empty. The addition of this feature makes the user experience more desirable and less frustrating.
+
