@@ -307,11 +307,24 @@ deleting an item if its item name is an empty string. After discussing our appro
 approach 2 because that integrates more nicely with how the rest of the components are rendered.
 
 ## Lab 3
-In Lab 3, as we are implementing the sorting mechanism, we initially had an issue with how the rows of items are implemented. Initially, because we are updating the item name in firestore using the onChange function, every time when we type something into the item name, the entire app would re-render. Re-rendering is problematic here because when the items are sorted in alphabetical order, as we change the item name, the row will immediately get shifted around and sorted in the right position. For example,  if we have three items: "apple", "lemon", and "pear" and if we change "lemon" to "watermelon", the moment that we delete "l", which is the last letter in "lemon", and start typing "w", the row gets immediately shifted to the bottom, which is confusing. To solve it, instead of letting the textbox always display the value from firestore, we store the most current edit in a state variable. Only after the user clicks out of the textbox, the firestore will update the item name with the most recent edits in the textbox. 
+In Lab 3, as we are implementing the sorting mechanism, we initially had an issue with how the rows of items are implemented. 
+Initially, because we are updating the item name in firestore using the onChange function, every time when we type something 
+into the item name, the entire app would re-render. Re-rendering is problematic here because when the items are sorted in 
+alphabetical order, as we change the item name, the row will immediately get shifted around and sorted in the right position. 
+For example,  if we have three items: "apple", "lemon", and "pear" and if we change "lemon" to "watermelon", the moment that 
+we delete "l", which is the last letter in "lemon", and start typing "w", the row gets immediately shifted to the bottom, 
+which is confusing. To solve it, instead of letting the textbox always display the value from firestore, we store the most 
+current edit in a state variable. Only after the user clicks out of the textbox, the firestore will update the item name with 
+the most recent edits in the textbox. 
 
-In addition, a smaller issue with sorting alphabetically is that when we add a new item, the new item will be at the top of the list because an empty string is sorted before other words. To solve this issue, we keep track of the newly added item. Then, when we render the list, we intentionally filter out the newly added item and add that item to the end of the list after the rest of the rows.
+In addition, a smaller issue with sorting alphabetically is that when we add a new item, the new item will be at the top 
+of the list because an empty string is sorted before other words. To solve this issue, we keep track of the newly added item. 
+Then, when we render the list, we intentionally filter out the newly added item and add that item to the end of the list after 
+the rest of the rows.
 
-Finally, for the priority drop-down, we initially had a styling issue where if we have a long list, the drop-down will appear hidden behind the add button. The users need to scroll down to see the entire drop-down. To fix this, we have to change the position of the drop-down to absolute so that we can define its position with respect to the entire website window. 
+Finally, for the priority drop-down, we initially had a styling issue where if we have a long list, the drop-down will appear 
+hidden behind the add button. The users need to scroll down to see the entire drop-down. To fix this, we have to change the 
+position of the drop-down to absolute so that we can define its position with respect to the entire website window. 
 
 # Parts of the Design We're Most Proud Of
 ## Lab 1
