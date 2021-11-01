@@ -278,6 +278,8 @@ Using the result from user testing, we modified and improved our app to eliminat
 - If the user hits the Enter key after they finished typing the item name, that item will be saved, and a new item is ready to be edited.
 - If the user uses the filter button and the delete button, the app will no longer have the bug of focusing on the last added item. 
 
+## Lab 3
+We did user testing again and introduce the new sorting and priority features. One participant pointed out that the square labels for priority were clear in conveying the information. The abbreviation and the color-coding both matched her intuition of what priorities should look like. However, she was confused about the sorting icon. In our app, the sorting icon is right above the header columns, so first she thought the sorting icon is only for sorting by priority. Then, when she clicked on the sort icon, she was initially confused by the iteration. Thus, we might consider providing some kind of separation to distinguish the header from the button. In addition, when the participant tried to add more items and set more items to have the same priority level, she was confused by the order of the items that have the same priority level. She was expecting that after the items are sorted by priority level, the item would get sorted in alphabetical order. Thus, we should consider providing secondary sorting in addition to the primary one that the users select. 
 
 # Challenges We Faced
 ## Lab 1
@@ -305,8 +307,11 @@ deleting an item if its item name is an empty string. After discussing our appro
 approach 2 because that integrates more nicely with how the rest of the components are rendered.
 
 ## Lab 3
-row bouncing up and down
-priority drop down gets covered
+In Lab 3, as we are implementing the sorting mechanism, we initially had an issue with how the rows of items are implemented. Initially, because we are updating the item name in firestore using the onChange function, every time when we type something into the item name, the entire app would re-render. Re-rendering is problematic here because when the items are sorted in alphabetical order, as we change the item name, the row will immediately get shifted around and sorted in the right position. For example,  if we have three items: "apple", "lemon", and "pear" and if we change "lemon" to "watermelon", the moment that we delete "l", which is the last letter in "lemon", and start typing "w", the row gets immediately shifted to the bottom, which is confusing. To solve it, instead of letting the textbox always display the value from firestore, we store the most current edit in a state variable. Only after the user clicks out of the textbox, the firestore will update the item name with the most recent edits in the textbox. 
+
+In addition, a smaller issue with sorting alphabetically is that when we add a new item, the new item will be at the top of the list because an empty string is sorted before other words. To solve this issue, we keep track of the newly added item. Then, when we render the list, we intentionally filter out the newly added item and add that item to the end of the list after the rest of the rows.
+
+Finally, for the priority drop-down, we initially had a styling issue where if we have a long list, the drop-down will appear hidden behind the add button. The users need to scroll down to see the entire drop-down. To fix this, we have to change the position of the drop-down to absolute so that we can define its position with respect to the entire website window. 
 
 # Parts of the Design We're Most Proud Of
 ## Lab 1
