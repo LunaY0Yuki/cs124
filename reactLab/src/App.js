@@ -23,31 +23,23 @@ function App(props) {
         }
     }
 
-    function handleFilterSelected(toolOp){
-        if (filterState === toolOp){
-            setFilterState("All");
-        } else {
-            setFilterState(toolOp)
+    const ref = useRef(); // create the ref for the tool bar at the bottom
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+            // If the menu is open and the clicked target is not within the menu,
+            // then close the menu
+            if (toolSelected && ref.current && !ref.current.contains(e.target)) {
+                setToolSelected(null);
+            }
         }
-    }
+        document.addEventListener("mousedown", checkIfClickedOutside)
 
-    const ref = useRef();
-            useEffect(() => {
-                const checkIfClickedOutside = e => {
-                    // If the menu is open and the clicked target is not within the menu,
-                    // then close the menu
-                    if (toolSelected && ref.current && !ref.current.contains(e.target)) {
-                        setToolSelected(null);
-                    }
-                }
-
-                document.addEventListener("mousedown", checkIfClickedOutside)
-
-                return () => {
-                    // Cleanup the event listener
-                    document.removeEventListener("mousedown", checkIfClickedOutside)
-                }
-            }, [toolSelected]);
+        return () => {
+            // Cleanup the event listener
+            document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [toolSelected]);
 
     let numOfItemsToDelete = props.data.length;   // if we are deleting all items
     if (deleteState === "Completed") {
@@ -70,7 +62,7 @@ function App(props) {
         <div id="tools" ref={ref}>
             <FilterButton onToolClicked={() => {handleToolSelected("filter")}}
                           showDropUp = {"filter" === toolSelected}
-                          onFilterOpClicked={handleFilterSelected}
+                          onFilterOpClicked={(option) => setFilterState(option)}
                           filterState = {filterState}
                           closeDropUp = {() => setToolSelected(null)}
             />

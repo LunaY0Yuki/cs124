@@ -23,31 +23,23 @@ const db = firebase.firestore();
 const collectionName = "todo-list-2";
 
 function InMemoryApp(props) {
-    const [sortOption, setSortOption] = useState(null);
+    const [sortOption, setSortOption] = useState("created");
     let query = db.collection(collectionName);
     if (sortOption){
         if (sortOption === "priority"){
             // because our priority has 4 as the highest priority, need to sort in descending order
-            query = query.orderBy(sortOption, "desc");
+            query = query.orderBy(sortOption, "desc").orderBy("item_name");
         } else {
             query = query.orderBy(sortOption);
         }
     }
     const [value, loading, error] = useCollection(query);
 
-
     let data = [];
     if (value) {
         data = value.docs.map((doc) => {
             return {...doc.data()}});
     }
-
-    // function handleItemChanged(itemID, field, newValue){
-    //         setData(data.map(
-    //             item => item.id !==itemID
-    //                 ? item
-    //                 : {...item, [field]: newValue}));
-    // }
 
     function handleItemChanged(itemID, field, newValue) {
         const doc = db.collection(collectionName).doc(itemID);
@@ -56,47 +48,22 @@ function InMemoryApp(props) {
         })
     }
 
-    // function handleItemDeleted(itemID) {
-    //     setData(data.filter((item) => item.id !== itemID));
-    // }
-
     function handleItemDeleted(itemID) {
         db.collection(collectionName).doc(itemID).delete();
     }
 
     function handleItemCategoryDeleted(category) {
-        let delete_query = null;
-        // delete the item based on the category they are in
-        if (category === "Completed"){
-            delete_query = db.collection(collectionName).where('completed','==',true);
-        } else if (category === "Uncompleted") {
-            delete_query = db.collection(collectionName).where('completed','==',false);
-        } else if (category === "All") {
-            delete_query = db.collection(collectionName);
-        }
-
-        delete_query.get().then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
+        // iterate through each doc only delete based on selected category
+        value.forEach((doc) => {
+            if (category === "Completed" && doc.data().completed) {
                 doc.ref.delete();
-            });
+            } else if (category === "Uncompleted" && !doc.data().completed) {
+                doc.ref.delete();
+            } else if (category === "All") {
+                doc.ref.delete();
+            }
         });
     }
-    // function handleItemCategoryDeleted(category) {
-    //     // delete the item based on the category they are in
-    //     if (category === "Completed"){
-    //         setData(data.filter((item) => item.completed === false));
-    //     } else if (category === "Uncompleted") {
-    //         setData(data.filter((item) => item.completed === true));
-    //     } else if (category === "All") {
-    //         setData([]);
-    //     }
-    // }
-
-    // function handleItemAdded(){
-    //     let newId = generateUniqueID();
-    //     setData(data.concat([{id: newId, name: "", completed: false}]));
-    //     return newId;
-    // }
 
     function handleItemAdded() {
         const newId = generateUniqueID();
@@ -110,20 +77,11 @@ function InMemoryApp(props) {
         return newId;
     }
 
-    function handleSortSelected(option){
-        // if you click on the same option twice, it will undo the sort
-        if (sortOption === option){
-            setSortOption(null);
-        } else {
-            setSortOption(option);
-        }
-    }
-
     return (<App data={data} onItemChanged={handleItemChanged}
                  onItemDeleted={handleItemDeleted}
                  onDeleteByCategory={handleItemCategoryDeleted}
                  onItemAdded={handleItemAdded}
-                 onSortSelected={handleSortSelected}
+                 onSortSelected={(option) => setSortOption(option)}
                  selectedSortOption={sortOption}/>
     );
 }

@@ -280,6 +280,12 @@ Using the result from user testing, we modified and improved our app to eliminat
 
 ## Lab 3
 We did user testing again and introduce the new sorting and priority features. One participant pointed out that the square labels for priority were clear in conveying the information. The abbreviation and the color-coding both matched her intuition of what priorities should look like. However, she was confused about the sorting icon. In our app, the sorting icon is right above the header columns, so first she thought the sorting icon is only for sorting by priority. Then, when she clicked on the sort icon, she was initially confused by the iteration. Thus, we might consider providing some kind of separation to distinguish the header from the button. In addition, when the participant tried to add more items and set more items to have the same priority level, she was confused by the order of the items that have the same priority level. She was expecting that after the items are sorted by priority level, the item would get sorted in alphabetical order. Thus, we should consider providing secondary sorting in addition to the primary one that the users select. 
+Like the first participant, another user also had confusion with the sort icon and thought that it would sort the list by priority 
+because it is right above the "Priority" column. To help mitigate the confusion and disassociate the two elements, we changed 
+the color of the text for "Item Name" and "Priority" from black to brown. In the future, we can rearrange and try to place the 
+sort button elsewhere to prevent this confusion. Nonetheless, this user enjoyed the color-coded priority levels with selected 
+checkmark and the click-out ability.
+
 
 # Challenges We Faced
 ## Lab 1

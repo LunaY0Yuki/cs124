@@ -11,7 +11,7 @@ function Priority(props){
         displayed_priority = "H";
     }
 
-    const ref = useRef();
+    const ref = useRef();  // create a ref to the priority's drop down selector
     useEffect(() => {
         const checkIfClickedOutside = e => {
             // If the menu is open and the clicked target is not within the menu,
@@ -27,7 +27,7 @@ function Priority(props){
             // Cleanup the event listener
             document.removeEventListener("mousedown", checkIfClickedOutside)
         }
-    }, [props.showDropDown]);
+    });
 
 
     return (
