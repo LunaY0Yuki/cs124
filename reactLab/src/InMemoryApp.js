@@ -20,11 +20,28 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-const collectionName = "todo-list-2";
+const collectionName = "todo-lists";
 
 function InMemoryApp(props) {
     const [sortOption, setSortOption] = useState("created");
-    let query = db.collection(collectionName);
+
+    // get the names of all the lists first
+    let overall_query = db.collection(collectionName);
+    const [overall_value, overall_loading, overall_error] = useCollection(overall_query);
+
+    let all_lists_id = [];
+    let init_list_id = "default-list";
+    if (overall_value) {
+        all_lists_id = overall_value.docs.map((doc) => {
+            return {...doc.data()}});
+
+        init_list_id = all_lists_id[0].id;
+    }
+
+    const [currentList, setCurrentList] = useState(init_list_id);
+
+    let query = db.collection(collectionName).doc(currentList).collection("list-of-items");
+
     if (sortOption){
         if (sortOption === "priority"){
             // because our priority has 4 as the highest priority, need to sort in descending order
@@ -33,6 +50,7 @@ function InMemoryApp(props) {
             query = query.orderBy(sortOption);
         }
     }
+
     const [value, loading, error] = useCollection(query);
 
     let data = [];
@@ -41,15 +59,16 @@ function InMemoryApp(props) {
             return {...doc.data()}});
     }
 
+
     function handleItemChanged(itemID, field, newValue) {
-        const doc = db.collection(collectionName).doc(itemID);
+        const doc = db.collection(collectionName).doc(currentList).collection("list-of-items").doc(itemID);
         doc.update({
             [field]: newValue,
         })
     }
 
     function handleItemDeleted(itemID) {
-        db.collection(collectionName).doc(itemID).delete();
+        db.collection(collectionName).doc(currentList).collection("list-of-items").doc(itemID).delete();
     }
 
     function handleItemCategoryDeleted(category) {
@@ -67,7 +86,7 @@ function InMemoryApp(props) {
 
     function handleItemAdded() {
         const newId = generateUniqueID();
-        db.collection(collectionName).doc(newId).set({
+        db.collection(collectionName).doc(currentList).collection("list-of-items").doc(newId).set({
             id: newId,
             item_name: "",
             completed: false,

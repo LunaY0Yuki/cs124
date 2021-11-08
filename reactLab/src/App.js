@@ -4,6 +4,7 @@ import FilterButton from "./FilterButton.js";
 import DeleteButton from "./DeleteButton.js";
 import SortButton from "./SortButton.js";
 import Modal from "./Modal.js";
+import Sidebar from "./Sidebar.js";
 import {useState, useEffect, useRef} from "react";
 
 function App(props) {
@@ -49,6 +50,8 @@ function App(props) {
     }
 
     return (
+        <div>
+        <Sidebar> </Sidebar>
       <div id="content">
         <h1 className="accent">To-Do List</h1>
         {props.data.length > 0 && <SortButton
@@ -87,6 +90,7 @@ function App(props) {
               <p>Are you sure that you want to delete <b>all {numOfItemsToDelete.toString()} {deleteState !== "All" ? deleteState.toLowerCase() + " ": ""} </b>tasks?</p>
           </Modal>}
       </div>
+    </div>
   );
 }
 
