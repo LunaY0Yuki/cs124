@@ -51,7 +51,7 @@ function App(props) {
 
     return (
         <div>
-        <Sidebar> </Sidebar>
+        <Sidebar list_data={props.list_data}> </Sidebar>
       <div id="content">
         <h1 className="accent">To-Do List</h1>
         {props.data.length > 0 && <SortButton

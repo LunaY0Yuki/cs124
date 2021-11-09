@@ -96,7 +96,9 @@ function InMemoryApp(props) {
         return newId;
     }
 
-    return (<App data={data} onItemChanged={handleItemChanged}
+    return (<App data={data}
+                 list_data={all_lists_id}
+                 onItemChanged={handleItemChanged}
                  onItemDeleted={handleItemDeleted}
                  onDeleteByCategory={handleItemCategoryDeleted}
                  onItemAdded={handleItemAdded}

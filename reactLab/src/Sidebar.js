@@ -7,6 +7,10 @@ function Sidebar(props){
         <ProSidebar>
             <Menu iconShape="square">
                 <MenuItem icon={<MdOutlinePlaylistAdd />}>New List</MenuItem>
+                {props.list_data.map((e) => {
+                    return <MenuItem>{e.list_name}</MenuItem>
+                })
+                }
             </Menu>
         </ProSidebar>
     );
