@@ -39,7 +39,7 @@ function InMemoryApp(props) {
     }
 
     // storing the id of the current list
-    const [currentList, setCurrentList] = useState("default-list");
+    const [currentList, setCurrentList] = useState("v1-1636588773196-2524640948531");
 
 
     let query = db.collection(collectionName).doc(currentList).collection("list-of-items");

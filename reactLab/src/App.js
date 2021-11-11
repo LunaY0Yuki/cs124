@@ -51,13 +51,13 @@ function App(props) {
     }
 
     return (
-        <div>
-        <Sidebar list_data={props.list_data}
+        <div id="overall-app">
+            {false && <Sidebar list_data={props.list_data}
                  curr_list_id={props.curr_list_id}
                  onListSelected={props.onListSelected}
                  onListAdded={props.onListAdded}
                  onListDeleted={props.onListDeleted}
-        />
+        />}
       <div id="content">
         <Header className="accent"
                 curr_list_id={props.curr_list_id}
