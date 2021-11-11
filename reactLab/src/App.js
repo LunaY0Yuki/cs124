@@ -5,6 +5,7 @@ import DeleteButton from "./DeleteButton.js";
 import SortButton from "./SortButton.js";
 import Modal from "./Modal.js";
 import Sidebar from "./Sidebar.js";
+import Header from "./Header.js";
 import {useState, useEffect, useRef} from "react";
 
 function App(props) {
@@ -51,9 +52,18 @@ function App(props) {
 
     return (
         <div>
-        <Sidebar list_data={props.list_data}> </Sidebar>
+        <Sidebar list_data={props.list_data}
+                 curr_list_id={props.curr_list_id}
+                 onListSelected={props.onListSelected}
+                 onListAdded={props.onListAdded}
+                 onListDeleted={props.onListDeleted}
+        />
       <div id="content">
-        <h1 className="accent">To-Do List</h1>
+        <Header className="accent"
+                curr_list_id={props.curr_list_id}
+                curr_list_name={props.curr_list_name}
+                onListNameChanged = {props.onListNameChanged}
+        />
         {props.data.length > 0 && <SortButton
                                     showDropDown = {showSortDropDown}
                                     toggleDropDown = {() => setShowSortDropDown(!showSortDropDown)}

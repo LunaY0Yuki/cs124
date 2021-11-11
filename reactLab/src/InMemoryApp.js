@@ -30,15 +30,17 @@ function InMemoryApp(props) {
     const [overall_value, overall_loading, overall_error] = useCollection(overall_query);
 
     let all_lists_id = [];
-    let init_list_id = "default-list";
+    // let init_list_id = "default-list";
     if (overall_value) {
         all_lists_id = overall_value.docs.map((doc) => {
             return {...doc.data()}});
 
-        init_list_id = all_lists_id[0].id;
+        // init_list_id = all_lists_id[0].id;
     }
 
-    const [currentList, setCurrentList] = useState(init_list_id);
+    // storing the id of the current list
+    const [currentList, setCurrentList] = useState("default-list");
+
 
     let query = db.collection(collectionName).doc(currentList).collection("list-of-items");
 
@@ -96,13 +98,49 @@ function InMemoryApp(props) {
         return newId;
     }
 
+    function handleListNameChanged(listId, newValue){
+        const doc = db.collection(collectionName).doc(listId);
+        doc.update({
+            list_name: newValue,
+        })
+    }
+
+    function handleListAdded(){
+        const newId = generateUniqueID();
+        db.collection(collectionName).doc(newId).set({
+            id: newId,
+            list_name: "Untitled",
+        })
+        return newId;
+    }
+
+    function handleListDeleted(listId) {
+        db.collection(collectionName).doc(listId).delete();
+    }
+
+    // determine what list name to display in the header of the app
+    let curr_list_name = "";
+    if (all_lists_id.length > 0){
+        // find the information of the current list that we are displaying
+        let curr_list = all_lists_id.filter((e) => e.id === currentList);
+        if (curr_list.length > 0) {
+            curr_list_name = all_lists_id.filter((e) => e.id === currentList)[0].list_name;
+        }
+    }
+
     return (<App data={data}
                  list_data={all_lists_id}
+                 curr_list_id={currentList}
+                 curr_list_name={curr_list_name}
                  onItemChanged={handleItemChanged}
                  onItemDeleted={handleItemDeleted}
                  onDeleteByCategory={handleItemCategoryDeleted}
                  onItemAdded={handleItemAdded}
                  onSortSelected={(option) => setSortOption(option)}
+                 onListSelected={(list) => setCurrentList(list)}
+                 onListNameChanged={handleListNameChanged}
+                 onListAdded={handleListAdded}
+                 onListDeleted={handleListDeleted}
                  selectedSortOption={sortOption}/>
     );
 }
