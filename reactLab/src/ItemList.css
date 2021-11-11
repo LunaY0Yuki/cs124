@@ -2,8 +2,8 @@
 
 #item_list {
     width:360px;
-    max-height: 400px;
-    grid-row: 2 / span 1;
+    max-height: 330px;
+    grid-row: 4 / span 1;
     grid-column: 1 / span 1;
     margin:0;
     display: flex;

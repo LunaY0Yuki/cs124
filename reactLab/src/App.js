@@ -2,14 +2,18 @@ import './App.css';
 import ItemList from "./ItemList.js";
 import FilterButton from "./FilterButton.js";
 import DeleteButton from "./DeleteButton.js";
-import {useState} from "react";
+import SortButton from "./SortButton.js";
 import Modal from "./Modal.js";
+import Sidebar from "./Sidebar.js";
+import {useState, useEffect, useRef} from "react";
 
 function App(props) {
     const [toolSelected, setToolSelected] = useState(null);  // for the drop-up for filter and delete
     const [filterState, setFilterState] = useState("All");
     const [deleteState, setDeleteState] = useState(null);
     const [modalOn, setModalOn] = useState(null);
+    const [showSortDropDown, setShowSortDropDown] = useState(false);
+
 
     function handleToolSelected(tool_name){
         // if you click on the same tool twice, it will deselect it
@@ -20,23 +24,48 @@ function App(props) {
         }
     }
 
-    function handleFilterSelected(toolOp){
-        if (filterState === toolOp){
-            setFilterState("All");
-        } else {
-            setFilterState(toolOp);
+    const ref = useRef(); // create the ref for the tool bar at the bottom
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+            // If the menu is open and the clicked target is not within the menu,
+            // then close the menu
+            if (toolSelected && ref.current && !ref.current.contains(e.target)) {
+                setToolSelected(null);
+            }
         }
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+            // Cleanup the event listener
+            document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [toolSelected]);
+
+    let numOfItemsToDelete = props.data.length;   // if we are deleting all items
+    if (deleteState === "Completed") {
+        numOfItemsToDelete = props.data.filter((e) => e.completed).length;
+    } else if (deleteState === "Uncompleted") {
+        numOfItemsToDelete = props.data.filter((e) => !e.completed).length;
     }
 
-
     return (
+        <div>
+        <Sidebar list_data={props.list_data}> </Sidebar>
       <div id="content">
         <h1 className="accent">To-Do List</h1>
+        {props.data.length > 0 && <SortButton
+                                    showDropDown = {showSortDropDown}
+                                    toggleDropDown = {() => setShowSortDropDown(!showSortDropDown)}
+                                    onSortSelected = {props.onSortSelected}
+                                    selectedSortOption = {props.selectedSortOption}
+                                    />}
+        {props.data.length > 0 && <div id="column-labels"><span>Item Name</span> <span>Priority</span></div>}
         <ItemList {...props} filterState = {filterState}/>
-        <div id="tools">
+        <div id="tools" ref={ref}>
             <FilterButton onToolClicked={() => {handleToolSelected("filter")}}
                           showDropUp = {"filter" === toolSelected}
-                          onFilterOpClicked={handleFilterSelected}
+                          onFilterOpClicked={(option) => setFilterState(option)}
                           filterState = {filterState}
                           closeDropUp = {() => setToolSelected(null)}
             />
@@ -47,7 +76,7 @@ function App(props) {
                           displayModal={() => {setModalOn(true)}}
             />
         </div>
-          {modalOn && <Modal deleteState = {deleteState}
+          {modalOn && <Modal
                              confirm_button_name = "Delete"
                              onClose = {() => {
                                  setDeleteState(null);
@@ -58,9 +87,10 @@ function App(props) {
                                  setToolSelected(null);   //  reset the toolSelected state, so that the dropUp goes away
                              }
                              }>
-              <p>Are you sure that you want to delete <b>all {deleteState !== "All" ? deleteState.toLowerCase() + " ": ""}</b>tasks?</p>
+              <p>Are you sure that you want to delete <b>all {numOfItemsToDelete.toString()} {deleteState !== "All" ? deleteState.toLowerCase() + " ": ""} </b>tasks?</p>
           </Modal>}
       </div>
+    </div>
   );
 }
 

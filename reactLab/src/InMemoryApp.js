@@ -2,41 +2,109 @@ import {useState} from "react";
 import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 import App from "./App.js";
 
+// Import the functions you need from the SDKs you need
+import firebase from "firebase/compat";
+import {useCollection} from "react-firebase-hooks/firestore";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyCYBi2G8RnkLs2Bzj_XDLjYPylF2oRhq5Y",
+    authDomain: "cs124-lab-celine-yuki.firebaseapp.com",
+    projectId: "cs124-lab-celine-yuki",
+    storageBucket: "cs124-lab-celine-yuki.appspot.com",
+    messagingSenderId: "2120607993",
+    appId: "1:2120607993:web:d5d647b2b43f3c7fd95a28"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+const collectionName = "todo-lists";
+
 function InMemoryApp(props) {
-    const [data, setData] = useState(props.initialData);
+    const [sortOption, setSortOption] = useState("created");
 
-    function handleItemChanged(itemID, field, newValue){
-            setData(data.map(
-                item => item.id !==itemID
-                    ? item
-                    : {...item, [field]: newValue}));
+    // get the names of all the lists first
+    let overall_query = db.collection(collectionName);
+    const [overall_value, overall_loading, overall_error] = useCollection(overall_query);
+
+    let all_lists_id = [];
+    let init_list_id = "default-list";
+    if (overall_value) {
+        all_lists_id = overall_value.docs.map((doc) => {
+            return {...doc.data()}});
+
+        init_list_id = all_lists_id[0].id;
     }
 
-    function handleItemDeleted(itemID) {
-        setData(data.filter((item) => item.id !== itemID));
-    }
+    const [currentList, setCurrentList] = useState(init_list_id);
 
-    function handleItemCategoryDeleted(category) {
-        // delete the item based on the category they are in
-        if (category === "Completed"){
-            setData(data.filter((item) => item.completed === false));
-        } else if (category === "Uncompleted") {
-            setData(data.filter((item) => item.completed === true));
-        } else if (category === "All") {
-            setData([]);
+    let query = db.collection(collectionName).doc(currentList).collection("list-of-items");
+
+    if (sortOption){
+        if (sortOption === "priority"){
+            // because our priority has 4 as the highest priority, need to sort in descending order
+            query = query.orderBy(sortOption, "desc").orderBy("item_name");
+        } else {
+            query = query.orderBy(sortOption);
         }
     }
 
-    function handleItemAdded(){
-        let newId = generateUniqueID();
-        setData(data.concat([{id: newId, name: "", completed: false}]));
+    const [value, loading, error] = useCollection(query);
+
+    let data = [];
+    if (value) {
+        data = value.docs.map((doc) => {
+            return {...doc.data()}});
+    }
+
+
+    function handleItemChanged(itemID, field, newValue) {
+        const doc = db.collection(collectionName).doc(currentList).collection("list-of-items").doc(itemID);
+        doc.update({
+            [field]: newValue,
+        })
+    }
+
+    function handleItemDeleted(itemID) {
+        db.collection(collectionName).doc(currentList).collection("list-of-items").doc(itemID).delete();
+    }
+
+    function handleItemCategoryDeleted(category) {
+        // iterate through each doc only delete based on selected category
+        value.forEach((doc) => {
+            if (category === "Completed" && doc.data().completed) {
+                doc.ref.delete();
+            } else if (category === "Uncompleted" && !doc.data().completed) {
+                doc.ref.delete();
+            } else if (category === "All") {
+                doc.ref.delete();
+            }
+        });
+    }
+
+    function handleItemAdded() {
+        const newId = generateUniqueID();
+        db.collection(collectionName).doc(currentList).collection("list-of-items").doc(newId).set({
+            id: newId,
+            item_name: "",
+            completed: false,
+            priority: 0,
+            created: firebase.firestore.Timestamp.fromDate(new Date()),
+        })
         return newId;
     }
 
-    return (<App data={data} onItemChanged={handleItemChanged}
+    return (<App data={data}
+                 list_data={all_lists_id}
+                 onItemChanged={handleItemChanged}
                  onItemDeleted={handleItemDeleted}
                  onDeleteByCategory={handleItemCategoryDeleted}
-                 onItemAdded={handleItemAdded}/>);
+                 onItemAdded={handleItemAdded}
+                 onSortSelected={(option) => setSortOption(option)}
+                 selectedSortOption={sortOption}/>
+    );
 }
 
 export default InMemoryApp;

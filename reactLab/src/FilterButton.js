@@ -1,7 +1,28 @@
 import './ToolsButton.css';
 import FilterDropUp from "./FilterDropUp.js";
+import { useEffect, useRef, useState } from "react"
 
 function FilterButton(props){
+    const ref = useRef()
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+            // If the menu is open and the clicked target is not within the menu,
+            // then close the menu
+            if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+                setIsMenuOpen(false)
+            }
+        }
+
+        document.addEventListener("mousedown", checkIfClickedOutside)
+
+        return () => {
+            // Cleanup the event listener
+            document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [isMenuOpen])
     return (
         <div className="dropup">
             <button className="accent" id="filter-dropup" type="button" onClick={props.onToolClicked}>

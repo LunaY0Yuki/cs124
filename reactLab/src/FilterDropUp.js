@@ -7,6 +7,9 @@ function FilterDropUp(props){
 
     return (
         <div className="dropup-content">
+            <button onClick={() => optionClickedHelper("All")}>
+                All {props.filterState === "All" ? <span>&#10003;</span> : null}
+            </button>
             <button onClick={() => optionClickedHelper("Completed")}>
                 Completed {props.filterState === "Completed" ? <span>&#10003;</span> : null}
             </button>

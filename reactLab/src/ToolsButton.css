@@ -1,31 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 
-#filter{
-    height: 80px;
-    line-height: 80px;
-    text-align: center;
-    flex-grow: 1;
-    flex-basis: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-color: #664C43;
-    border-style: solid;
-}
-
-#delete{
-    height: 80px;
-    line-height: 80px;
-    text-align: center;
-    flex-grow: 1;
-    flex-basis: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-color: #664C43;
-    border-style: solid;
-}
-
 #delete-dropup{
     height: 80px;
     width: 100%;
@@ -53,7 +27,6 @@
 .dropup {
     position: relative;
     display: inline-block;
-    /*display: none;*/
     flex-grow: 1.1;
     flex-basis: 0;
 }
@@ -75,11 +48,9 @@
     border-left: 2px solid #664C43;
     border-right: 2px solid #664C43;
     border-bottom: 0px;
-    /*border-color: #664C43;*/
     border-style: solid;
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
-    /*color: black;*/
     padding: 5px 16px;
     text-decoration: none;
     display: block;
