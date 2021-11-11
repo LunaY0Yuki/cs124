@@ -26,11 +26,14 @@
   grid-template-columns: 1fr;
   /*grid-template-rows: 100px 25px 25px 390px 80px;*/
   /*grid-template-rows: 15.625% 3.75% 3.75% 60.9375% 12.5%;*/
-  grid-template-rows: 4fr 1fr 1fr 15.5fr 3.2fr;
+  /*grid-template-rows: 4fr 1fr 1fr 15.5fr 3.2fr;*/
+  grid-template-rows: 16vh 4vh 4vh 62vh 12vh;
   /*row-gap: 5px;*/
   /*row-gap: 0.78125%;*/
-  row-gap: 0.5%;
+  /*row-gap: 0.5%;*/
+  row-gap: 0.5vh;
 }
+
 
 /*Div Container For The Buttons at the Bottom of the Screen (Filter and Delete Buttons)*/
 #tools {
@@ -59,13 +62,16 @@
 #list_header{
   width: 100%;
   height: 100%;
+  /*padding-top: 5%;*/
+  /*padding-bottom: 5%;*/
   line-height: 100%;
   grid-row: 1 /span 1;
   grid-column: 1/span 1;
   text-align: center;
-  /*margin-top: 0;*/
-  /*margin: 0 auto;*/
-  font-size: 40px;
+  font-size: 3em;
+  background-color: #C5AA8C;
+  outline: none !important;
+  border: none;
 }
 
 .accent {
