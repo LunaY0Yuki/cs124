@@ -2,9 +2,9 @@
 
 @media only screen and (max-width: 600px) {
     #delete-dropup {
-        height: 80px;
+        height: 12vh;
         width: 100%;
-        line-height: 80px;
+        /*line-height: 12vh;*/
         text-align: center;
         display: flex;
         justify-content: center;
@@ -14,9 +14,8 @@
     }
 
     #filter-dropup {
-        height: 80px;
+        height: 12vh;
         width: 100%;
-        line-height: 80px;
         text-align: center;
         display: flex;
         justify-content: center;

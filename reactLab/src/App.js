@@ -12,6 +12,7 @@ function App(props) {
     const [toolSelected, setToolSelected] = useState(null);  // for the drop-up for filter and delete
     const [filterState, setFilterState] = useState("All");
     const [deleteState, setDeleteState] = useState(null);
+    const [collapseState, setCollapseState] = useState(true);
     const [modalOn, setModalOn] = useState(null);
     const [showSortDropDown, setShowSortDropDown] = useState(false);
 
@@ -52,12 +53,14 @@ function App(props) {
 
     return (
         <div id="overall-app">
-            {false && <Sidebar list_data={props.list_data}
+            <Sidebar list_data={props.list_data}
                  curr_list_id={props.curr_list_id}
                  onListSelected={props.onListSelected}
                  onListAdded={props.onListAdded}
                  onListDeleted={props.onListDeleted}
-        />}
+                 collapsed={collapseState}
+                 setCollapseState={setCollapseState}
+            />
       <div id="content">
         <Header className="accent"
                 curr_list_id={props.curr_list_id}
