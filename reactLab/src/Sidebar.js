@@ -1,15 +1,16 @@
 import { ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
 import { MdOutlinePlaylistAdd } from "react-icons/md";
+import {FaAngleUp, FaAngleDown} from "react-icons/fa";
 import {TiDelete} from "react-icons/ti";
 import './Sidebar.scss';
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState} from "react";
 // import 'react-pro-sidebar/dist/css/styles.css';
 
 
 function Sidebar(props){
-    const ref = useRef()
-
-    // const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const ref = useRef();
+    
+    const [displayIndex, setDisplayIndex] = useState(0);
 
     useEffect(() => {
         const checkIfClickedOutside = e => {
@@ -26,7 +27,26 @@ function Sidebar(props){
             // Cleanup the event listener
             document.removeEventListener("mousedown", checkIfClickedOutside)
         }
-    })
+    });
+
+    //
+    function updateDisplayIndex(change_by){
+        // cannot decrease the index anymore
+        //  displayIndex === 0 && change_by < 0
+        //  cannot  increase the index anymore
+        // displayIndex === props.list_data.length - props.maxToDisplay && change_by > 0
+        // setDisplayIndex(displayIndex + change_by)
+        if (!(displayIndex === 0 && change_by < 0) && !(displayIndex === props.list_data.length - props.maxToDisplay && change_by > 0)){
+            setDisplayIndex(displayIndex + change_by);
+        }
+    }
+    
+    // get the subset of list name that we will display
+    const displayed_list = props.list_data.slice(displayIndex, displayIndex + props.maxToDisplay);
+    console.log("list data");
+    console.log(props.list_data);
+    console.log("displayed list");
+    console.log(displayed_list);
 
     return (
         <ProSidebar collapsed={props.collapsed} onClick={() => props.setCollapseState(false)} ref={ref}>
@@ -38,7 +58,8 @@ function Sidebar(props){
                         props.onListSelected(newListId);
                     }
                 }} >New List</MenuItem>
-                {props.list_data.map((e) => {
+                <MenuItem onClick={() => updateDisplayIndex(-1)}><FaAngleUp /></MenuItem>
+                {displayed_list.map((e) => {
                         return <MenuItem id={e.id}
                                          onClick={()=> {
                                             if (!props.collapsed) {
@@ -61,6 +82,7 @@ function Sidebar(props){
                         </MenuItem>
                 })
                 }
+                <MenuItem onClick={() => updateDisplayIndex(1)}><FaAngleDown /></MenuItem>
             </Menu>
         </ProSidebar>
     );

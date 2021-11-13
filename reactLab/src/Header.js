@@ -1,5 +1,4 @@
 import './App.css';
-import {useState} from "react";
 import TextareaAutosize from 'react-textarea-autosize';
 
 function Header(props){

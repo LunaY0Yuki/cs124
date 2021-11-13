@@ -60,6 +60,7 @@ function App(props) {
                  onListDeleted={props.onListDeleted}
                  collapsed={collapseState}
                  setCollapseState={setCollapseState}
+                 maxToDisplay={4}
             />
       <div id="content">
         <Header className="accent"

@@ -38,7 +38,7 @@
         position: absolute;
         background-color: #ebe3ca;
         min-width: 160px;
-        bottom: 80px;
+        bottom: 12vh;
         z-index: 1;
         border: #664C43;
     }
