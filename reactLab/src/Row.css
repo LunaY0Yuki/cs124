@@ -1,3 +1,4 @@
+
 @media only screen and (max-width: 600px) {
     body {
         font-family: 'Montserrat', sans-serif;
@@ -42,6 +43,68 @@
         flex-direction: row;
         align-items: flex-start;
         margin: 5px 10px;
+        column-gap: 8px;
+        text-decoration: line-through;
+    }
+
+    .check-complete {
+        flex-grow: 1;
+        flex-basis: 7%;
+        width: 1.3em;
+        height: 1.3em;
+    }
+
+
+    /*TODO: unsure if this is the right place*/
+    .task-name {
+        text-align: center;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .item-name {
+        flex-grow: 5;
+        flex-basis: 93%;
+        resize: none;
+        width: 85%;
+        min-height: 2vh;
+        height: auto;
+        border: none;
+        background-color: beige;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1em;
+    }
+
+    .item-name:focus {
+        outline: none !important;
+        width: 85%;
+        height: 25px;
+        border: none;
+        background-color: beige;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1em;
+        border-bottom: 2px solid #664C43;
+    }
+
+
+    .task-item-uncompleted {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin: 1vh 2vw;
+        column-gap: 8px;
+    }
+
+    .task-item-completed {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin: 1vh 2vw;
         column-gap: 8px;
         text-decoration: line-through;
     }

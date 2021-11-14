@@ -12,7 +12,7 @@ function Header(props){
         }
     };
 
-    return (<TextareaAutosize id="list_header"
+    return (<input type="text" id="list_header"
                               value={props.curr_list_name}
                               disabled={props.curr_list_id === "default-list"}
                               // onChange={(e) => setListName(e.target.value)}

@@ -9,8 +9,25 @@ $submenu-bg-color-collapsed: #2b2b2b !default;
 $icon-bg-color: #2b2b2b !default;
 $icon-size: 2em !default;
 
-
 @media only screen and (max-width: 600px) {
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .pro-sidebar.collapsed .pro-item-content {
+        font-size: 1em;
+    }
+
+    .pro-icon {
+        font-size: 1.5em;
+    }
+
+    .pro-item-content {
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (orientation: landscape) {
     body {
         font-family: 'Montserrat', sans-serif;
     }
