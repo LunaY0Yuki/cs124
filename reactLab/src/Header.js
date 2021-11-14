@@ -1,5 +1,4 @@
 import './App.css';
-import TextareaAutosize from 'react-textarea-autosize';
 
 function Header(props){
     // const [listName, setListName] = useState(props.curr_list_name);

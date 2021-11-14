@@ -1,8 +1,98 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 
+
+body {
+  max-width: 100%;
+  height: 100%;
+  /*min-width: 300px;*/
+  /*width: 360px;*/
+  /*height: 640px;*/
+  font-family: 'Montserrat', sans-serif;
+}
+
+#overall-app{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 20vw 80vw;
+}
+
+/*Div Container For The Entire App*/
+#content{
+  /*width: 360px;*/
+  /*height: 640px;*/
+  width: 100%;
+  height: 100%;
+  display: grid;
+  background-color: beige;
+  grid-template-columns: 1fr;
+  /*grid-template-rows: 100px 25px 25px 390px 80px;*/
+  /*grid-template-rows: 15.625% 3.75% 3.75% 60.9375% 12.5%;*/
+  /*grid-template-rows: 4fr 1fr 1fr 15.5fr 3.2fr;*/
+  grid-template-rows: 12vh 6vh 6vh 62vh 12vh;
+  /*row-gap: 5px;*/
+  /*row-gap: 0.78125%;*/
+  /*row-gap: 0.5%;*/
+  row-gap: 0.5vh;
+}
+
+
+/*Div Container For The Buttons at the Bottom of the Screen (Filter and Delete Buttons)*/
+#tools {
+  width: 100%;
+  margin:0;
+  grid-row: 5 / span 1;
+  grid-column: 1 / span 1;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+}
+
+#column-labels {
+  grid-row: 3 /span 1;
+  grid-column: 1 /span 1;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
+  margin-right: 15px;
+  font-weight: bold;
+  font-size: 1em;
+  color: #664C43;
+}
+
+#list_header{
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+  width: 100%;
+  /*height: 16vh;*/
+  /*padding-top: 5%;*/
+  /*padding-bottom: 5%;*/
+  /*line-height: 2em;*/
+  padding: 0;
+  grid-row: 1 /span 1;
+  grid-column: 1 /span 1;
+  text-align: center;
+  font-size: 2em;
+  background-color: #C5AA8C;
+  outline: none !important;
+  border: none;
+}
+
+.accent {
+  background-color: #C5AA8C;
+}
+
+.material-icons-outlined.md-38 {
+  font-size: 3em;
+}
+
+
 /* For Mobile Portrait Mode*/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) and (orientation: portrait) {
   body {
     max-width: 100%;
     height: 100%;
@@ -69,6 +159,7 @@
   padding:0;
   width:100%;
   resize: none;
+  padding: 0;
   /*height: 16vh;*/
   /*padding-top: 5%;*/
   /*padding-bottom: 5%;*/
@@ -76,7 +167,7 @@
   grid-row: 1 /span 1;
   grid-column: 1/span 1;
   text-align: center;
-  font-size: 3em;
+  font-size: 2em;
   background-color: #C5AA8C;
   outline: none !important;
   border: none;
@@ -91,24 +182,8 @@
 }
 }
 
-@media only screen and (orientation: landscape) {
-  body {
-    max-width: 100%;
-    height: 100%;
-    /*min-width: 300px;*/
-    /*width: 360px;*/
-    /*height: 640px;*/
-    font-family: 'Montserrat', sans-serif;
-  }
 
-  #overall-app{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 20vw 80vw;
-  }
-
+@media only screen and (min-width: 992px) {
   /*Div Container For The Entire App*/
   #content{
     /*width: 360px;*/
@@ -118,64 +193,18 @@
     display: grid;
     background-color: beige;
     grid-template-columns: 1fr;
-    /*grid-template-rows: 100px 25px 25px 390px 80px;*/
-    /*grid-template-rows: 15.625% 3.75% 3.75% 60.9375% 12.5%;*/
-    /*grid-template-rows: 4fr 1fr 1fr 15.5fr 3.2fr;*/
-    grid-template-rows: 12vh 6vh 6vh 62vh 12vh;
+    grid-template-rows: 16vh 4vh 4vh 62vh 12vh;
     /*row-gap: 5px;*/
     /*row-gap: 0.78125%;*/
     /*row-gap: 0.5%;*/
     row-gap: 0.5vh;
   }
 
-
-  /*Div Container For The Buttons at the Bottom of the Screen (Filter and Delete Buttons)*/
-  #tools {
-    width: 100%;
-    margin:0;
-    grid-row: 5 / span 1;
-    grid-column: 1 / span 1;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: stretch;
-    align-items: center;
-  }
-
   #column-labels {
-    grid-row: 3 /span 1;
-    grid-column: 1 /span 1;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 15px;
-    margin-right: 15px;
-    font-weight: bold;
-    font-size: 1em;
-    color: #664C43;
+    font-size: 1.5em;
   }
 
   #list_header{
-    font-family: 'Montserrat', sans-serif;
-    height: 100%;
-    width: 100%;
-    /*height: 16vh;*/
-    /*padding-top: 5%;*/
-    /*padding-bottom: 5%;*/
-    /*line-height: 2em;*/
-    grid-row: 1 /span 1;
-    grid-column: 1 /span 1;
-    text-align: center;
-    font-size: 2em;
-    background-color: #C5AA8C;
-    outline: none !important;
-    border: none;
-  }
-
-  .accent {
-    background-color: #C5AA8C;
-  }
-
-  .material-icons-outlined.md-38 {
-    font-size: 3em;
+    font-size: 4em;
   }
 }

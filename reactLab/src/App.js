@@ -7,6 +7,7 @@ import Modal from "./Modal.js";
 import Sidebar from "./Sidebar.js";
 import Header from "./Header.js";
 import {useState, useEffect, useRef} from "react";
+import { useMediaQuery } from 'react-responsive';
 
 function App(props) {
     const [toolSelected, setToolSelected] = useState(null);  // for the drop-up for filter and delete
@@ -16,6 +17,8 @@ function App(props) {
     const [modalOn, setModalOn] = useState(null);
     const [showSortDropDown, setShowSortDropDown] = useState(false);
 
+    const isMobile = useMediaQuery({maxWidth: 600});
+    const isLandscape = useMediaQuery({orientation: "landscape"});
 
     function handleToolSelected(tool_name){
         // if you click on the same tool twice, it will deselect it
@@ -51,6 +54,12 @@ function App(props) {
         numOfItemsToDelete = props.data.filter((e) => !e.completed).length;
     }
 
+    // determine the number of lists to display in the sidebar
+    let numOfListToDisplay = 4;
+    if (isMobile && !isLandscape) {
+        numOfListToDisplay = 10;
+    }
+
     return (
         <div id="overall-app">
             <Sidebar list_data={props.list_data}
@@ -60,7 +69,7 @@ function App(props) {
                  onListDeleted={props.onListDeleted}
                  collapsed={collapseState}
                  setCollapseState={setCollapseState}
-                 maxToDisplay={4}
+                 maxToDisplay={numOfListToDisplay}
             />
       <div id="content">
         <Header className="accent"

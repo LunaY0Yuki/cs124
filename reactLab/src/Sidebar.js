@@ -5,12 +5,13 @@ import {TiDelete} from "react-icons/ti";
 import './Sidebar.scss';
 import { useEffect, useRef, useState} from "react";
 // import 'react-pro-sidebar/dist/css/styles.css';
-
+import { useMediaQuery } from 'react-responsive';
 
 function Sidebar(props){
     const ref = useRef();
     
     const [displayIndex, setDisplayIndex] = useState(0);
+    const isDesktop = useMediaQuery({minWidth: 992});
 
     useEffect(() => {
         const checkIfClickedOutside = e => {
@@ -34,25 +35,36 @@ function Sidebar(props){
         // cannot decrease the index anymore
         //  displayIndex === 0 && change_by < 0
         //  cannot  increase the index anymore
+        // if list_data len > max display then should change
         // displayIndex === props.list_data.length - props.maxToDisplay && change_by > 0
         // setDisplayIndex(displayIndex + change_by)
-        if (!(displayIndex === 0 && change_by < 0) && !(displayIndex === props.list_data.length - props.maxToDisplay && change_by > 0)){
+        console.log("max to display");
+        console.log(props.maxToDisplay);
+        console.log("displayIndex");
+        console.log(displayIndex);
+        if ((props.list_data.length > props.maxToDisplay) &&
+            !(displayIndex === 0 && change_by < 0) &&
+            !(displayIndex === props.list_data.length - props.maxToDisplay && change_by > 0)){
             setDisplayIndex(displayIndex + change_by);
         }
     }
     
     // get the subset of list name that we will display
     const displayed_list = props.list_data.slice(displayIndex, displayIndex + props.maxToDisplay);
-    console.log("list data");
-    console.log(props.list_data);
-    console.log("displayed list");
-    console.log(displayed_list);
+    // console.log("list data");
+    // console.log(props.list_data);
+    // console.log("displayed list");
+    // console.log(displayed_list);
 
     return (
-        <ProSidebar collapsed={props.collapsed} onClick={() => props.setCollapseState(false)} ref={ref}>
+        <ProSidebar collapsed={props.collapsed} onClick={() => {
+            if (!isDesktop) {
+                props.setCollapseState(false);
+            }
+        }} ref={ref}>
             <Menu iconShape="square">
                 <MenuItem icon={<MdOutlinePlaylistAdd />} onClick={() => {
-                    if (!props.collapsed) {
+                    if (isDesktop || !props.collapsed) {
                         let newListId = props.onListAdded();  // create a new Untitled List in firestore
                         // show the new list
                         props.onListSelected(newListId);
@@ -62,11 +74,12 @@ function Sidebar(props){
                 {displayed_list.map((e) => {
                         return <MenuItem id={e.id}
                                          onClick={()=> {
-                                            if (!props.collapsed) {
+                                             // ! default==
+                                            if (isDesktop || !props.collapsed) {
                                                 props.onListSelected(e.id)
                                             }
                                          }}>
-                            {e.list_name} {(e.id !== "default-list" && !props.collapsed) && <TiDelete onClick={(evt)=> {
+                            {e.list_name} {(e.id !== "default-list" && (isDesktop || !props.collapsed)) && <TiDelete onClick={(evt)=> {
                                 // stop propagating the onClick to parent
                                 evt.stopPropagation();
 
@@ -77,6 +90,9 @@ function Sidebar(props){
                                 }
 
                                 props.onListDeleted(e.id);
+
+                                // move back one index
+                                updateDisplayIndex(-1);
                                 }
                             }/>}
                         </MenuItem>
