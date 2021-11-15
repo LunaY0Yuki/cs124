@@ -3,7 +3,7 @@ $sidebar-bg-color: #4a4240 !default;
 $sidebar-color: #c9c9c9 !default;
 $sidebar-width: 60vw !default;
 $sidebar-collapsed-width: 20vw !default;
-$highlight-color: #d8d8d8 !default;
+$highlight-color: red !default;
 $submenu-bg-color: #2b2b2b !default;
 $submenu-bg-color-collapsed: #2b2b2b !default;
 $icon-bg-color: #2b2b2b !default;
@@ -22,7 +22,7 @@ $icon-size: 2em !default;
         font-size: 1.5em;
     }
 
-    .pro-item-content {
+    .pro-item-content{
         font-size: 1.5em;
     }
 

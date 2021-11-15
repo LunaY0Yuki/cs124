@@ -39,7 +39,7 @@ function InMemoryApp(props) {
     }
 
     // storing the id of the current list
-    const [currentList, setCurrentList] = useState("v1-1636588773196-2524640948531");
+    const [currentList, setCurrentList] = useState("default-list");
 
 
     let query = db.collection(collectionName).doc(currentList).collection("list-of-items");
@@ -137,7 +137,7 @@ function InMemoryApp(props) {
                  onDeleteByCategory={handleItemCategoryDeleted}
                  onItemAdded={handleItemAdded}
                  onSortSelected={(option) => setSortOption(option)}
-                 onListSelected={(list) => setCurrentList(list)}
+                 onListSelected={setCurrentList}
                  onListNameChanged={handleListNameChanged}
                  onListAdded={handleListAdded}
                  onListDeleted={handleListDeleted}

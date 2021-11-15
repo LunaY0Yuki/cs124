@@ -32,6 +32,8 @@ function Priority(props){
 
     return (
         <div className="dropdown" ref={ref}>
+            {props.showDropDown ? <button id="priority-outline" className={"dropbtn"+props.selectedPriority.toString()} onClick={props.onPriorityClicked}>{displayed_priority}</button> :
+                <button className={"dropbtn"+props.selectedPriority.toString()} onClick={props.onPriorityClicked}>{displayed_priority}</button>}
             {props.showDropDown && <div className="dropdown-content">
                 <button onClick = {() => props.changePriority(0)}
                         className={props.selectedPriority === 0 ? "none-selected" : "priority-option"}>None {props.selectedPriority === 0 ? <span>&#10003;</span> : null}</button>
@@ -42,8 +44,8 @@ function Priority(props){
                 <button id="high-option" onClick = {() => props.changePriority(3)}
                         className={props.selectedPriority === 3 ? "high-selected" : "priority-option"}>High {props.selectedPriority === 3 ? <span>&#10003;</span> : null}</button>
             </div>}
-            {props.showDropDown ? <button id="priority-outline" className={"dropbtn"+props.selectedPriority.toString()} onClick={props.onPriorityClicked}>{displayed_priority}</button> :
-                <button className={"dropbtn"+props.selectedPriority.toString()} onClick={props.onPriorityClicked}>{displayed_priority}</button>}
+            {/*{props.showDropDown ? <button id="priority-outline" className={"dropbtn"+props.selectedPriority.toString()} onClick={props.onPriorityClicked}>{displayed_priority}</button> :*/}
+            {/*    <button className={"dropbtn"+props.selectedPriority.toString()} onClick={props.onPriorityClicked}>{displayed_priority}</button>}*/}
         </div>
     );
 }
