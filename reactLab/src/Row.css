@@ -132,5 +132,17 @@
     }
 }
 
+ @media only screen and (max-width: 319px)  {
+     .item-name {
+         min-height: 11.36px;
+     }
 
+     .task-item-uncompleted {
+         margin: 5.68px 11.36px;
+     }
+
+     .task-item-completed {
+         margin: 5.68px 11.36px;
+     }
+ }
 

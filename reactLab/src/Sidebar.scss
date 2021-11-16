@@ -52,5 +52,42 @@ $icon-size: 2em !default;
     }
 }
 
-
 @import '~react-pro-sidebar/dist/scss/styles.scss';
+
+@media only screen and (max-width: 310px)  {
+    .pro-sidebar {
+        width: 192px;
+        min-width: 192px;
+    }
+
+    .pro-sidebar.collapsed {
+        width: 64px;
+        min-width: 64px;
+    }
+
+    @mixin break-point {
+        position: fixed;
+        left: -192px;
+        &.collapsed {
+            left: -64px;
+        }
+        &.toggled {
+            left: 0;
+            .overlay {
+                display: block;
+            }
+        }
+        &.rtl {
+            left: auto;
+            right: -192px;
+            &.collapsed {
+                left: auto;
+                right: -64px;
+            }
+            &.toggled {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+}

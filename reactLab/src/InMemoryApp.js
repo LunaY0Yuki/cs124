@@ -55,6 +55,8 @@ function InMemoryApp(props) {
 
     const [value, loading, error] = useCollection(query);
 
+    console.log(error);
+
     let data = [];
     if (value) {
         data = value.docs.map((doc) => {

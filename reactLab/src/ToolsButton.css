@@ -123,3 +123,17 @@
         background-color: #C5AA8C;
     }
 }
+
+@media only screen and (max-width: 319px)  {
+    #delete-dropup {
+        height: 68.16px;
+    }
+
+    #filter-dropup {
+        height: 68.16px;
+    }
+
+    .dropup-content {
+        bottom: 68.16px;
+    }
+}
