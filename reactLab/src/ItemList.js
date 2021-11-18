@@ -1,6 +1,6 @@
 import './ItemList.css';
 import Row from'./Row.js';
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 
 // Define the List component that contain all the items
@@ -59,10 +59,10 @@ function ItemList(props){
 
     return (
         <div>
-            <div id="item_list">
+            <div id="item_list" onScroll={() => setPrioritySelected(null)}>
                 {renderedList}
             </div>
-            <button id="add" type="button" onClick={()  => {
+            <button aria-label="Add a new item to this list." id="add" type="button" onClick={()  => {
                 let newId = props.onItemAdded();
                 setNewItemId(newId);
             }}>+</button>

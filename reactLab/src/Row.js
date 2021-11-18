@@ -25,10 +25,11 @@ function Row(props){
 
     return (
         <div id={props.id} className={props.completed ? "task-item-completed" : "task-item-uncompleted"}>
-            <input onChange={() => {
+            <input aria-label="Click or press space bar to check/uncheck item." onChange={() => {
                 props.onItemChanged(props.id, "completed", !props.completed)
             }} type="checkbox" className="check-complete" checked={props.completed}/>
-            <TextareaAutosize className="item-name" value={itemName}
+            <TextareaAutosize aria-label="Item name text box."
+                              className="item-name" value={itemName}
                               onChange={(e) => setItemName(e.target.value)}
                               disabled={props.completed}
                               onBlur={(e) => {

@@ -57,11 +57,29 @@ body {
   grid-column: 1 /span 1;
   display: flex;
   justify-content: space-between;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin: 0 2vw;
+  align-items: flex-start;
   font-weight: bold;
+  column-gap: 8px;
   font-size: 1em;
   color: #664C43;
+}
+
+#checkbox-label{
+  flex-grow: 1;
+  column-gap: 8px;
+  flex-basis: 7%;
+  /*width: 1.3em;*/
+  /*height: 1.3em;*/
+  padding: 0 0.4em;
+  text-align: center;
+}
+
+#item-name-label{
+  flex-grow: 5;
+  flex-basis: 93%;
+  /*width: 85%;*/
+  /*flex-basis: 89vw;*/
 }
 
 #list_header{

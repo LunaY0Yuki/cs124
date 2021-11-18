@@ -83,7 +83,7 @@ function App(props) {
                                     onSortSelected = {props.onSortSelected}
                                     selectedSortOption = {props.selectedSortOption}
                                     />}
-        {props.data.length > 0 && <div id="column-labels"><span>Item Name</span> <span>Priority</span></div>}
+        {props.data.length > 0 && <div id="column-labels"><span id="checkbox-label">&#10003;</span> <span id="item-name-label">Item Name</span> <span id="priority-label">Priority</span></div>}
         <ItemList {...props} filterState = {filterState}/>
         <div id="tools" ref={ref}>
             <FilterButton onToolClicked={() => {handleToolSelected("filter")}}

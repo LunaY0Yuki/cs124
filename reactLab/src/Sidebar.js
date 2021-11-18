@@ -74,7 +74,7 @@ function Sidebar(props){
             }
         }} ref={ref}>
             <Menu iconShape="square">
-                <MenuItem id="add-new-list" icon={<MdOutlinePlaylistAdd />} onClick={() => {
+                <MenuItem aria-label="Add a new list" id="add-new-list" icon={<MdOutlinePlaylistAdd />} onClick={() => {
                     if (isDesktop || !props.collapsed) {
                         let newListId = props.onListAdded();  // create a new Untitled List in firestore
                         // show the new list
@@ -87,7 +87,7 @@ function Sidebar(props){
                     }
                 }} >New List</MenuItem>
                 <MenuItem
-                    id="scroll-up"
+                    aria-label="Scroll Up" id="scroll-up"
                     onKeyPress={(evt)=> {
                         if (evt.key === "Enter"){
                             updateDisplayIndex(-1);
@@ -97,7 +97,7 @@ function Sidebar(props){
                     <FaAngleUp />
                 </MenuItem>
                 {displayed_list.map((e) => {
-                        return <MenuItem id={e.id}
+                        return <MenuItem aria-label="View this list" id={e.id}
                                          onKeyPress={(evt)=> {
                                              // if the user is tabbing into the list name and hit enter
                                              if (evt.key === "Enter"){
@@ -111,18 +111,19 @@ function Sidebar(props){
                                                 props.onListSelected(e.id)
                                             }
                                          }}>
-                            {e.list_name} {(e.id !== "default-list" && (isDesktop || !props.collapsed)) && <TiDelete tabIndex="0"
+                            {e.list_name} {(e.id !== "default-list" && (isDesktop || !props.collapsed)) && <span aria-label=" "><TiDelete
+                            aria-label="Delete this list" tabIndex="0"
                             onKeyPress={(evt)=> {
                                 // if the user is tabbing into the delete button and hit enter
                                 if (evt.key === "Enter"){
                                     handleDeleteOnClick(evt, e.id);
                                 }
                             }}
-                            onClick={(evt) => handleDeleteOnClick(evt, e.id)}/>}
+                            onClick={(evt) => handleDeleteOnClick(evt, e.id)}/></span>}
                         </MenuItem>
                 })
                 }
-                <MenuItem id="scroll-down" onKeyPress={(evt)=> {
+                <MenuItem aria-label="Scroll down" id="scroll-down" onKeyPress={(evt)=> {
                     if (evt.key === "Enter"){
                         updateDisplayIndex(1);
                     }

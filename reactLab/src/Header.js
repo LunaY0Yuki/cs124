@@ -1,4 +1,5 @@
 import './App.css';
+import SelectionMaintainingInput from "./SelectionMaintainingInput";
 
 function Header(props){
     // const [listName, setListName] = useState(props.curr_list_name);
@@ -11,7 +12,7 @@ function Header(props){
         }
     };
 
-    return (<input type="text" id="list_header"
+    return (<SelectionMaintainingInput type="text" id="list_header" aria-label="To-Do list name. To edit, press arrow key before typing."
                               value={props.curr_list_name}
                               disabled={props.curr_list_id === "default-list"}
                               // onChange={(e) => setListName(e.target.value)}
