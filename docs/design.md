@@ -259,6 +259,19 @@ After we began implementing the sort button, we decided to add an outline around
 
 ##Task 10: Multiple Lists
 ### Design Ideas / Decisions
+In order to support multiple lists, we considered having either a tab list or a sidebar menu. Our goal for the UI is the following:
+- The UI should be consistent for all screen types.
+- The UI should not be intrusive to the rest of the workflow.
+
+We investigated different React packages available for the app. Although a tab list, as a common UI for web browsers, would be intuitive for the users to use, we decided to not make a tab list because the tabs would be difficult to control on a small mobile screen in portrait mode.
+
+![Task 10 - Multiple List - Sketch of the Design Decision!](./task10a.jpg "Sketch of the Design Decision for Task 7")
+![Task 10 - Multiple List - Sketch of the Design Decision!](./task10b.jpg "Sketch of the Design Decision for Task 7")
+
+Eventually, we found a sidebar react package that better fit our requirements. Specifically, the sidebar package supports having a collapsed and uncollapsed mode, which allows the multi-list UI to integrate nicely even on small screens. We decided that the New List button should be at the top of the sidebar so that it is easily accessible. In addition, inspired by how the tab list package "scrolls" through its list of tabs with two arrow buttons, we also included an up arrow and down arrow to help scroll through all the lists. The lists will be between the up and down buttons.
+
+When the users want to interact with the list by clicking on it, the list will be uncollapsed, thereby revealing more information. A delete icon will be behind the list name so that the user can delete the list.
+
 [comment]: <> (editable list names)
 With the addition of a sidebar that can contain multiple lists, we wanted users to be able to rename lists. When 
 adding a new list, the default name of the new list is “Untitled”. It is expected for users to want to change the default 
@@ -268,6 +281,11 @@ editing. Clicking anywhere outside of the list name area will deselect it and re
 
 ### Final Design
 ![Task 10 - Final Design Flow Chart!](./task10-final.jpg "Final Design Flow Chart for Task 10")
+
+The actual workflow after we have implemented the sidebar is the following:
+
+If the users want to use the sidebar (in the phone's portrait and landscape screen mode), they first need to tap on the sidebar menu to make it uncollapse. In actual implementation, we decided to only make the menu items "clickable" after the list is uncollapsed. This is because if the menu items are not disabled when collapsed, the users might accidentally click the wrong menu item since the sidebar is narrow. However, in desktop mode, it does not make practical sense to collapse and uncollapse the sidebar because there is enough space to display everything. Thus, instead of collapsing and uncollapsing, we keep the sidebar in a "collapsed" state, except all the menu items are interactable. Depending on the side of the screen, we also set the maximum number of list names to display so that there aren't too many lists in the sidebar.
+
 
 ##Task 11: Responsive screen sizes
 ### Design Ideas / Decisions
