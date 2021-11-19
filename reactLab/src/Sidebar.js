@@ -87,6 +87,7 @@ function Sidebar(props){
                 onClick={() => handleCreateNewList()} >New List</MenuItem>
                 <MenuItem
                     aria-label="Scroll Up" id="scroll-up"
+                    // if the user is tabbing into the component, they can hit ENTER to perform action
                     onKeyPress={(evt)=> {
                         if (evt.key === "Enter"){
                             updateDisplayIndex(-1);
@@ -123,6 +124,7 @@ function Sidebar(props){
                 })
                 }
                 <MenuItem aria-label="Scroll down" id="scroll-down" onKeyPress={(evt)=> {
+                    // if the user is tabbing into the component, they can hit ENTER to perform action
                     if (evt.key === "Enter"){
                         updateDisplayIndex(1);
                     }

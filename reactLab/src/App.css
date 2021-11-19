@@ -92,78 +92,23 @@ body {
 
 /* For Mobile Portrait Mode*/
 @media only screen and (max-width: 600px) and (orientation: portrait) {
-  body {
-    max-width: 100%;
-    height: 100%;
-    font-family: 'Montserrat', sans-serif;
-  }
-
-  #overall-app{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 20vw 80vw;
-  }
 
 /*Div Container For The Entire App*/
 #content{
-  width: 100%;
-  height: 100%;
-  display: grid;
-  background-color: beige;
-  grid-template-columns: 1fr;
   grid-template-rows: 16vh 4vh 4vh 62vh 12vh;
   row-gap: 0.5vh;
 }
 
 
-/*Div Container For The Buttons at the Bottom of the Screen (Filter and Delete Buttons)*/
-#tools {
-  width: 100%;
-  margin:0;
-  grid-row: 5 / span 1;
-  grid-column: 1 / span 1;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: stretch;
-  align-items: center;
-}
-
 #column-labels {
-  grid-row: 3 /span 1;
-  grid-column: 1 /span 1;
-  display: flex;
   justify-content: space-between;
   margin-left: 15px;
   margin-right: 15px;
-  font-weight: bold;
-  color: #664C43;
 }
 
 #list_header{
-  font-family: 'Montserrat', sans-serif;
-  padding:0;
-  width:100%;
   resize: none;
-  padding: 0;
   line-height: 2em;
-  grid-row: 1 /span 1;
-  grid-column: 1/span 1;
-  text-align: center;
-  font-size: 2em;
-  background-color: #C5AA8C;
-  outline: none !important;
-  border: none;
-}
-
-.accent {
-  background-color: #C5AA8C;
-}
-
-.material-icons-outlined.md-38 {
-  font-size: 3em;
 }
 }
 
@@ -171,11 +116,6 @@ body {
 @media only screen and (min-width: 992px) {
   /*Div Container For The Entire App*/
   #content{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    background-color: beige;
-    grid-template-columns: 1fr;
     grid-template-rows: 16vh 4vh 4vh 62vh 12vh;
     row-gap: 0.5vh;
   }
@@ -193,18 +133,11 @@ body {
   #overall-app{
     width: 320px;
     height: 568px;
-    display: grid;
-    grid-template-rows: 1fr;
     grid-template-columns: 20% 80%;
   }
 
   /*Div Container For The Entire App*/
   #content{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    background-color: beige;
-    grid-template-columns: 1fr;
     grid-template-rows: 12% 6% 6% 62% 12%;
     row-gap: 0.5%;
   }

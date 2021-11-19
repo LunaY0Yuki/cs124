@@ -67,54 +67,8 @@ body {
 
     /* The Modal (background) */
     .modal {
-        display: block; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
         padding-top: 40vh; /* Location of the box */
         padding-left: 10vw;
-        left: 0;
-        top: 0;
-        margin: 0px;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: scroll; /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0); /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-    }
-
-
-    /* Modal Content */
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 5px 25px 20px 25px;
-        border: 1px solid #888;
-        width: 60vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: stretch;
-    }
-
-    #modal-response {
-        width: 75%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        column-gap: 10px;
-    }
-
-    #modal-response button {
-        background-color: #C5AA8C;
-        color: #664C43;
-        border: none;
-        border-radius: 5px;
-        font-size: 20px;
-    }
-
-    #confirm-button {
-        background-color: #E57171 !important;
     }
 }
 
@@ -123,8 +77,6 @@ body {
     .modal {
         padding-top: 170.4px; /* Location of the box */
         padding-left: 32px;
-        width: 100%;
-        height: 100%;
     }
 
     /* Modal Content */

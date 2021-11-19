@@ -26,18 +26,6 @@ body {
 
 /* Mobile Portrait */
 @media only screen and (max-width: 600px) and (orientation: portrait) {
-    body {
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .pro-sidebar.collapsed .pro-item-content {
-        font-size: 1em;
-    }
-
-    .pro-icon {
-        font-size: 1.5em;
-    }
-
     .pro-item-content {
         font-size: 1.25em;
     }

@@ -44,7 +44,6 @@ function Priority(props){
     });
 
 
-
     return (
         <div className="dropdown" ref={ref}>
             {props.showDropDown ? <button aria-label={aria_priority} id="priority-outline"
