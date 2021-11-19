@@ -286,12 +286,9 @@ The actual workflow after we have implemented the sidebar is the following:
 
 If the users want to use the sidebar (in the phone's portrait and landscape screen mode), they first need to tap on the sidebar menu to make it uncollapse. In actual implementation, we decided to only make the menu items "clickable" after the list is uncollapsed. This is because if the menu items are not disabled when collapsed, the users might accidentally click the wrong menu item since the sidebar is narrow. However, in desktop mode, it does not make practical sense to collapse and uncollapse the sidebar because there is enough space to display everything. Thus, instead of collapsing and uncollapsing, we keep the sidebar in a "collapsed" state, except all the menu items are interactable. Depending on the side of the screen, we also set the maximum number of list names to display so that there aren't too many lists in the sidebar.
 
-
 ##Task 11: Responsive screen sizes
-### Design Ideas / Decisions
-
-### Final Design
-
+### Design Ideas / Decisions & Final Design
+To make the app responsive to screen size changes, we had to think about the breakpoints. Ultimately, we needed three layout designs: desktop (the default), portrait, and landscape. Since we initially began with a mobile screen size (before this lab), the newly added sidebar could be collapsible and uncollapsible to be save space on the screen. However, on the desktop, there is a lot more room so we decided that it would be unnecessary to make the sidebar collapsible. Thus, having a larger screen size would show the sidebar fully opened with the list names in larger text to be more easily read. When it is collapsed on smaller screen sizes, the text is relatively smaller than on the desktop. We also implemented the sidebar such that in portrait mode, there are 10 lists shown at a time, in desktop mode, there are 12 lists shown at a time, and in landscape mode, there are 4 lists shown at a time. And you can use the up and down arrows to “scroll” through the list of lists.
 
 
 # User Testing
