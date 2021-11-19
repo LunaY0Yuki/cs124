@@ -5,9 +5,6 @@
 body {
   max-width: 100%;
   height: 100%;
-  /*min-width: 300px;*/
-  /*width: 360px;*/
-  /*height: 640px;*/
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -21,20 +18,12 @@ body {
 
 /*Div Container For The Entire App*/
 #content{
-  /*width: 360px;*/
-  /*height: 640px;*/
   width: 100%;
   height: 100%;
   display: grid;
   background-color: beige;
   grid-template-columns: 1fr;
-  /*grid-template-rows: 100px 25px 25px 390px 80px;*/
-  /*grid-template-rows: 15.625% 3.75% 3.75% 60.9375% 12.5%;*/
-  /*grid-template-rows: 4fr 1fr 1fr 15.5fr 3.2fr;*/
   grid-template-rows: 12vh 6vh 6vh 62vh 12vh;
-  /*row-gap: 5px;*/
-  /*row-gap: 0.78125%;*/
-  /*row-gap: 0.5%;*/
   row-gap: 0.5vh;
 }
 
@@ -69,8 +58,6 @@ body {
   flex-grow: 1;
   column-gap: 8px;
   flex-basis: 7%;
-  /*width: 1.3em;*/
-  /*height: 1.3em;*/
   padding: 0 0.4em;
   text-align: center;
 }
@@ -78,18 +65,12 @@ body {
 #item-name-label{
   flex-grow: 5;
   flex-basis: 93%;
-  /*width: 85%;*/
-  /*flex-basis: 89vw;*/
 }
 
 #list_header{
   font-family: 'Montserrat', sans-serif;
   height: 100%;
   width: 100%;
-  /*height: 16vh;*/
-  /*padding-top: 5%;*/
-  /*padding-bottom: 5%;*/
-  /*line-height: 2em;*/
   padding: 0;
   grid-row: 1 /span 1;
   grid-column: 1 /span 1;
@@ -114,9 +95,6 @@ body {
   body {
     max-width: 100%;
     height: 100%;
-    /*min-width: 300px;*/
-  /*width: 360px;*/
-  /*height: 640px;*/
     font-family: 'Montserrat', sans-serif;
   }
 
@@ -130,20 +108,12 @@ body {
 
 /*Div Container For The Entire App*/
 #content{
-  /*width: 360px;*/
-  /*height: 640px;*/
   width: 100%;
   height: 100%;
   display: grid;
   background-color: beige;
   grid-template-columns: 1fr;
-  /*grid-template-rows: 100px 25px 25px 390px 80px;*/
-  /*grid-template-rows: 15.625% 3.75% 3.75% 60.9375% 12.5%;*/
-  /*grid-template-rows: 4fr 1fr 1fr 15.5fr 3.2fr;*/
   grid-template-rows: 16vh 4vh 4vh 62vh 12vh;
-  /*row-gap: 5px;*/
-  /*row-gap: 0.78125%;*/
-  /*row-gap: 0.5%;*/
   row-gap: 0.5vh;
 }
 
@@ -178,9 +148,6 @@ body {
   width:100%;
   resize: none;
   padding: 0;
-  /*height: 16vh;*/
-  /*padding-top: 5%;*/
-  /*padding-bottom: 5%;*/
   line-height: 2em;
   grid-row: 1 /span 1;
   grid-column: 1/span 1;
@@ -204,17 +171,12 @@ body {
 @media only screen and (min-width: 992px) {
   /*Div Container For The Entire App*/
   #content{
-    /*width: 360px;*/
-    /*height: 640px;*/
     width: 100%;
     height: 100%;
     display: grid;
     background-color: beige;
     grid-template-columns: 1fr;
     grid-template-rows: 16vh 4vh 4vh 62vh 12vh;
-    /*row-gap: 5px;*/
-    /*row-gap: 0.78125%;*/
-    /*row-gap: 0.5%;*/
     row-gap: 0.5vh;
   }
 
@@ -245,6 +207,5 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 12% 6% 6% 62% 12%;
     row-gap: 0.5%;
-    /*background: red;*/
   }
 }

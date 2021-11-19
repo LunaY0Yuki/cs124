@@ -12,7 +12,7 @@ function FilterButton(props){
             // If the menu is open and the clicked target is not within the menu,
             // then close the menu
             if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
-                setIsMenuOpen(false)
+                setIsMenuOpen(false);
             }
         }
 

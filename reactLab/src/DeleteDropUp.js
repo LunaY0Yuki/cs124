@@ -4,6 +4,7 @@ function DeleteDropUp(props){
     function optionClickedHelper(option_name){
         props.onDeleteOpClicked(option_name);
         props.displayModal();
+        props.closeDropUp();
     }
 
     return (

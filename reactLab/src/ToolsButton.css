@@ -1,72 +1,69 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 
+/* Default Styling */
+#delete-dropup {
+    height: 12vh;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: #664C43;
+    border-style: solid;
+}
 
-    #delete-dropup {
-        height: 12vh;
-        width: 100%;
-        /*line-height: 12vh;*/
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-color: #664C43;
-        border-style: solid;
-    }
+#filter-dropup {
+    height: 12vh;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: #664C43;
+    border-style: solid;
+}
 
-    #filter-dropup {
-        height: 12vh;
-        width: 100%;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-color: #664C43;
-        border-style: solid;
-    }
+.dropup {
+    position: relative;
+    display: inline-block;
+    flex-grow: 1.1;
+    flex-basis: 0;
+}
 
-    .dropup {
-        position: relative;
-        display: inline-block;
-        flex-grow: 1.1;
-        flex-basis: 0;
-    }
+.dropup-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #ebe3ca;
+    bottom: 12vh;
+    z-index: 1;
+    border: #664C43;
+}
 
-    .dropup-content {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        background-color: #ebe3ca;
-        /*min-width: 160px;*/
-        bottom: 12vh;
-        z-index: 1;
-        border: #664C43;
-    }
+.dropup-content button {
+    border-top: 2px solid #664C43;
+    border-left: 2px solid #664C43;
+    border-right: 2px solid #664C43;
+    border-bottom: 0px;
+    border-style: solid;
+    font-size: 0.8em;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: #ebe3ca;
+}
 
-    .dropup-content button {
-        border-top: 2px solid #664C43;
-        border-left: 2px solid #664C43;
-        border-right: 2px solid #664C43;
-        border-bottom: 0px;
-        border-style: solid;
-        font-size: 0.8em;
-        font-family: 'Montserrat', sans-serif;
-        padding: 5px 16px;
-        text-decoration: none;
-        display: block;
-        background-color: #ebe3ca;
-    }
+.accent {
+    background-color: #C5AA8C;
+}
 
-    .accent {
-        background-color: #C5AA8C;
-    }
-
-
+/* Mobile Portrait */
 @media only screen and (max-width: 600px) and (orientation: portrait) {
     #delete-dropup {
         height: 12vh;
         width: 100%;
-        /*line-height: 12vh;*/
         text-align: center;
         display: flex;
         justify-content: center;
@@ -99,7 +96,6 @@
         flex-direction: column;
         position: absolute;
         background-color: #ebe3ca;
-        /*min-width: 160px;*/
         bottom: 12vh;
         z-index: 1;
         border: #664C43;
@@ -124,6 +120,7 @@
     }
 }
 
+/* Desktop */
 @media only screen and (max-width: 319px)  {
     #delete-dropup {
         height: 68.16px;

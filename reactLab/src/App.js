@@ -19,6 +19,7 @@ function App(props) {
 
     const isMobile = useMediaQuery({maxWidth: 600});
     const isLandscape = useMediaQuery({orientation: "landscape"});
+    const isDesktop = useMediaQuery({minWidth: 992});
 
     function handleToolSelected(tool_name){
         // if you click on the same tool twice, it will deselect it
@@ -59,6 +60,9 @@ function App(props) {
     if (isMobile && !isLandscape) {
         numOfListToDisplay = 10;
     }
+    else if (isDesktop) {
+        numOfListToDisplay = 12;
+    }
 
     return (
         <div id="overall-app">
@@ -96,6 +100,7 @@ function App(props) {
                           showDropUp = {"delete" === toolSelected}
                           deleteState = {deleteState}
                           onDeleteOpClicked = {(deleteOpName) => setDeleteState(deleteOpName)}
+                          closeDropUp = {() => setToolSelected(null)}
                           displayModal={() => {setModalOn(true)}}
             />
         </div>

@@ -30,12 +30,9 @@ function InMemoryApp(props) {
     const [overall_value, overall_loading, overall_error] = useCollection(overall_query);
 
     let all_lists_id = [];
-    // let init_list_id = "default-list";
     if (overall_value) {
         all_lists_id = overall_value.docs.map((doc) => {
             return {...doc.data()}});
-
-        // init_list_id = all_lists_id[0].id;
     }
 
     // storing the id of the current list
@@ -55,14 +52,11 @@ function InMemoryApp(props) {
 
     const [value, loading, error] = useCollection(query);
 
-    console.log(error);
-
     let data = [];
     if (value) {
         data = value.docs.map((doc) => {
             return {...doc.data()}});
     }
-
 
     function handleItemChanged(itemID, field, newValue) {
         const doc = db.collection(collectionName).doc(currentList).collection("list-of-items").doc(itemID);

@@ -1,32 +1,30 @@
-
+/* SCSS to control variables for styling the sidebar */
 $sidebar-bg-color: #4a4240 !default;
 $sidebar-color: #c9c9c9 !default;
 $sidebar-width: 60vw !default;
 $sidebar-collapsed-width: 20vw !default;
-$highlight-color: red !default;
-$submenu-bg-color: #2b2b2b !default;
-$submenu-bg-color-collapsed: #2b2b2b !default;
+$highlight-color: #c9c9c9 !default;
 $icon-bg-color: #2b2b2b !default;
 $icon-size: 2em !default;
 
+/* Default Styling */
+body {
+    font-family: 'Montserrat', sans-serif;
+}
 
-    body {
-        font-family: 'Montserrat', sans-serif;
-    }
+.pro-sidebar.collapsed .pro-item-content {
+    font-size: 1em;
+}
 
-    .pro-sidebar.collapsed .pro-item-content {
-        font-size: 1em;
-    }
+.pro-icon {
+    font-size: 1.5em;
+}
 
-    .pro-icon {
-        font-size: 1.5em;
-    }
+.pro-item-content{
+    font-size: 1.5em;
+}
 
-    .pro-item-content{
-        font-size: 1.5em;
-    }
-
-
+/* Mobile Portrait */
 @media only screen and (max-width: 600px) and (orientation: portrait) {
     body {
         font-family: 'Montserrat', sans-serif;
@@ -45,7 +43,7 @@ $icon-size: 2em !default;
     }
 }
 
-
+/* Desktop */
 @media only screen and (min-width: 992px) {
     .pro-sidebar.collapsed .pro-item-content {
         font-size: 1.5em;
@@ -53,6 +51,12 @@ $icon-size: 2em !default;
 }
 
 @import '~react-pro-sidebar/dist/scss/styles.scss';
+
+/* Overwrite the default styling in the package */
+.pro-menu-item:focus-within{
+    border-color: #c9c9c9;
+    border-style: solid;
+}
 
 @media only screen and (max-width: 310px)  {
     .pro-sidebar {

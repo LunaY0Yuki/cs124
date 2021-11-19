@@ -25,9 +25,21 @@ function Priority(props){
             }
         }
         document.addEventListener("mousedown", checkIfClickedOutside);
+
+        // if the window size has changed, close the dropdown
+        window.addEventListener('resize', () => {
+            if (props.showDropDown) {
+                props.onPriorityClicked();
+            }
+        });
         return () => {
             // Cleanup the event listener
             document.removeEventListener("mousedown", checkIfClickedOutside);
+            window.removeEventListener('resize', () => {
+                if (props.showDropDown) {
+                    props.onPriorityClicked();
+                }
+            });
         }
     });
 
@@ -41,7 +53,7 @@ function Priority(props){
                 <button aria-label={aria_priority}
                         className={"dropbtn"+props.selectedPriority.toString()}
                         onClick={props.onPriorityClicked}>{displayed_priority}</button>}
-            {props.showDropDown && <div className="dropdown-content">
+            {props.showDropDown && <div className="dropdown-content" style={{top: props.rowYpos}}>
                 <button onClick = {() => props.changePriority(0)}
                         aria-label="Priority option: None"
                         className={props.selectedPriority === 0 ? "none-selected" : "priority-option"}>None {props.selectedPriority === 0 ? <span>&#10003;</span> : null}</button>
@@ -55,8 +67,6 @@ function Priority(props){
                         aria-label="Priority option: High"
                         className={props.selectedPriority === 3 ? "high-selected" : "priority-option"}>High {props.selectedPriority === 3 ? <span>&#10003;</span> : null}</button>
             </div>}
-            {/*{props.showDropDown ? <button id="priority-outline" className={"dropbtn"+props.selectedPriority.toString()} onClick={props.onPriorityClicked}>{displayed_priority}</button> :*/}
-            {/*    <button className={"dropbtn"+props.selectedPriority.toString()} onClick={props.onPriorityClicked}>{displayed_priority}</button>}*/}
         </div>
     );
 }

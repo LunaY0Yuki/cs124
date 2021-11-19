@@ -26,11 +26,6 @@ body {
 }
 
 #add {
-    /*margin: 10px 30px 10px 30px;*/
-    /*margin-top: 0;*/
-    /*margin-bottom: 0;*/
-    /*height: 40px;*/
-    /* width: 300px;*/
     min-width: 60vw;
     max-width: 70vw;
     line-height: 1em;
@@ -74,11 +69,6 @@ body {
     }
 
     #add {
-        /*margin: 10px 30px 10px 30px;*/
-        /*margin-top: 0;*/
-        /*margin-bottom: 0;*/
-        /*height: 40px;*/
-        /* width: 300px;*/
         min-width: 60vw;
         max-width: 70vw;
         line-height: 1em;

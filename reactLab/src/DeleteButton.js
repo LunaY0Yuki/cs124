@@ -9,6 +9,7 @@ function DeleteButton(props){
             </button>
             {props.showDropUp && <DeleteDropUp displayModal={props.displayModal}
                                                deleteState={props.deleteState}
+                                               closeDropUp={props.closeDropUp}
                                                onDeleteOpClicked={props.onDeleteOpClicked}/>}
         </div>
     );

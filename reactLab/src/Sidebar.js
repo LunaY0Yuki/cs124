@@ -4,7 +4,6 @@ import {FaAngleUp, FaAngleDown} from "react-icons/fa";
 import {TiDelete} from "react-icons/ti";
 import './Sidebar.scss';
 import { useEffect, useRef, useState} from "react";
-// import 'react-pro-sidebar/dist/css/styles.css';
 import { useMediaQuery } from 'react-responsive';
 
 function Sidebar(props){
@@ -32,17 +31,22 @@ function Sidebar(props){
 
     // update what lists actually get displayed in the sidebar
     function updateDisplayIndex(change_by){
-        // cannot decrease the index anymore
-        //  displayIndex === 0 && change_by < 0
-        //  cannot  increase the index anymore
-        // if list_data len > max display then should change
-        // displayIndex === props.list_data.length - props.maxToDisplay && change_by > 0
-        // setDisplayIndex(displayIndex + change_by)
-
         if ((props.list_data.length > props.maxToDisplay) &&
             !(displayIndex === 0 && change_by < 0) &&
             !(displayIndex === props.list_data.length - props.maxToDisplay && change_by > 0)){
             setDisplayIndex(displayIndex + change_by);
+        }
+    }
+
+    function handleCreateNewList(){
+        if (isDesktop || !props.collapsed) {
+            let newListId = props.onListAdded();  // create a new Untitled List in firestore
+            // show the new list
+            props.onListSelected(newListId);
+            // "scroll" to the bottom of the list in the side bar to display the new list
+            if (props.list_data.length > props.maxToDisplay) {
+                setDisplayIndex(props.list_data.length - props.maxToDisplay + 1);
+            }
         }
     }
 
@@ -61,7 +65,6 @@ function Sidebar(props){
 
             // move back one index
             updateDisplayIndex(-1);
-
     }
     
     // get the subset of list name that we will display
@@ -74,18 +77,14 @@ function Sidebar(props){
             }
         }} ref={ref}>
             <Menu iconShape="square">
-                <MenuItem aria-label="Add a new list" id="add-new-list" icon={<MdOutlinePlaylistAdd />} onClick={() => {
-                    if (isDesktop || !props.collapsed) {
-                        let newListId = props.onListAdded();  // create a new Untitled List in firestore
-                        // show the new list
-                        console.log("==== added new list ====");
-                        props.onListSelected(newListId);
-                        // "scroll" to the bottom of the list in the side bar to display the new list
-                        if (props.list_data.length > props.maxToDisplay) {
-                            setDisplayIndex(props.list_data.length - props.maxToDisplay + 1);
-                        }
+                <MenuItem aria-label="Add a new list" id="add-new-list" icon={<MdOutlinePlaylistAdd />}
+                onKeyPress={(evt)=> {
+                    // support ENTER key for keyboard control
+                    if (evt.key === "Enter"){
+                        handleCreateNewList();
                     }
-                }} >New List</MenuItem>
+               }}
+                onClick={() => handleCreateNewList()} >New List</MenuItem>
                 <MenuItem
                     aria-label="Scroll Up" id="scroll-up"
                     onKeyPress={(evt)=> {
@@ -97,7 +96,7 @@ function Sidebar(props){
                     <FaAngleUp />
                 </MenuItem>
                 {displayed_list.map((e) => {
-                        return <MenuItem aria-label="View this list" id={e.id}
+                        return <MenuItem aria-label="View this list" id={e.id} 
                                          onKeyPress={(evt)=> {
                                              // if the user is tabbing into the list name and hit enter
                                              if (evt.key === "Enter"){
