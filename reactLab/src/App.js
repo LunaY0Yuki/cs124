@@ -5,15 +5,21 @@ import DeleteButton from "./DeleteButton.js";
 import SortButton from "./SortButton.js";
 import Modal from "./Modal.js";
 import Sidebar from "./Sidebar.js";
+import Header from "./Header.js";
 import {useState, useEffect, useRef} from "react";
+import { useMediaQuery } from 'react-responsive';
 
 function App(props) {
     const [toolSelected, setToolSelected] = useState(null);  // for the drop-up for filter and delete
     const [filterState, setFilterState] = useState("All");
     const [deleteState, setDeleteState] = useState(null);
+    const [collapseState, setCollapseState] = useState(true);
     const [modalOn, setModalOn] = useState(null);
     const [showSortDropDown, setShowSortDropDown] = useState(false);
 
+    const isMobile = useMediaQuery({maxWidth: 600});
+    const isLandscape = useMediaQuery({orientation: "landscape"});
+    const isDesktop = useMediaQuery({minWidth: 992});
 
     function handleToolSelected(tool_name){
         // if you click on the same tool twice, it will deselect it
@@ -49,18 +55,39 @@ function App(props) {
         numOfItemsToDelete = props.data.filter((e) => !e.completed).length;
     }
 
+    // determine the number of lists to display in the sidebar
+    let numOfListToDisplay = 4;
+    if (isMobile && !isLandscape) {
+        numOfListToDisplay = 10;
+    }
+    else if (isDesktop) {
+        numOfListToDisplay = 12;
+    }
+
     return (
-        <div>
-        <Sidebar list_data={props.list_data}> </Sidebar>
+        <div id="overall-app">
+            <Sidebar list_data={props.list_data}
+                 curr_list_id={props.curr_list_id}
+                 onListSelected={props.onListSelected}
+                 onListAdded={props.onListAdded}
+                 onListDeleted={props.onListDeleted}
+                 collapsed={collapseState}
+                 setCollapseState={setCollapseState}
+                 maxToDisplay={numOfListToDisplay}
+            />
       <div id="content">
-        <h1 className="accent">To-Do List</h1>
+        <Header className="accent"
+                curr_list_id={props.curr_list_id}
+                curr_list_name={props.curr_list_name}
+                onListNameChanged = {props.onListNameChanged}
+        />
         {props.data.length > 0 && <SortButton
                                     showDropDown = {showSortDropDown}
                                     toggleDropDown = {() => setShowSortDropDown(!showSortDropDown)}
                                     onSortSelected = {props.onSortSelected}
                                     selectedSortOption = {props.selectedSortOption}
                                     />}
-        {props.data.length > 0 && <div id="column-labels"><span>Item Name</span> <span>Priority</span></div>}
+        {props.data.length > 0 && <div id="column-labels"><span id="checkbox-label">&#10003;</span> <span id="item-name-label">Item Name</span> <span id="priority-label">Priority</span></div>}
         <ItemList {...props} filterState = {filterState}/>
         <div id="tools" ref={ref}>
             <FilterButton onToolClicked={() => {handleToolSelected("filter")}}
@@ -73,6 +100,7 @@ function App(props) {
                           showDropUp = {"delete" === toolSelected}
                           deleteState = {deleteState}
                           onDeleteOpClicked = {(deleteOpName) => setDeleteState(deleteOpName)}
+                          closeDropUp = {() => setToolSelected(null)}
                           displayModal={() => {setModalOn(true)}}
             />
         </div>

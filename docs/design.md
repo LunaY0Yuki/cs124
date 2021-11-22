@@ -1,3 +1,6 @@
+# Lab 4 - Here's the link to our accessibility video:
+[https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing](https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing)
+
 # Design for Each Task
 In this lab, we are creating a mobile web app that manages a list of items to complete. Listed below are the specific tasks 
 that our app can execute. Our primary principle for our app design is "simplicity". Because writing down items to-do might 
@@ -10,7 +13,7 @@ noise and stress.
 For this task, we considered creating a pop-up for each time that a new item were to be added. First, the user could click 
 the add button, which is a plus sign on the button for simplicity, in the upper half of the screen, and then a pop-up would 
 appear like a modal. There would be a text area to type in and a blinking cursor to allow the user to visualize where they 
-would be typing. They could then click outside of the box to go back to the main screen and view the newly added item.
+would be typing. They could then click outside the box to go back to the main screen and view the newly added item.
 ![Task 1 - Alternative Design Inspiration - First task using add button!](./task1a.png)
 
 ### Design Update Since Lab 2
@@ -97,7 +100,7 @@ that item.
 This additional feature provides a way for the user to delete individual task. More importantly, this feature allows our
 app to smoothly handle when a user decides to cancel creating a new task. When the add button is pressed in our app, the
 app first creates an empty item name then lets the user edit and create the item. However, if the user decides to cancel
-creating a new item, they just need to click outside of the text field, thereby causing the item, whose initial item name
+creating a new item, they just need to click outside the text field, thereby causing the item, whose initial item name
 is an empty string, to get deleted. 
  
 ### Final Design
@@ -112,7 +115,7 @@ that the user is editing. In addition, despite not being shown in image 2, there
 "Text John" and a keyboard should pop up on the mobile screen. Then, the user will be able to type their changes to this 
 item.
 
-After the user is satisfied with the change, they can press "return" on their keyboard or tap anywhere outside of the 
+After the user is satisfied with the change, they can press "return" on their keyboard or tap anywhere outside the 
 text input area to save the change. The final result is shown in image 3.
 
 ## Task 5: Filter and Display Only Uncompleted Items
@@ -173,7 +176,7 @@ Before finalizing the available options, we consider a possible delete mode that
 they want to delete. Thus, initially, we have four options for delete: all, completed, uncompleted, and custom. The option
 is also called "Select" instead of "Delete" (as seen from the sketch below).
 Once the users choose the "custom" mode, they can tap on individual items to select the ones that they want to delete. The items 
-that get tap will have a darken background or some kind of outline to indicate that they are selected. However, there are 
+that get tapped will have a darkened background or some kind of outline to indicate that they are selected. However, there are 
 additional overheads such as how should the users cancel the selecting mode? how should the users delete the selected items? 
 Eventually, we decided to abandon this feature because its functionality is not required, and adding it creates 
 unnecessary complications. 
@@ -235,7 +238,7 @@ Our final design for the item priority levels are shown in the screenshots below
 
 To match this new feature with the rest of the UI designs, we decided to just place a sorting icon at the top right corner of the screen below the header. Because there are a defined number of options (by priority, by name, or by creation date), we decided to use drop-down menu, which is also stylistically consistent with our other UIs (e.g. filter button, delete button, priority selector).
 
-![Task 8 - Sketch of the Design Decision for the Sort Button!](./task8a.png "Sketch of the Design Decision for Task 6")
+![Task 8 - Sketch of the Design Decision for the Sort Button!](./task8a.png "Sketch of the Design Decision for Task 8")
 
 After the user clicks on sort, the drop-down menu will appear. If the list is currently already sorted according to a sort option, there will be a checkmark next to the sort button to indicate the selection. If the user clicks on the same option again, that option will get deselected.
 
@@ -243,13 +246,56 @@ After the user clicks on sort, the drop-down menu will appear. If the list is cu
 
 Our final design is broken down into the following steps:
 
-![Task 8 - Final Design Flow Chart!](./task8-final.png "Final Design Flow Chart for Task 6")
+![Task 8 - Final Design Flow Chart!](./task8-final.png "Final Design Flow Chart for Task8")
 
 1. The user can press the sort button at any time.
 2. After the user has pressed down the sort button, the drop-down with all the sort options will appear. If currently there is already an option selected, a checkmark would appear next to the sort option name. If the items are currently not sorted, no checkmark would appear.
 3. After the user clicks on any of the options, the drop-down will automatically close and the list will be sorted according to the sort option or unsorted if the user deselects the sort option.
 
 After we began implementing the sort button, we decided to add an outline around the sort button after the drop-down menu appears. In this way, the user can more easily associate the appeared drop-down menu with the sort button and understand what the drop-down is used for.
+
+##Task 9: Accessibility
+### The link to the accessibility video:
+[https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing](https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing)
+
+### Design Ideas / Decisions & Final Design
+For users who cannot use a mouse, we want to ensure that each element that they tab and focus on is highlighted in some ways. The highlight would help the users quickly access and remember where they are in the app. Specifically, while most of the UI already has default highlighting (in the forms of outlines), the sidebar that support multiple lists (which are mentioned below) does not automatically support tab focusing and highlighting. Thus, we added a white thick outline around the highlighted option to make what is focused and selected obvious.
+
+For users who are using a screen reader, we focused on providing more context to the users so that they can better access where they are in the app. For example, there are two types of text boxes in this app: one for editing the list name, and another one for editing the item name. Thus, we added specific aria label to distinguish the two in screen reader. In addition, because we are using an external React package for the sidebar (which is mentioned below), the menu options do not provide enough information about the differences between them. Thus, we added aria label for each menu item to clarity their functionality.
+
+
+##Task 10: Multiple Lists
+### Design Ideas / Decisions
+In order to support multiple lists, we considered having either a tab list or a sidebar menu. Our goal for the UI is the following:
+- The UI should be consistent for all screen types.
+- The UI should not be intrusive to the rest of the workflow.
+
+We investigated different React packages available for the app. Although a tab list, as a common UI for web browsers, would be intuitive for the users to use, we decided to not make a tab list because the tabs would be difficult to control on a small mobile screen in portrait mode.
+
+![Task 10 - Multiple List - Sketch of the Design Decision!](./task10a.jpg "Sketch of the Design Decision for Task 7")
+![Task 10 - Multiple List - Sketch of the Design Decision!](./task10b.jpg "Sketch of the Design Decision for Task 7")
+
+Eventually, we found a sidebar react package that better fit our requirements. Specifically, the sidebar package supports having a collapsed and uncollapsed mode, which allows the multi-list UI to integrate nicely even on small screens. We decided that the New List button should be at the top of the sidebar so that it is easily accessible. In addition, inspired by how the tab list package "scrolls" through its list of tabs with two arrow buttons, we also included an up arrow and down arrow to help scroll through all the lists. The lists will be between the up and down buttons.
+
+When the users want to interact with the list by clicking on it, the list will be uncollapsed, thereby revealing more information. A delete icon will be behind the list name so that the user can delete the list.
+
+[comment]: <> (editable list names)
+With the addition of a sidebar that can contain multiple lists, we wanted users to be able to rename lists. When 
+adding a new list, the default name of the new list is “Untitled”. It is expected for users to want to change the default 
+name to make it unique, distinguishable, and categorizable. To edit a list, users should click the title of the list on the 
+content of the app that is above the specific list of item names. The cursor will appear where clicked and the user may start 
+editing. Clicking anywhere outside of the list name area will deselect it and remove the cursor.
+
+### Final Design
+![Task 10 - Final Design Flow Chart!](./task10-final.jpg "Final Design Flow Chart for Task 10")
+
+The actual workflow after we have implemented the sidebar is the following:
+
+If the users want to use the sidebar (in the phone's portrait and landscape screen mode), they first need to tap on the sidebar menu to make it uncollapse. In actual implementation, we decided to only make the menu items "clickable" after the list is uncollapsed. This is because if the menu items are not disabled when collapsed, the users might accidentally click the wrong menu item since the sidebar is narrow. However, in desktop mode, it does not make practical sense to collapse and uncollapse the sidebar because there is enough space to display everything. Thus, instead of collapsing and uncollapsing, we keep the sidebar in a "collapsed" state, except all the menu items are interactable. Depending on the side of the screen, we also set the maximum number of list names to display so that there aren't too many lists in the sidebar.
+
+##Task 11: Responsive screen sizes
+### Design Ideas / Decisions & Final Design
+To make the app responsive to screen size changes, we had to think about the breakpoints. Ultimately, we needed three layout designs: desktop (the default), portrait, and landscape. Since we initially began with a mobile screen size (before this lab), the newly added sidebar could be collapsible and uncollapsible to be save space on the screen. However, on the desktop, there is a lot more room so we decided that it would be unnecessary to make the sidebar collapsible. Thus, having a larger screen size would show the sidebar fully opened with the list names in larger text to be more easily read. When it is collapsed on smaller screen sizes, the text is relatively smaller than on the desktop. We also implemented the sidebar such that in portrait mode, there are 10 lists shown at a time, in desktop mode, there are 12 lists shown at a time, and in landscape mode, there are 4 lists shown at a time. And you can use the up and down arrows to “scroll” through the list of lists.
 
 
 # User Testing
@@ -286,6 +332,15 @@ the color of the text for "Item Name" and "Priority" from black to brown. In the
 sort button elsewhere to prevent this confusion. Nonetheless, this user enjoyed the color-coded priority levels with selected 
 checkmark and the click-out ability.
 
+## Lab 4
+We asked a user to test how responsive our app is. The participant dragged the screen from the bottom right corner, but not 
+too far in to where it hits the minimum width. In reality, it seems like it would be rare for someone to make a screen size 
+extremely small. The participant had overall positive reactions to how responsive the app is. 
+
+We asked another participant to both examine the multi-list functionality and the responsive design.
+The participant tested the sidebar for the multi-list in desktop node. Adding a new list is easy because there are both an add button and the text description "New List" next to it. Then, to change the list name, the participant tried clicking on the list name because google doc has similar UI in terms of how to change a google doc's name. However, the participant found it surprising that the styling of the header (the list name) did not change in the editing mode. She was expecting that the list name would be highlighted in some ways. The participant found deleting the list was also intuitive because there is an "x" button next to the list name. In terms of the design of the sidebar in general, the participant suggested that adding more color could help distinguish the "New List" button from the rest of the buttons.
+
+The participant then reviewed what the app looks like in different screen sizes. Specifically, she pointed out that the sidebar seemed a little bit narrow in mobile mode. It was intuitive for her that the list would expand and reveal all the information about the different lists and that the sidebar would collapse when she clicked outside the sidebar. However, she found it confusing that only the first few letters would appear for the list name when the sidebar is collapsed. In addition, she thought that the app was requiring too many steps to change the list. For example, she needed to click on the collapsed list first to make the sidebar interactable, then she needed to click on the actual option again to actually perform the action. Despite the small areas for improvement, the participant is satisfied with the overall design of the app.
 
 # Challenges We Faced
 ## Lab 1
@@ -332,6 +387,21 @@ Finally, for the priority drop-down, we initially had a styling issue where if w
 hidden behind the add button. The users need to scroll down to see the entire drop-down. To fix this, we have to change the 
 position of the drop-down to absolute so that we can define its position with respect to the entire website window. 
 
+## Lab 4
+We faced a handful of challenges with CSS styling of components. One area where we faced the challenge was in our priority 
+button dropdown. At first, we tried what we had already done for the filter and delete button dropups, which, appear at the 
+bottom of the screen. However, the problem was that the priority dropdown (which belongs to the priority button, which belongs 
+to the row, which belongs to the item list) gets covered by the part under/outside of the item list and the add button. To 
+clarify, with a list that requires scrolling to see the last item, opening that last priority dropdown would partially be 
+hidden under the add button. When changing the CSS position to fixed instead of absolute, we were able to layer the priority 
+dropdown over the add button when it gets that low in the item list. Another CSS challenge was for responsive design. We were 
+not sure at first how to clearly organize our breakpoint content. We started off with creating mobile portrait mode layout off 
+of what we already had, and quickly realized that instead of using percentages for some units, we should replace it with vw or vh 
+(the viewport width and viewport height) because this gives us a percentage of the viewport width of height. This is different 
+from percentage, which depends entirely on the property that is using the percentage. For landscape, we were able to make 
+the default screen size work for it.
+
+
 # Parts of the Design We're Most Proud Of
 ## Lab 1
 We are most proud of the drop-up menu selector and the pop-up modal for the filter and the delete button. We think that 
@@ -354,3 +424,11 @@ This makes it a lot easier for users to click out and keep the screen clear, rat
 that revealed the dropdown to close it. We made this possible for every dropdown button and for each newly added item that 
 is empty. The addition of this feature makes the user experience more desirable and less frustrating.
 
+## Lab 4
+One part that we are most proud of in this lab is adding the sidebar to the app, allowing for access to additional lists. 
+We installed a package for the sidebar, but had to work through the existing elements and their CSS used in order to customize 
+it the way we want. We really like how the sidebar is collapsible to show previews of the list names but also can be expanded 
+to see more of the list name clearly. We also decided to use arrow buttons to pass through a long list of lists instead of 
+scroll because we didn’t want there to be two main scrolls: one for the sidebar and one for the currently open list. This 
+could cause confusion when scrolling on the wrong side. Overall, we like having the sidebar to allow a user to add and navigate 
+through lists.

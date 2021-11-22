@@ -3,6 +3,7 @@ import './ToolsButton.css';
 function FilterDropUp(props){
     function optionClickedHelper(option_name){
         props.onFilterOpClicked(option_name);
+        props.closeDropUp();
     }
 
     return (

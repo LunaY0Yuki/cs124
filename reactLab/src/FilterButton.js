@@ -12,7 +12,7 @@ function FilterButton(props){
             // If the menu is open and the clicked target is not within the menu,
             // then close the menu
             if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
-                setIsMenuOpen(false)
+                setIsMenuOpen(false);
             }
         }
 
@@ -25,7 +25,7 @@ function FilterButton(props){
     }, [isMenuOpen])
     return (
         <div className="dropup">
-            <button className="accent" id="filter-dropup" type="button" onClick={props.onToolClicked}>
+            <button aria-label="Filter" className="accent" id="filter-dropup" type="button" onClick={props.onToolClicked}>
                 <i className="material-icons-outlined md-38">filter_alt</i>
             </button>
             {props.showDropUp && <FilterDropUp onFilterOpClicked={props.onFilterOpClicked}

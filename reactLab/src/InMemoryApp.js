@@ -30,16 +30,16 @@ function InMemoryApp(props) {
     const [overall_value, overall_loading, overall_error] = useCollection(overall_query);
 
     let all_lists_id = [];
-    let init_list_id = "default-list";
     if (overall_value) {
         all_lists_id = overall_value.docs.map((doc) => {
             return {...doc.data()}});
-
-        init_list_id = all_lists_id[0].id;
     }
 
-    const [currentList, setCurrentList] = useState(init_list_id);
+    // storing the id of the current list
+    //     we are guaranteed to have a default list called "Main List" with id "default-list"
+    const [currentList, setCurrentList] = useState("default-list");
 
+    // get the list of items that belong to our currentList
     let query = db.collection(collectionName).doc(currentList).collection("list-of-items");
 
     if (sortOption){
@@ -58,7 +58,6 @@ function InMemoryApp(props) {
         data = value.docs.map((doc) => {
             return {...doc.data()}});
     }
-
 
     function handleItemChanged(itemID, field, newValue) {
         const doc = db.collection(collectionName).doc(currentList).collection("list-of-items").doc(itemID);
@@ -96,13 +95,49 @@ function InMemoryApp(props) {
         return newId;
     }
 
+    function handleListNameChanged(listId, newValue){
+        const doc = db.collection(collectionName).doc(listId);
+        doc.update({
+            list_name: newValue,
+        })
+    }
+
+    function handleListAdded(){
+        const newId = generateUniqueID();
+        db.collection(collectionName).doc(newId).set({
+            id: newId,
+            list_name: "Untitled",
+        })
+        return newId;
+    }
+
+    function handleListDeleted(listId) {
+        db.collection(collectionName).doc(listId).delete();
+    }
+
+    // determine what list name to display in the header of the app
+    let curr_list_name = "";
+    if (all_lists_id.length > 0){
+        // find the information of the current list that we are displaying
+        let curr_list = all_lists_id.filter((e) => e.id === currentList);
+        if (curr_list.length > 0) {
+            curr_list_name = all_lists_id.filter((e) => e.id === currentList)[0].list_name;
+        }
+    }
+
     return (<App data={data}
                  list_data={all_lists_id}
+                 curr_list_id={currentList}
+                 curr_list_name={curr_list_name}
                  onItemChanged={handleItemChanged}
                  onItemDeleted={handleItemDeleted}
                  onDeleteByCategory={handleItemCategoryDeleted}
                  onItemAdded={handleItemAdded}
                  onSortSelected={(option) => setSortOption(option)}
+                 onListSelected={setCurrentList}
+                 onListNameChanged={handleListNameChanged}
+                 onListAdded={handleListAdded}
+                 onListDeleted={handleListDeleted}
                  selectedSortOption={sortOption}/>
     );
 }

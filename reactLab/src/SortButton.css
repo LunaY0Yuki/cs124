@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 
-.sort-dropdown{
+/* Default Styling */
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.sort-dropdown {
     grid-row: 2 /span 1;
     grid-column: 1/span 1;
     justify-self: end;
@@ -8,9 +13,10 @@
     display: inline-block;
 }
 
-#sort-icon{
-    height: 25px;
+#sort-icon {
+    height: 100%;
     width: 35px;
+    font-size: 0.5em;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -20,9 +26,10 @@
     margin-right: 14px;
 }
 
-#sort-icon-outlined{
-    height: 25px;
+#sort-icon-outlined {
+    height: 100%;
     width: 35px;
+    font-size: 0.5em;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -62,6 +69,30 @@
     font-size: 3em;
 }
 
-#last-option{
+#last-option {
     border-bottom: 2px solid #664C43;
+}
+
+/* Mobile Portrait */
+@media only screen and (max-width: 600px) and (orientation: portrait){
+    #sort-icon {
+        height: 25px;
+    }
+
+    #sort-icon-outlined {
+        height: 25px;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 992px) {
+    #sort-icon {
+        width: 45px;
+        font-size: 1em;
+    }
+
+    #sort-icon-outlined {
+        width: 45px;
+        font-size: 1em;
+    }
 }
