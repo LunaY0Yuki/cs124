@@ -36,9 +36,10 @@ function InMemoryApp(props) {
     }
 
     // storing the id of the current list
+    //     we are guaranteed to have a default list called "Main List" with id "default-list"
     const [currentList, setCurrentList] = useState("default-list");
 
-
+    // get the list of items that belong to our currentList
     let query = db.collection(collectionName).doc(currentList).collection("list-of-items");
 
     if (sortOption){

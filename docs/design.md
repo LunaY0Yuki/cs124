@@ -1,3 +1,6 @@
+# Lab 4 - Here's the link to our accessibility video:
+[https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing](https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing)
+
 # Design for Each Task
 In this lab, we are creating a mobile web app that manages a list of items to complete. Listed below are the specific tasks 
 that our app can execute. Our primary principle for our app design is "simplicity". Because writing down items to-do might 
@@ -252,9 +255,13 @@ Our final design is broken down into the following steps:
 After we began implementing the sort button, we decided to add an outline around the sort button after the drop-down menu appears. In this way, the user can more easily associate the appeared drop-down menu with the sort button and understand what the drop-down is used for.
 
 ##Task 9: Accessibility
-### Design Ideas / Decisions
+### The link to the accessibility video:
+[https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing](https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing)
 
-### Final Design
+### Design Ideas / Decisions & Final Design
+For users who cannot use a mouse, we want to ensure that each element that they tab and focus on is highlighted in some ways. The highlight would help the users quickly access and remember where they are in the app. Specifically, while most of the UI already has default highlighting (in the forms of outlines), the sidebar that support multiple lists (which are mentioned below) does not automatically support tab focusing and highlighting. Thus, we added a white thick outline around the highlighted option to make what is focused and selected obvious.
+
+For users who are using a screen reader, we focused on providing more context to the users so that they can better access where they are in the app. For example, there are two types of text boxes in this app: one for editing the list name, and another one for editing the item name. Thus, we added specific aria label to distinguish the two in screen reader. In addition, because we are using an external React package for the sidebar (which is mentioned below), the menu options do not provide enough information about the differences between them. Thus, we added aria label for each menu item to clarity their functionality.
 
 
 ##Task 10: Multiple Lists
@@ -329,6 +336,11 @@ checkmark and the click-out ability.
 We asked a user to test how responsive our app is. The participant dragged the screen from the bottom right corner, but not 
 too far in to where it hits the minimum width. In reality, it seems like it would be rare for someone to make a screen size 
 extremely small. The participant had overall positive reactions to how responsive the app is. 
+
+We asked another participant to both examine the multi-list functionality and the responsive design.
+The participant tested the sidebar for the multi-list in desktop node. Adding a new list is easy because there are both an add button and the text description "New List" next to it. Then, to change the list name, the participant tried clicking on the list name because google doc has similar UI in terms of how to change a google doc's name. However, the participant found it surprising that the styling of the header (the list name) did not change in the editing mode. She was expecting that the list name would be highlighted in some ways. The participant found deleting the list was also intuitive because there is an "x" button next to the list name. In terms of the design of the sidebar in general, the participant suggested that adding more color could help distinguish the "New List" button from the rest of the buttons.
+
+The participant then reviewed what the app looks like in different screen sizes. Specifically, she pointed out that the sidebar seemed a little bit narrow in mobile mode. It was intuitive for her that the list would expand and reveal all the information about the different lists and that the sidebar would collapse when she clicked outside the sidebar. However, she found it confusing that only the first few letters would appear for the list name when the sidebar is collapsed. In addition, she thought that the app was requiring too many steps to change the list. For example, she needed to click on the collapsed list first to make the sidebar interactable, then she needed to click on the actual option again to actually perform the action. Despite the small areas for improvement, the participant is satisfied with the overall design of the app.
 
 # Challenges We Faced
 ## Lab 1
