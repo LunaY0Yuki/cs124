@@ -32,7 +32,7 @@ function AppWrapper(props) {
         return <p>Checking...</p>;
     } else if (user) {
         // user has logged in
-        return <InMemoryApp db={db}/>;
+        return <InMemoryApp db={db} auth={auth} email={user.email}/>;
     } else {
         return <SignIn />;
     }

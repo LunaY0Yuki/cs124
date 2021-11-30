@@ -56,7 +56,7 @@ function App(props) {
     }
 
     // determine the number of lists to display in the sidebar
-    let numOfListToDisplay = 4;
+    let numOfListToDisplay = 3;
     if (isMobile && !isLandscape) {
         numOfListToDisplay = 10;
     }
@@ -66,7 +66,9 @@ function App(props) {
 
     return (
         <div id="overall-app">
-            <Sidebar list_data={props.list_data}
+            <Sidebar
+                 list_data={props.list_data}
+                 auth={props.auth}
                  curr_list_id={props.curr_list_id}
                  onListSelected={props.onListSelected}
                  onListAdded={props.onListAdded}

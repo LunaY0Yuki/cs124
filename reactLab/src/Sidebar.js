@@ -1,10 +1,11 @@
-import { ProSidebar, Menu, MenuItem} from 'react-pro-sidebar';
-import { MdOutlinePlaylistAdd } from "react-icons/md";
+import {ProSidebar, Menu, MenuItem, SidebarContent, SidebarFooter} from 'react-pro-sidebar';
+import {MdLogout, MdOutlinePlaylistAdd} from "react-icons/md";
 import {FaAngleUp, FaAngleDown} from "react-icons/fa";
 import {TiDelete} from "react-icons/ti";
 import './Sidebar.scss';
 import { useEffect, useRef, useState} from "react";
 import { useMediaQuery } from 'react-responsive';
+import {RiUserSharedLine} from "react-icons/all";
 
 function Sidebar(props){
     const ref = useRef();
@@ -76,6 +77,7 @@ function Sidebar(props){
                 props.setCollapseState(false);
             }
         }} ref={ref}>
+            <SidebarContent>
             <Menu iconShape="square">
                 <MenuItem aria-label="Add a new list" id="add-new-list" icon={<MdOutlinePlaylistAdd />}
                 onKeyPress={(evt)=> {
@@ -97,7 +99,7 @@ function Sidebar(props){
                     <FaAngleUp />
                 </MenuItem>
                 {displayed_list.map((e) => {
-                        return <MenuItem aria-label="View this list" id={e.id} 
+                        return <MenuItem aria-label="View this list" id={e.id}
                                          onKeyPress={(evt)=> {
                                              // if the user is tabbing into the list name and hit enter
                                              if (evt.key === "Enter"){
@@ -111,7 +113,7 @@ function Sidebar(props){
                                                 props.onListSelected(e.id)
                                             }
                                          }}>
-                            {e.list_name} {(e.id !== "default-list" && (isDesktop || !props.collapsed)) && <span aria-label=" "><TiDelete
+                            {(e.collaborators.length > 1) && <RiUserSharedLine />} {e.list_name} {(e.id !== "default-list" && (isDesktop || !props.collapsed)) && <span aria-label=" "><TiDelete
                             aria-label="Delete this list" tabIndex="0"
                             onKeyPress={(evt)=> {
                                 // if the user is tabbing into the delete button and hit enter
@@ -131,6 +133,14 @@ function Sidebar(props){
                 }} 
                 onClick={() => updateDisplayIndex(1)}><FaAngleDown /></MenuItem>
             </Menu>
+            </SidebarContent>
+            <SidebarFooter>
+                <Menu>
+                    <MenuItem icon={<MdLogout />} onClick={() => props.auth.signOut()}>
+                        Logout
+                    </MenuItem>
+                </Menu>
+            </SidebarFooter>
         </ProSidebar>
     );
 }

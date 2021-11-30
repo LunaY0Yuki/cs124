@@ -4,14 +4,19 @@ import App from "./App.js";
 import {useCollection} from "react-firebase-hooks/firestore";
 import firebase from "firebase/compat";
 
-const collectionName = "todo-lists";
+const collectionName = "todo-lists-share";
 
 function InMemoryApp(props) {
     const [sortOption, setSortOption] = useState("created");
 
     // get the names of all the lists first
-    let overall_query = props.db.collection(collectionName);
+    let overall_query = props.db.collection(collectionName).where("collaborators", "array-contains", props.email);
     const [overall_value, overall_loading, overall_error] = useCollection(overall_query);
+
+    if (overall_error){
+        console.log("error in getting all the lists' information: ");
+        console.log(overall_error);
+    }
 
     let all_lists_id = [];
     if (overall_value) {
@@ -20,8 +25,7 @@ function InMemoryApp(props) {
     }
 
     // storing the id of the current list
-    const [currentList, setCurrentList] = useState("default-list");
-
+    const [currentList, setCurrentList] = useState("default-list-"+props.email);
 
     let query = props.db.collection(collectionName).doc(currentList).collection("list-of-items");
 
@@ -90,6 +94,8 @@ function InMemoryApp(props) {
         props.db.collection(collectionName).doc(newId).set({
             id: newId,
             list_name: "Untitled",
+            owner: props.email,
+            collaborators: [props.email],
         })
         return newId;
     }
@@ -109,6 +115,7 @@ function InMemoryApp(props) {
     }
 
     return (<App data={data}
+                 auth={props.auth}
                  list_data={all_lists_id}
                  curr_list_id={currentList}
                  curr_list_name={curr_list_name}
