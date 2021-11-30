@@ -6,6 +6,7 @@ import SortButton from "./SortButton.js";
 import Modal from "./Modal.js";
 import Sidebar from "./Sidebar.js";
 import Header from "./Header.js";
+import ShareList from "./ShareList.js";
 import {useState, useEffect, useRef} from "react";
 import { useMediaQuery } from 'react-responsive';
 
@@ -14,7 +15,8 @@ function App(props) {
     const [filterState, setFilterState] = useState("All");
     const [deleteState, setDeleteState] = useState(null);
     const [collapseState, setCollapseState] = useState(true);
-    const [modalOn, setModalOn] = useState(null);
+    const [modalOn, setModalOn] = useState(false);
+    const [shareModalOn, setShareModalOn] = useState(false);
     const [showSortDropDown, setShowSortDropDown] = useState(false);
 
     const isMobile = useMediaQuery({maxWidth: 600});
@@ -81,7 +83,9 @@ function App(props) {
         <Header className="accent"
                 curr_list_id={props.curr_list_id}
                 curr_list_name={props.curr_list_name}
+                curr_list_is_sharable={props.curr_list_is_sharable}
                 onListNameChanged = {props.onListNameChanged}
+                onShareList = {() => setShareModalOn(true)}
         />
         {props.data.length > 0 && <SortButton
                                     showDropDown = {showSortDropDown}
@@ -106,19 +110,25 @@ function App(props) {
                           displayModal={() => {setModalOn(true)}}
             />
         </div>
-          {modalOn && <Modal
-                             confirm_button_name = "Delete"
-                             onClose = {() => {
-                                 setDeleteState(null);
-                                 setModalOn(false);  // hide the modal
-                             }}
-                             onOk = {() => {
-                                 props.onDeleteByCategory(deleteState);
-                                 setToolSelected(null);   //  reset the toolSelected state, so that the dropUp goes away
-                             }
-                             }>
+          {modalOn && <Modal>
               <p>Are you sure that you want to delete <b>all {numOfItemsToDelete.toString()} {deleteState !== "All" ? deleteState.toLowerCase() + " ": ""} </b>tasks?</p>
+              <div id="modal-response">
+                  <button type="button" onClick={() => {
+                      setDeleteState(null);
+                      setModalOn(false);  // hide the modal
+                  }}>
+                      Cancel
+                  </button>
+                  <button id="confirm-button" type="button" onClick={() =>  {
+                      props.onDeleteByCategory(deleteState);
+                      setToolSelected(null);   //  reset the toolSelected state, so that the dropUp goes away
+                      setDeleteState(null);
+                      setModalOn(false);  // hide the modal
+                  }}>
+                      Delete</button>
+              </div>
           </Modal>}
+          {shareModalOn && <ShareList onClose={() => setShareModalOn(false)}/>}
       </div>
     </div>
   );

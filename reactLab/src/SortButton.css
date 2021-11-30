@@ -24,6 +24,7 @@ body {
     background-color: beige;
     border-style: none;
     margin-right: 14px;
+    cursor: pointer;
 }
 
 #sort-icon-outlined {

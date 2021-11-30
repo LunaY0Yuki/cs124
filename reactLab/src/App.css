@@ -89,6 +89,18 @@ body {
   font-size: 3em;
 }
 
+#share_button{
+  position: fixed;
+  right:0;
+  margin-right: 6px;
+  margin-top: 6px;
+  top:0;
+  z-index: 0;
+  border-style: none;
+  background-color: #C5AA8C;
+  font-size: 1.25em;
+  cursor: pointer;
+}
 
 /* For Mobile Portrait Mode*/
 @media only screen and (max-width: 600px) and (orientation: portrait) {
@@ -112,7 +124,7 @@ body {
 }
 }
 
-
+/* For desktop */
 @media only screen and (min-width: 992px) {
   /*Div Container For The Entire App*/
   #content{
@@ -126,6 +138,10 @@ body {
 
   #list_header{
     font-size: 4em;
+  }
+
+  #share_button{
+    font-size: 2em;
   }
 }
 

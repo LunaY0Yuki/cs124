@@ -106,11 +106,15 @@ function InMemoryApp(props) {
 
     // determine what list name to display in the header of the app
     let curr_list_name = "";
+    let curr_list_is_sharable = false;
     if (all_lists_id.length > 0){
         // find the information of the current list that we are displaying
         let curr_list = all_lists_id.filter((e) => e.id === currentList);
         if (curr_list.length > 0) {
-            curr_list_name = all_lists_id.filter((e) => e.id === currentList)[0].list_name;
+            // curr_list_name = all_lists_id.filter((e) => e.id === currentList)[0].list_name;
+            curr_list_name = curr_list[0].list_name;
+            // we can only share the list if the logged in user is the owner of the current list
+            curr_list_is_sharable = (curr_list[0].owner === props.email);
         }
     }
 
@@ -119,6 +123,7 @@ function InMemoryApp(props) {
                  list_data={all_lists_id}
                  curr_list_id={currentList}
                  curr_list_name={curr_list_name}
+                 curr_list_is_sharable={curr_list_is_sharable}
                  onItemChanged={handleItemChanged}
                  onItemDeleted={handleItemDeleted}
                  onDeleteByCategory={handleItemCategoryDeleted}
