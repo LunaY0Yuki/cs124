@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import InMemoryApp from './InMemoryApp.js';
+import AppWrapper from './AppWrapper.js';
 import reportWebVitals from './reportWebVitals.js';
-
-let initialData = [];
 
 
 ReactDOM.render(
   <React.StrictMode>
-        <InMemoryApp initialData={initialData} />
+        <AppWrapper />
   </React.StrictMode>,
   document.getElementById('root')
 );

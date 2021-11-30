@@ -1,24 +1,8 @@
 import {useState} from "react";
 import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 import App from "./App.js";
-
-// Import the functions you need from the SDKs you need
-import firebase from "firebase/compat";
 import {useCollection} from "react-firebase-hooks/firestore";
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyCYBi2G8RnkLs2Bzj_XDLjYPylF2oRhq5Y",
-    authDomain: "cs124-lab-celine-yuki.firebaseapp.com",
-    projectId: "cs124-lab-celine-yuki",
-    storageBucket: "cs124-lab-celine-yuki.appspot.com",
-    messagingSenderId: "2120607993",
-    appId: "1:2120607993:web:d5d647b2b43f3c7fd95a28"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+import firebase from "firebase/compat";
 
 const collectionName = "todo-lists";
 
@@ -26,7 +10,7 @@ function InMemoryApp(props) {
     const [sortOption, setSortOption] = useState("created");
 
     // get the names of all the lists first
-    let overall_query = db.collection(collectionName);
+    let overall_query = props.db.collection(collectionName);
     const [overall_value, overall_loading, overall_error] = useCollection(overall_query);
 
     let all_lists_id = [];
@@ -39,7 +23,7 @@ function InMemoryApp(props) {
     const [currentList, setCurrentList] = useState("default-list");
 
 
-    let query = db.collection(collectionName).doc(currentList).collection("list-of-items");
+    let query = props.db.collection(collectionName).doc(currentList).collection("list-of-items");
 
     if (sortOption){
         if (sortOption === "priority"){
@@ -59,14 +43,14 @@ function InMemoryApp(props) {
     }
 
     function handleItemChanged(itemID, field, newValue) {
-        const doc = db.collection(collectionName).doc(currentList).collection("list-of-items").doc(itemID);
+        const doc = props.db.collection(collectionName).doc(currentList).collection("list-of-items").doc(itemID);
         doc.update({
             [field]: newValue,
         })
     }
 
     function handleItemDeleted(itemID) {
-        db.collection(collectionName).doc(currentList).collection("list-of-items").doc(itemID).delete();
+        props.db.collection(collectionName).doc(currentList).collection("list-of-items").doc(itemID).delete();
     }
 
     function handleItemCategoryDeleted(category) {
@@ -84,7 +68,7 @@ function InMemoryApp(props) {
 
     function handleItemAdded() {
         const newId = generateUniqueID();
-        db.collection(collectionName).doc(currentList).collection("list-of-items").doc(newId).set({
+        props.db.collection(collectionName).doc(currentList).collection("list-of-items").doc(newId).set({
             id: newId,
             item_name: "",
             completed: false,
@@ -95,7 +79,7 @@ function InMemoryApp(props) {
     }
 
     function handleListNameChanged(listId, newValue){
-        const doc = db.collection(collectionName).doc(listId);
+        const doc = props.db.collection(collectionName).doc(listId);
         doc.update({
             list_name: newValue,
         })
@@ -103,7 +87,7 @@ function InMemoryApp(props) {
 
     function handleListAdded(){
         const newId = generateUniqueID();
-        db.collection(collectionName).doc(newId).set({
+        props.db.collection(collectionName).doc(newId).set({
             id: newId,
             list_name: "Untitled",
         })
@@ -111,7 +95,7 @@ function InMemoryApp(props) {
     }
 
     function handleListDeleted(listId) {
-        db.collection(collectionName).doc(listId).delete();
+        props.db.collection(collectionName).doc(listId).delete();
     }
 
     // determine what list name to display in the header of the app
