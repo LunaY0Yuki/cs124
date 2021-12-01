@@ -128,7 +128,13 @@ function App(props) {
                       Delete</button>
               </div>
           </Modal>}
-          {shareModalOn && <ShareList onClose={() => setShareModalOn(false)}/>}
+          {shareModalOn && <ShareList email={props.email}
+                                      curr_list_id={props.curr_list_id}
+                                      curr_list_collaborators={props.curr_list_collaborators}
+                                      onAddCollaborator={props.onAddCollaborator}
+                                      onRemoveCollaborator={props.onRemoveCollaborator}
+                                      onClose={() => setShareModalOn(false)}
+          />}
       </div>
     </div>
   );

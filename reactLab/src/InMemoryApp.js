@@ -104,26 +104,48 @@ function InMemoryApp(props) {
         props.db.collection(collectionName).doc(listId).delete();
     }
 
-    // determine what list name to display in the header of the app
+    function handleAddCollaborator(listId, collaborator_email){
+        const doc = props.db.collection(collectionName).doc(listId);
+        // arrayUnion guarantees that only one copy of the collaborator email exists in the array
+        //      impossible to have 2 instances of the same email in the array
+        doc.update({
+            collaborators: firebase.firestore.FieldValue.arrayUnion(collaborator_email)
+        });
+    }
+
+    function handleRemoveCollaborator(listId, collaborator_email){
+        const doc = props.db.collection(collectionName).doc(listId);
+        doc.update({
+            collaborators: firebase.firestore.FieldValue.arrayRemove(collaborator_email)
+        });
+    }
+
+    // get additional information about the list that we are currently displaying
     let curr_list_name = "";
     let curr_list_is_sharable = false;
+    let curr_list_collaborators = [];
     if (all_lists_id.length > 0){
         // find the information of the current list that we are displaying
-        let curr_list = all_lists_id.filter((e) => e.id === currentList);
-        if (curr_list.length > 0) {
-            // curr_list_name = all_lists_id.filter((e) => e.id === currentList)[0].list_name;
-            curr_list_name = curr_list[0].list_name;
+        let curr_list_array = all_lists_id.filter((e) => e.id === currentList);
+        // if we can get the current list that we are displaying
+        if (curr_list_array.length > 0) {
+            let curr_list = curr_list_array[0];  // get the current list
+
+            curr_list_name = curr_list.list_name;
             // we can only share the list if the logged in user is the owner of the current list
-            curr_list_is_sharable = (curr_list[0].owner === props.email);
+            curr_list_is_sharable = (curr_list.owner === props.email);
+            curr_list_collaborators = curr_list.collaborators;
         }
     }
 
     return (<App data={data}
                  auth={props.auth}
+                 email={props.email}
                  list_data={all_lists_id}
                  curr_list_id={currentList}
                  curr_list_name={curr_list_name}
                  curr_list_is_sharable={curr_list_is_sharable}
+                 curr_list_collaborators={curr_list_collaborators}
                  onItemChanged={handleItemChanged}
                  onItemDeleted={handleItemDeleted}
                  onDeleteByCategory={handleItemCategoryDeleted}
@@ -133,6 +155,8 @@ function InMemoryApp(props) {
                  onListNameChanged={handleListNameChanged}
                  onListAdded={handleListAdded}
                  onListDeleted={handleListDeleted}
+                 onAddCollaborator={handleAddCollaborator}
+                 onRemoveCollaborator={handleRemoveCollaborator}
                  selectedSortOption={sortOption}/>
     );
 }
