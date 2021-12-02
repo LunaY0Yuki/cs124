@@ -14,10 +14,11 @@ function Header(props){
 
     return (
         <div>
-            {props.curr_list_is_sharable && <button id={"share_button"} onClick={props.onShareList}><MdIosShare/></button>}
+            {props.curr_list_is_sharable && props.curr_list_id !== "default-list-" + props.email &&
+                <button id={"share_button"} onClick={props.onShareList}><MdIosShare/></button>}
         <SelectionMaintainingInput type="text" id="list_header" aria-label="To-Do list name. To edit, press arrow key before typing."
                               value={props.curr_list_name}
-                              disabled={props.curr_list_id === "default-list"}
+                              disabled={props.curr_list_id === "default-list-" + props.email}
                               onChange={(e) => props.onListNameChanged(props.curr_list_id, e.target.value)}
                               onKeyPress={handleKeypress}
         />

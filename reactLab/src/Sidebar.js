@@ -59,7 +59,7 @@ function Sidebar(props){
             // if we are currently displaying the list that we are deleting
             //   the app will show the default list
             if (props.curr_list_id === list_id) {
-                props.onListSelected("default-list");
+                props.onListSelected("default-list-" + props.email);
             }
 
             props.onListDeleted(list_id);
@@ -113,7 +113,7 @@ function Sidebar(props){
                                                 props.onListSelected(e.id)
                                             }
                                          }}>
-                            {(e.collaborators.length > 1) && <RiUserSharedLine />} {e.list_name} {(e.id !== "default-list" && (isDesktop || !props.collapsed)) && <span aria-label=" "><TiDelete
+                            {(e.collaborators.length > 1) && <RiUserSharedLine />} {e.list_name} {(e.id !== ("default-list-" + props.email) && (isDesktop || !props.collapsed)) && <span aria-label=" "><TiDelete
                             aria-label="Delete this list" tabIndex="0"
                             onKeyPress={(evt)=> {
                                 // if the user is tabbing into the delete button and hit enter

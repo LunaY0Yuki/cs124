@@ -71,6 +71,7 @@ function App(props) {
             <Sidebar
                  list_data={props.list_data}
                  auth={props.auth}
+                 email={props.email}
                  curr_list_id={props.curr_list_id}
                  onListSelected={props.onListSelected}
                  onListAdded={props.onListAdded}
@@ -81,6 +82,7 @@ function App(props) {
             />
       <div id="content">
         <Header className="accent"
+                email={props.email}
                 curr_list_id={props.curr_list_id}
                 curr_list_name={props.curr_list_name}
                 curr_list_is_sharable={props.curr_list_is_sharable}
