@@ -136,7 +136,8 @@ function Sidebar(props){
             </SidebarContent>
             <SidebarFooter>
                 <Menu>
-                    <MenuItem icon={<MdLogout />} onClick={() => props.auth.signOut()}>
+                    <MenuItem id={"user_displayed"}>{props.email}</MenuItem>
+                    <MenuItem id={"logout-button"} icon={<MdLogout />} onClick={() => props.auth.signOut()}>
                         Logout
                     </MenuItem>
                 </Menu>

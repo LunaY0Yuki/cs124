@@ -24,6 +24,7 @@ body {
     font-size: 1.5em;
 }
 
+
 /* Mobile Portrait */
 @media only screen and (max-width: 600px) and (orientation: portrait) {
     .pro-item-content {
@@ -32,9 +33,9 @@ body {
 }
 
 /* Mobile Landscape */
-@media only screen and (max-width: 600px) and (orientation: landscape) {
+@media only screen and (max-height: 600px) and (orientation: landscape) {
     .pro-item-content {
-        font-size: 1.1em;
+        font-size: 1.05em;
     }
 }
 
@@ -51,6 +52,18 @@ body {
 .pro-menu-item:focus-within{
     border-color: #c9c9c9;
     border-style: solid;
+}
+
+#user_displayed {
+    font-size: 0.8em;
+    border-style: none;
+    pointer-events: none;
+    margin-bottom: -1em;
+    margin-top: -0.5em;
+}
+
+#logout-button {
+    margin-bottom: -0.5em;
 }
 
 @media only screen and (max-width: 310px)  {
