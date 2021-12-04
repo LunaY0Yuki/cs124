@@ -20,7 +20,7 @@ function App(props) {
     const [showSortDropDown, setShowSortDropDown] = useState(false);
 
     const isMobile = useMediaQuery({maxWidth: 600});
-    const isLandscape = useMediaQuery({orientation: "landscape"});
+    const isLandscape = useMediaQuery({maxHeight: 600, orientation: "landscape"});
     const isDesktop = useMediaQuery({minWidth: 992});
 
     function handleToolSelected(tool_name){
@@ -86,6 +86,8 @@ function App(props) {
                 curr_list_id={props.curr_list_id}
                 curr_list_name={props.curr_list_name}
                 curr_list_is_sharable={props.curr_list_is_sharable}
+                ownerEmail={props.curr_list_collaborators[0]}
+                displayOwnerEmail={!isMobile && !isLandscape}
                 onListNameChanged = {props.onListNameChanged}
                 onShareList = {() => setShareModalOn(true)}
         />

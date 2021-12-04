@@ -27,7 +27,6 @@ body {
   row-gap: 0.5vh;
 }
 
-
 /*Div Container For The Buttons at the Bottom of the Screen (Filter and Delete Buttons)*/
 #tools {
   width: 100%;
@@ -100,6 +99,16 @@ body {
   background-color: #C5AA8C;
   font-size: 1.25em;
   cursor: pointer;
+}
+
+#owned_by {
+  position: fixed;
+  right:0;
+  margin-right: 6px;
+  margin-top: 6px;
+  top:0;
+  z-index: 0;
+  font-size: 1em;
 }
 
 /* For Mobile Portrait Mode*/
