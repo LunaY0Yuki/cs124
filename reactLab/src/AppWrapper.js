@@ -1,8 +1,10 @@
 import InMemoryApp from "./InMemoryApp.js";
+import './AppWrapper.css';
 
 // Import the functions you need from the SDKs you need
 import firebase from "firebase/compat";
 import {useAuthState} from "react-firebase-hooks/auth";
+import {FcGoogle} from "react-icons/all";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -29,7 +31,10 @@ function AppWrapper(props) {
     }
 
     if (loading) {
-        return <p>Checking...</p>;
+        return <div id={"login-screen"}>
+            <div id={"app-name"}>To-do Lists</div>
+            <div id={"login-google"}>Loading...</div>
+        </div>;
     } else if (user) {
         // user has logged in
         return <InMemoryApp db={db} auth={auth} email={user.email}/>;
@@ -39,11 +44,15 @@ function AppWrapper(props) {
 }
 
 function SignIn() {
-    return <div>
-        <button onClick={() =>
-            auth.signInWithPopup(googleProvider)}>Login with Google
-        </button>
+    return <div id={"login-screen"}>
+        <div id={"app-name"}>To-do Lists</div>
+        <div  id={"login-google"}>
+            <button onClick={() =>
+                auth.signInWithPopup(googleProvider)}><FcGoogle/> Login with Google
+            </button>
+        </div>
     </div>
 }
+
 
 export default AppWrapper;
