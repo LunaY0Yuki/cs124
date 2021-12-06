@@ -53,6 +53,7 @@ body {
     flex-basis: 7%;
     width: 1.3em;
     height: 1.3em;
+    cursor: pointer;
 }
 
 .task-name {

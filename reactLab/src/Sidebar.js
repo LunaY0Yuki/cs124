@@ -99,7 +99,7 @@ function Sidebar(props){
                     <FaAngleUp />
                 </MenuItem>
                 {displayed_list.map((e) => {
-                        return <MenuItem aria-label="View this list" id={e.id}
+                        return <MenuItem aria-label="View this list" id={e.id === props.curr_list_id ? "current-list-displayed" : e.id}
                                          onKeyPress={(evt)=> {
                                              // if the user is tabbing into the list name and hit enter
                                              if (evt.key === "Enter"){
@@ -113,15 +113,21 @@ function Sidebar(props){
                                                 props.onListSelected(e.id)
                                             }
                                          }}>
-                            {(e.collaborators.length > 1) && <RiUserSharedLine />} {e.list_name} {(e.id !== ("default-list-" + props.email) && (isDesktop || !props.collapsed)) && <span aria-label=" "><TiDelete
-                            aria-label="Delete this list" tabIndex="0"
-                            onKeyPress={(evt)=> {
-                                // if the user is tabbing into the delete button and hit enter
-                                if (evt.key === "Enter"){
-                                    handleDeleteOnClick(evt, e.id);
-                                }
-                            }}
-                            onClick={(evt) => handleDeleteOnClick(evt, e.id)}/></span>}
+                            {(e.collaborators.length > 1) && <RiUserSharedLine />} {e.list_name} {
+                                (e.id !== ("default-list-" + props.email) &&
+                                (isDesktop || !props.collapsed)) &&
+                                (props.email === e.collaborators[0]) &&
+                                <span aria-label=" ">
+                                    <TiDelete
+                                        aria-label="Delete this list" tabIndex="0"
+                                        onKeyPress={(evt)=> {
+                                            // if the user is tabbing into the delete button and hit enter
+                                            if (evt.key === "Enter"){
+                                                handleDeleteOnClick(evt, e.id);
+                                            }
+                                        }}
+                                        onClick={(evt) => handleDeleteOnClick(evt, e.id)}/>
+                                </span>}
                         </MenuItem>
                 })
                 }
@@ -137,7 +143,7 @@ function Sidebar(props){
             <SidebarFooter>
                 <Menu>
                     <MenuItem id={"user_displayed"}>{props.email}</MenuItem>
-                    <MenuItem id={"logout-button"} icon={<MdLogout />} onClick={() => props.auth.signOut()}>
+                    <MenuItem id={"logout-button"} icon={<MdLogout/>} onClick={() => props.auth.signOut()}>
                         Logout
                     </MenuItem>
                 </Menu>

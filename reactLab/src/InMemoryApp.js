@@ -24,6 +24,7 @@ function InMemoryApp(props) {
             return {...doc.data()}});
     }
 
+    // check if the logged-in user is a new user
     let defaultListRef = props.db.collection(collectionName).doc("default-list-"+props.email);
     defaultListRef.get().then((doc) => {
         if (!doc.exists) {
@@ -152,6 +153,12 @@ function InMemoryApp(props) {
             // we can only share the list if the logged in user is the owner of the current list
             curr_list_is_sharable = (curr_list.owner === props.email);
             curr_list_collaborators = curr_list.collaborators;
+        } else {
+            // for some reason, we cannot get info about the current list that we are displaying
+            //      change current list back to the default list
+            //      (help handle synchronization when user deletes the list from one window,
+            //      and we need to synchronize the display in another window)
+            setCurrentList("default-list-"+props.email);
         }
     }
 
