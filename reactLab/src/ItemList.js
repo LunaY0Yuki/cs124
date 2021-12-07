@@ -1,6 +1,6 @@
 import './ItemList.css';
 import Row from'./Row.js';
-import {useState, useEffect} from "react";
+import {useState} from "react";
 
 
 // Define the List component that contain all the items

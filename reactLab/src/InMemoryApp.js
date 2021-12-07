@@ -24,23 +24,6 @@ function InMemoryApp(props) {
             return {...doc.data()}});
     }
 
-    // check if the logged-in user is a new user
-    let defaultListRef = props.db.collection(collectionName).doc("default-list-"+props.email);
-    defaultListRef.get().then((doc) => {
-        if (!doc.exists) {
-            // the default list does not exist for this user (this is a new user)
-            // create the default list for the user
-            props.db.collection(collectionName).doc("default-list-"+props.email).set({
-                id: "default-list-"+props.email,
-                list_name: "My List",
-                owner: props.email,
-                collaborators: [props.email],
-            })
-        }
-    }).catch((error) => {
-        console.log("Error trying to get the default list:", error);
-    });
-
     // storing the id of the current list
     const [currentList, setCurrentList] = useState("default-list-"+props.email);
 

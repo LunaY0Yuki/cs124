@@ -24,7 +24,7 @@ function Row(props){
         }
 
         // to sync up changes in firestore to local (when someone is editing the item from another window)
-        if (itemName != props.item_name && !editMode) {
+        if (itemName !== props.item_name && !editMode) {
             setItemName(props.item_name);
         }
     });

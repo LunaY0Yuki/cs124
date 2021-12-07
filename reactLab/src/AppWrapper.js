@@ -36,6 +36,17 @@ function AppWrapper(props) {
             <div id={"login-google"}>Loading...</div>
         </div>;
     } else if (user) {
+        // check if the logged-in user is a new user
+        if (user.metadata.creationTime === user.metadata.lastSignInTime){
+            // since we don't even get a default list (all_list_id is empty)
+            //  this is a new user, and we should create a default list for the user
+            db.collection("todo-lists-share").doc("default-list-"+user.email).set({
+                        id: "default-list-"+user.email,
+                        list_name: "My List",
+                        owner: user.email,
+                        collaborators: [user.email],
+            });
+        }
         // user has logged in
         return <InMemoryApp db={db} auth={auth} email={user.email}/>;
     } else {
