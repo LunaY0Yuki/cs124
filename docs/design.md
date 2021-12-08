@@ -1,3 +1,9 @@
+# Lab 5 - Firebase Security Rule
+The security rules are stored in the txt file called "security_rules.txt" in the main directory.
+
+# Lab 4 - Here's the link to our accessibility video:
+[https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing](https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing)
+
 # Design for Each Task
 In this lab, we are creating a mobile web app that manages a list of items to complete. Listed below are the specific tasks 
 that our app can execute. Our primary principle for our app design is "simplicity". Because writing down items to-do might 
@@ -252,9 +258,13 @@ Our final design is broken down into the following steps:
 After we began implementing the sort button, we decided to add an outline around the sort button after the drop-down menu appears. In this way, the user can more easily associate the appeared drop-down menu with the sort button and understand what the drop-down is used for.
 
 ##Task 9: Accessibility
-### Design Ideas / Decisions
+### The link to the accessibility video:
+[https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing](https://drive.google.com/file/d/1ynIPRSHn7CvxMmt1mUCa3sz2uoG0FGtg/view?usp=sharing)
 
-### Final Design
+### Design Ideas / Decisions & Final Design
+For users who cannot use a mouse, we want to ensure that each element that they tab and focus on is highlighted in some ways. The highlight would help the users quickly access and remember where they are in the app. Specifically, while most of the UI already has default highlighting (in the forms of outlines), the sidebar that support multiple lists (which are mentioned below) does not automatically support tab focusing and highlighting. Thus, we added a white thick outline around the highlighted option to make what is focused and selected obvious.
+
+For users who are using a screen reader, we focused on providing more context to the users so that they can better access where they are in the app. For example, there are two types of text boxes in this app: one for editing the list name, and another one for editing the item name. Thus, we added specific aria label to distinguish the two in screen reader. In addition, because we are using an external React package for the sidebar (which is mentioned below), the menu options do not provide enough information about the differences between them. Thus, we added aria label for each menu item to clarity their functionality.
 
 
 ##Task 10: Multiple Lists
@@ -289,6 +299,28 @@ If the users want to use the sidebar (in the phone's portrait and landscape scre
 ##Task 11: Responsive screen sizes
 ### Design Ideas / Decisions & Final Design
 To make the app responsive to screen size changes, we had to think about the breakpoints. Ultimately, we needed three layout designs: desktop (the default), portrait, and landscape. Since we initially began with a mobile screen size (before this lab), the newly added sidebar could be collapsible and uncollapsible to be save space on the screen. However, on the desktop, there is a lot more room so we decided that it would be unnecessary to make the sidebar collapsible. Thus, having a larger screen size would show the sidebar fully opened with the list names in larger text to be more easily read. When it is collapsed on smaller screen sizes, the text is relatively smaller than on the desktop. We also implemented the sidebar such that in portrait mode, there are 10 lists shown at a time, in desktop mode, there are 12 lists shown at a time, and in landscape mode, there are 4 lists shown at a time. And you can use the up and down arrows to “scroll” through the list of lists.
+
+##Task 12: Log in / Log out / Loading
+### Design Ideas / Decisions & Final Design
+![Task 12 - Log in screen!](./task12-1.png " Log in screen")
+For user accounts, we decided to only support Google login because it will greatly reduce the amount of UIs and clutters that are on the screen. It also provides a familiar log-in experience for the users because people are already used to Google's one-click sign-in button and Google's pop-up sign-in interface. To ensure the log-in screen has the same design as our app, we use the same header style that we use for the name of a list to display the name of our app. We also style the one-click log-in button in the same way that we style other buttons in the app to ensure consistency. See the log-in screen's final design.
+
+![Task 12 - Log out interfaces!](./task12-2.png " Log in screen")
+After the user logs into the app, we need to provide the log-out button and a display showing who is logged in. After considering different possible locations, we decided to place to UIs at the button left corner in the sidebar. In the footer of the sidebar menu, we first display the logged-in users' email then a log-out button.
+
+In the entire process, whenever the app is waiting for some task to complete (waiting for users to be actually logged-in after they authenticate their accounts for the app, or waiting to get the data to be sent back from the firebase dataset), our app will display a loading screen, showing the app name and the text loading.
+
+![Task 12 - Loading Screen!](./task12-3.png " Log in screen")
+
+There are some implicit features and design decisions that we made to support user log-in and list sharing. Recall that in the previous implementation, there is a default list that is not deletable from the list. Similarly, each user must have a default list called "My list" that is not sharable nor deletable. Thus, when a new user is logged in, an empty "My list" will be created for the user.
+
+
+##Task 13: Sharing List
+### Design Ideas / Decisions
+
+
+### Final Design
+
 
 
 # User Testing
@@ -329,6 +361,15 @@ checkmark and the click-out ability.
 We asked a user to test how responsive our app is. The participant dragged the screen from the bottom right corner, but not 
 too far in to where it hits the minimum width. In reality, it seems like it would be rare for someone to make a screen size 
 extremely small. The participant had overall positive reactions to how responsive the app is. 
+
+We asked another participant to both examine the multi-list functionality and the responsive design.
+The participant tested the sidebar for the multi-list in desktop node. Adding a new list is easy because there are both an add button and the text description "New List" next to it. Then, to change the list name, the participant tried clicking on the list name because google doc has similar UI in terms of how to change a google doc's name. However, the participant found it surprising that the styling of the header (the list name) did not change in the editing mode. She was expecting that the list name would be highlighted in some ways. The participant found deleting the list was also intuitive because there is an "x" button next to the list name. In terms of the design of the sidebar in general, the participant suggested that adding more color could help distinguish the "New List" button from the rest of the buttons.
+
+The participant then reviewed what the app looks like in different screen sizes. Specifically, she pointed out that the sidebar seemed a little bit narrow in mobile mode. It was intuitive for her that the list would expand and reveal all the information about the different lists and that the sidebar would collapse when she clicked outside the sidebar. However, she found it confusing that only the first few letters would appear for the list name when the sidebar is collapsed. In addition, she thought that the app was requiring too many steps to change the list. For example, she needed to click on the collapsed list first to make the sidebar interactable, then she needed to click on the actual option again to actually perform the action. Despite the small areas for improvement, the participant is satisfied with the overall design of the app.
+
+## Lab 5
+We asked our user to mainly test the login functionality and the sharing feature. The login UI is intuitive for the user because she is familiar with the Google login pop-up. The user was also easily able to identify where the log-out button is, and she finds the display of the logged-in email to be helpful. In terms of the sharing feature, the user was able to immediately recognize that the icon on the top right corner. Overall, the pop-up sharing modal looked intuitive for the user. The user understood that in order to share, she needed to entire the email of whomever she wanted to share the list with because the textbox had the placeholder "Enter Email: ". The user could also easily identify which list is being shared and the owner of the current list because there is a share icon next to the list name in the sidebar, and the top right button of a collaborating list would display the owner's email if the user is not the owner. The user also helped us check our app's synchronization across different users. While the app's overall behavior looked understandable, she was surprised that when you create a new list item on one screen, the item list with an empty name field would appear on the other screen. When she was editing the new item's name on one screen, the other screen would not update the text field yet. The other screen would only be updated after she had clicked out of the text field on this screen.
+
 
 # Challenges We Faced
 ## Lab 1
@@ -389,6 +430,16 @@ of what we already had, and quickly realized that instead of using percentages f
 from percentage, which depends entirely on the property that is using the percentage. For landscape, we were able to make 
 the default screen size work for it.
 
+## Lab 5
+We have a lot of synchronization in the past when if a list is edited in one screen and the other screen happens to open the same list, parts of the list will not be updated properly. Thus, we spent a lot of time testing and debugging the app, and we identified the following synchronization should happen:
+
+- If there are two windows open and the same person A has logged in to both windows:
+  - If both windows are opening the same list, any updates to the list or the items (list name, item name, whether an item is completed or not, modifying the priority level of an item, and deleting items) should be reflected in both windows. However, we emphasize that if a window is sorting or filtering the list in some way, the other screen should not do the same.
+  - If both windows are opening the same list, and if one window deletes that list (thereby returning to showing the default list), the other window should also return to showing the default list.
+  - If both windows open the list sharing UI for the same list, and if one window adds or deletes a collaborator, the other window's sharing UI should be updated accordingly.
+- If user A and user B are both logged in, and user A shares a list with user B:
+  - If user A, as the owner, deletes the list while user B is still viewing that list, user B's window should display user B's default local list.
+
 
 # Parts of the Design We're Most Proud Of
 ## Lab 1
@@ -420,3 +471,5 @@ to see more of the list name clearly. We also decided to use arrow buttons to pa
 scroll because we didn’t want there to be two main scrolls: one for the sidebar and one for the currently open list. This 
 could cause confusion when scrolling on the wrong side. Overall, we like having the sidebar to allow a user to add and navigate 
 through lists.
+
+## Lab 5

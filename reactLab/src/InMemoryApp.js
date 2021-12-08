@@ -99,7 +99,7 @@ function InMemoryApp(props) {
             list_name: "Untitled",
             owner: props.email,
             collaborators: [props.email],
-        })
+        });
         return newId;
     }
 
@@ -147,12 +147,17 @@ function InMemoryApp(props) {
         }
     }
 
+    if (!overall_error && error && props.newUser){
+        // need to refresh when this is a new user
+        window.location.reload(false);
+    }
+
     if (overall_loading || loading) {
         return (<div id={"login-screen"}>
             <div id={"app-name"}>To-do Lists</div>
             <div id={"login-google"}>Loading...</div>
         </div>);
-    } else if (overall_error || error){
+    } else if ((overall_error || error) && !(!overall_error && error && props.newUser)){
         return (<div id={"login-screen"}>
                     <div id={"app-name"}>To-do Lists</div>
                     <div id={"error_msgs"}>

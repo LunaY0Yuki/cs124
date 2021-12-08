@@ -37,7 +37,8 @@ function AppWrapper(props) {
         </div>;
     } else if (user) {
         // check if the logged-in user is a new user
-        if (user.metadata.creationTime === user.metadata.lastSignInTime){
+        let newUser = user.metadata.creationTime === user.metadata.lastSignInTime;
+        if (newUser){
             // since we don't even get a default list (all_list_id is empty)
             //  this is a new user, and we should create a default list for the user
             db.collection("todo-lists-share").doc("default-list-"+user.email).set({
@@ -48,7 +49,7 @@ function AppWrapper(props) {
             });
         }
         // user has logged in
-        return <InMemoryApp db={db} auth={auth} email={user.email}/>;
+        return <InMemoryApp db={db} auth={auth} email={user.email} newUser={newUser}/>;
     } else {
         return <SignIn />;
     }

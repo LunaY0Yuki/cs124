@@ -1,0 +1,51 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth.uid != null && request.auth.token.email != null;
+    }
+
+    function isDocOwner() {
+      return request.auth.token.email == resource.data.owner;
+    }
+
+    function updatedDocHasCorrectOwner() {
+      return request.auth.token.email == request.resource.data.owner;
+    }
+
+    function updatedDocHasSameOwner() {
+      return resource.data.owner == request.resource.data.owner;
+    }
+
+    function updatedDocHasSameSharing() {
+      return resource.data.collaborators == request.resource.data.collaborators;
+    }
+
+    function isValidUpdate(){
+    	// valid update if the logged in user is the owener -- any field changes is accepted
+      //    					if the logged in user is just a collaborator -- cannot change collaborators field
+    	return isDocOwner() || (!isDocOwner() && isSharedWithMe() && updatedDocHasSameSharing());
+    }
+
+    function isSharedWithMe() {
+      return request.auth.token.email in resource.data.collaborators;
+    }
+
+    match /todo-lists/{listName=**} {
+        allow read, write: if request.time < timestamp.date(2021, 12, 25);
+    }
+
+    match /todo-lists-share/{listName} {
+      allow read: if signedIn() && isSharedWithMe();
+      allow create: if signedIn() && updatedDocHasCorrectOwner();
+      allow update: if signedIn() && isSharedWithMe() &&
+        updatedDocHasSameOwner() && isValidUpdate();
+      allow delete: if signedIn() && isDocOwner();
+		}
+
+   	match /todo-lists-share/{list}/list-of-items/{item=**} {
+    	// if user is the owner or an added collaborator
+      allow read, write: if signedIn() && (request.auth.token.email in get(/databases/$(database)/documents/todo-lists-share/$(list)).data.collaborators);
+    }
+  }
+}
