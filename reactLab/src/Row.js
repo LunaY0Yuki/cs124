@@ -27,7 +27,7 @@ function Row(props){
         if (itemName !== props.item_name && !editMode) {
             setItemName(props.item_name);
         }
-    });
+    }, [props.item_name, editMode, props.isNewItem, itemName]);
 
     return (
         <div id={props.id} className={props.completed ? "task-item-completed" : "task-item-uncompleted"}>
@@ -44,10 +44,6 @@ function Row(props){
                                   }
                               }}
                               onBlur={(e) => {
-                                  // delete an item if its name is empty and the user clicks out of it
-                                  if (e.currentTarget.value === "") {
-                                      props.onItemDeleted(props.id);
-                                  }
 
                                   if (props.isNewItem){
                                       // when we click out of a new item
@@ -55,7 +51,13 @@ function Row(props){
                                       props.changeNewItemId(null);
                                   }
                                   setEditMode(false);  // because we click out of the textbox, no longer in edit mode
-                                  props.onItemChanged(props.id, "item_name", e.target.value);
+                                  if (e.currentTarget.value === "") {
+                                      // delete an item if its name is empty and the user clicks out of it
+                                      props.onItemDeleted(props.id);
+                                  }
+                                  else {
+                                      props.onItemChanged(props.id, "item_name", e.target.value);
+                                  }
                               }}
                               onKeyPress={handleKeypress}
                               ref={textarea_ref}

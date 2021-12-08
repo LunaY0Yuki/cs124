@@ -48,3 +48,45 @@
 #login-google button:hover{
     background-color: #C5AA8C;
 }
+
+#error_msgs {
+    grid-row: 2 /span 1;
+    grid-column: 1 /span 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2em;
+    justify-content: center;
+    align-items: center;
+}
+
+#error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*margin-bottom: 35vh;*/
+    font-weight: bold;
+    color: red;
+    width: 60vw;
+    text-align: center;
+    flex-grow:1;
+    margin-top: 10vh;
+}
+
+#logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35vh;
+    flex-grow: 2;
+}
+
+#logoutn button {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    border-color: #664C43;
+    border-style: solid;
+    background-color: #ebe3ca;
+    padding: 3vh 3vw;
+    font-size: 1.2em;
+    cursor: pointer;
+}

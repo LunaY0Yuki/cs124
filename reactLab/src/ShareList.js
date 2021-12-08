@@ -27,7 +27,8 @@ function ShareList(props){
                 </div>
                 <div id={"collaborators_label"}>Collaborators:</div>
                 <div id={"collaborators_list"}>
-                    {props.curr_list_collaborators.map((e) => <Collaborator curr_list_id={props.curr_list_id}
+                    {props.curr_list_collaborators.map((e) => <Collaborator key={e}
+                                                                            curr_list_id={props.curr_list_id}
                                                                             onRemoveCollaborator={props.onRemoveCollaborator}
                                                                             user_email={e}
                                                                             is_owner={e === props.email}/>)}

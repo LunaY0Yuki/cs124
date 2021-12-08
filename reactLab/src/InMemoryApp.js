@@ -3,6 +3,8 @@ import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 import App from "./App.js";
 import {useCollection} from "react-firebase-hooks/firestore";
 import firebase from "firebase/compat";
+import './AppWrapper.css';
+import {MdLogout} from "react-icons/md";
 
 const collectionName = "todo-lists-share";
 
@@ -145,7 +147,25 @@ function InMemoryApp(props) {
         }
     }
 
-    return (<App data={data}
+    if (overall_loading || loading) {
+        return (<div id={"login-screen"}>
+            <div id={"app-name"}>To-do Lists</div>
+            <div id={"login-google"}>Loading...</div>
+        </div>);
+    } else if (overall_error || error){
+        return (<div id={"login-screen"}>
+                    <div id={"app-name"}>To-do Lists</div>
+                    <div id={"error_msgs"}>
+                        <div id={"error"}>Oh no! Something went wrong. Please logout and login again.</div>
+                        <div id={"logout"}>
+                            <button onClick={() => props.auth.signOut()}>
+                                <MdLogout/> Logout
+                            </button>
+                        </div>
+                    </div>
+                </div>);
+    } else {
+        return (<App data={data}
                  auth={props.auth}
                  email={props.email}
                  list_data={all_lists_id}
@@ -165,7 +185,8 @@ function InMemoryApp(props) {
                  onAddCollaborator={handleAddCollaborator}
                  onRemoveCollaborator={handleRemoveCollaborator}
                  selectedSortOption={sortOption}/>
-    );
+        );
+    }
 }
 
 export default InMemoryApp;
