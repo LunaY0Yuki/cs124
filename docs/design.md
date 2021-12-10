@@ -302,26 +302,41 @@ To make the app responsive to screen size changes, we had to think about the bre
 
 ##Task 12: Log in / Log out / Loading
 ### Design Ideas / Decisions & Final Design
-![Task 12 - Log in screen!](./task12-1.png " Log in screen")
+![Task 12 - Log in screen!](./task12-1.png "Log in screen")
 For user accounts, we decided to only support Google login because it will greatly reduce the amount of UIs and clutters that are on the screen. It also provides a familiar log-in experience for the users because people are already used to Google's one-click sign-in button and Google's pop-up sign-in interface. To ensure the log-in screen has the same design as our app, we use the same header style that we use for the name of a list to display the name of our app. We also style the one-click log-in button in the same way that we style other buttons in the app to ensure consistency. See the log-in screen's final design.
 
-![Task 12 - Log out interfaces!](./task12-2.png " Log in screen")
+![Task 12 - Log out interfaces!](./task12-2.png "Log out interfaces")
 After the user logs into the app, we need to provide the log-out button and a display showing who is logged in. After considering different possible locations, we decided to place to UIs at the button left corner in the sidebar. In the footer of the sidebar menu, we first display the logged-in users' email then a log-out button.
 
 In the entire process, whenever the app is waiting for some task to complete (waiting for users to be actually logged-in after they authenticate their accounts for the app, or waiting to get the data to be sent back from the firebase dataset), our app will display a loading screen, showing the app name and the text loading.
 
-![Task 12 - Loading Screen!](./task12-3.png " Log in screen")
+![Task 12 - Loading Screen!](./task12-3.png "Loading Screen")
 
 There are some implicit features and design decisions that we made to support user log-in and list sharing. Recall that in the previous implementation, there is a default list that is not deletable from the list. Similarly, each user must have a default list called "My list" that is not sharable nor deletable. Thus, when a new user is logged in, an empty "My list" will be created for the user.
 
 
 ##Task 13: Sharing List
 ### Design Ideas / Decisions
+In implementing the feature to share lists among users, we had to add a few new design aspects, specifically in the sidebar, 
+header, and sharing modal. We needed to ensure that there was clear indication of sharing. Our inspiration for the style of 
+the sharing modal was from the Google Docs feature because we thought that it laid out very clearly what users are able 
+to do with the sharing feature.
 
 
 ### Final Design
-
-
+In the sidebar, we wanted each list to indicate whether or not it is shared. As long as a list has other collaborators that 
+are not only the owner, there will be a share icon to the left of the list name. For permissions of deleting lists, only 
+the owner can delete it regardless of whether it is shared or not. Thus, any other collaborators besides the list owner will 
+not see a delete icon to the right of the list name. In the header, the list name is editable by either the owners or collaborators. 
+We also decided to clarify who the owner of a list is, so any collaborator that is not the owner will see the email address 
+of the owner who shared the list with them. But this text will only be seen on larger screen sizes due to the small nature of 
+mobile devices where the text will not fit well visually. On the other hand, owners themselves will not need to see that information; they 
+will have a share icon at the top right corner instead which leads to the share modal feature. The share modal asks users to 
+input email addresses and then click the add button, which then immediately allows the new collaborator to view and edit the 
+list and adds that email to the list of collaborators in the modal. Users will be able to see their own email address in 
+the list of collaborators, labeled as the owner, while the other collaborators are able to be removed by the remove button.
+![Task 13 - Sharing Icons and Modal!](./task13-1.png "Sharing Icons and Modal")
+![Task 13 - Sharing: Collaborator view!](./task13-2.png "Sharing: Collaborator view")
 
 # User Testing
 
@@ -369,6 +384,7 @@ The participant then reviewed what the app looks like in different screen sizes.
 
 ## Lab 5
 We asked our user to mainly test the login functionality and the sharing feature. The login UI is intuitive for the user because she is familiar with the Google login pop-up. The user was also easily able to identify where the log-out button is, and she finds the display of the logged-in email to be helpful. In terms of the sharing feature, the user was able to immediately recognize that the icon on the top right corner. Overall, the pop-up sharing modal looked intuitive for the user. The user understood that in order to share, she needed to entire the email of whomever she wanted to share the list with because the textbox had the placeholder "Enter Email: ". The user could also easily identify which list is being shared and the owner of the current list because there is a share icon next to the list name in the sidebar, and the top right button of a collaborating list would display the owner's email if the user is not the owner. The user also helped us check our app's synchronization across different users. While the app's overall behavior looked understandable, she was surprised that when you create a new list item on one screen, the item list with an empty name field would appear on the other screen. When she was editing the new item's name on one screen, the other screen would not update the text field yet. The other screen would only be updated after she had clicked out of the text field on this screen.
+For another user, we had two windows side by side with one window logged into our (Celine and Yuki’s) email and another for the user to login with their Gmail. This way, they can explore the list sharing abilities and see how well the data updates between windows. Upon using Google login, the user said it worked as expected. After logging in, the user clicked into an existing list and explored the sharing feature of the app from our account. She first typed in her email to add herself as a collaborator in our list and made the list showed up correctly and indicated that it was shared with her, which she confirmed. However, she was able to add “collaborators” that are not valid email addresses. It would be best to work on verifying that an entry in the text box that adds collaborators is a valid email address and is also a Gmail account, and display an error if so.
 
 
 # Challenges We Faced
@@ -473,3 +489,7 @@ could cause confusion when scrolling on the wrong side. Overall, we like having 
 through lists.
 
 ## Lab 5
+The feature on this lab that we are the most proud of is the sharing feature. We like the UI of the sharing modal, which 
+uses flexbox, and the scrolling of the collaborators section when the email list gets very long. We also had to ensure that 
+our Firestore security rules were working properly for it to operate the way we wanted. We tested the sharing feature in two 
+windows for two users, and saw that the updates occurred fairly quickly.
